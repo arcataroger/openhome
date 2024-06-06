@@ -25,8 +25,9 @@ const page_data = toRaw(data.value)[page_id]; */
 
 <template>
   <div>
-    <div class="hero section-wrapper hpad bgtexture">
-      <div class="content-wrapper">
+    <!-- hero -->
+    <div class="hero section-wrapper bgtexture">
+      <div class="content-wrapper p-max">
         <header>
           <h1>Your Own AI Smart Speaker</h1>
           <p>
@@ -36,12 +37,211 @@ const page_data = toRaw(data.value)[page_id]; */
           </p>
         </header>
       </div>
+
+      <!-- wave animation -->
+      <div class="anim-wrap img-ph">
+        <img src="~/assets/img/home-hero-ph.png" class="pos-ct" />
+      </div>
+
+      <!-- logos -->
+      <LogoGroup />
+    </div>
+
+    <!-- intro -->
+    <div class="section-wrapper lt gridlines">
+      <Gridlines />
+      <div class="content-wrapper p-max pt-55 ct">
+        <header>
+          <h2>Welcome to a New Era of Interaction.</h2>
+        </header>
+        <div class="img-ph mt-65">
+          <img src="~/assets/img/welcome-wave.png" />
+        </div>
+        <div class="txt-grp mt-65 mx-1100 auto">
+          <h3>Bring AI to Life, Everywhere!</h3>
+          <p>
+            OpenHome is not a piece of smart technology, it's the core of an
+            intelligent companionship that evolves with you. Our AI
+            personalities engage, learn your voice, sense your feelings,
+            empathize, and anticipate your needs.
+          </p>
+          <p>
+            Craft your ideal companion. Customize the voice, tone, style, and
+            even the sense of humor of your AI. With OpenHome, you create more
+            than a smart speaker; you bring to life an entity that is uniquely
+            yours.
+          </p>
+        </div>
+        <div class="cta-group grid two-col gap mt-65">
+          <CtaBtn href="#" arrow="true">developers</CtaBtn>
+          <CtaBtn href="#" arrow="true">investors</CtaBtn>
+        </div>
+      </div>
+    </div>
+
+    <!-- slider -->
+    <div class="section-wrapper home-slider lt gridlines col-vpad">
+      <Gridlines />
+      <div class="content-wrapper no-max">
+        <div class="grid two-col">
+          <div class="col pad flex-cn">
+            <div class="txt-grp mx-600">
+              <h2>Build your ideal smart speaker experience.</h2>
+            </div>
+          </div>
+          <div class="col pad flex-cn">
+            <div class="txt-grp mx-600">
+              <img
+                src="~/assets/img/home-slide1@2x.png"
+                alt=""
+                class="slide-img"
+              />
+              <h3>Unlock Human-Like Interaction</h3>
+              <p>
+                With OpenHome, create organic voice AI experiences with instant
+                response times, emotional recognition, conversation paths, and
+                opinions of their own. With OpenHome, create organic voice AI
+                experiences with instant response times, emotional recognition,
+                conversation paths, and opinions of their own.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- api -->
+    <div class="api section-wrapper bgtexture dk vpad">
+      <div class="content-wrapper p-max">
+        <header>
+          <h2>Powerful APIs for Developers & Enterprises</h2>
+          <p class="mx-1100 auto">
+            Easy to use, powerful tools for complex tasks. Our platform includes
+            comprehensive APIs for speech-to-text, text-to-speech, and language
+            understanding. Whether it's for medical transcription or creating
+            autonomous agents, OpenHome is the trusted choice for developers
+            looking to push the boundaries of what voice AI can do.
+          </p>
+          <div class="cta-group mt-65">
+            <CtaBtn href="#" arrow="true">Try a Demo</CtaBtn>
+            <CtaBtn href="#" arrow="true">Explore Ecosystem</CtaBtn>
+          </div>
+        </header>
+
+        <!-- wave animation -->
+        <div class="anim-wrap img-ph mt-65">
+          <img src="~/assets/img/home-api-ph.png" class="pos-ct" />
+        </div>
+
+        <!-- capabilities -->
+        <div class="capabilities pt">
+          <!-- giant text -->
+          <div class="callout-txt-lg">500+</div>
+
+          <!-- content row 2 col -->
+          <div class="grid two-col pt">
+            <div class="col pr pt-55">
+              <div class="txt-goup mx-600">
+                <h2>Powerful Capabilities</h2>
+                <p>
+                  With over 500 +With features that support a wide range of
+                  applications—from medical transcription to smart home
+                  integration—OpenHome sets the stage for a future where AI is
+                  seamlessly integrated into everyday life.
+                </p>
+                <CtaBtn href="#" arrow="true">Browse more Capabilities</CtaBtn>
+              </div>
+            </div>
+            <div class="col pl">
+              <IconList />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- resources -->
+    <div class="resources section-wrapper lt">
+      <div class="row gridlines np-bot">
+        <Gridlines />
+        <div class="content-wrapper p-max">
+          <header>
+            <h2 class="alt">Resources</h2>
+          </header>
+        </div>
+      </div>
+      <div class="row gridlines">
+        <Gridlines bot="true" />
+        <div class="content-wrapper p-max">
+          <time>April 02, 2024</time>
+          <h3>Introducing MetaCap: Live Emotional Insights Come to OpenHome</h3>
+          <p>
+            We’re thrilled to showcase a community project built by members of
+            the OpenHome developer community! At the heart of OpenHome’s
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- community -->
+    <div class="community section-wrapper lt pt">
+      <div class="content-wrapper p-max">
+        <header>
+          <h2>Join the OpenHome Community</h2>
+          <p>
+            Ready to redefine the boundaries of voice AI? Join OpenHome today
+            and be part of the <br />community that’s setting the tone for
+            tomorrow's AI innovations. Where will your <br />imagination take
+            you? Let OpenHome be the launchpad for your voice AI journey.
+          </p>
+          <CtaBtn href="#" arrow="true">Join the Community</CtaBtn>
+        </header>
+
+        <!-- shapes animation -->
+        <div class="anim-wrap img-ph mt-65">
+          <img src="~/assets/img/home-community-ph@2x.png" class="pos-ct" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.anim-wrap {
+  width: 100%;
+  img {
+    height: 100%;
+    min-width: 1800px;
+    position: relative;
+  }
+}
 .hero {
-  min-height: 100vh;
+  .anim-wrap {
+    height: 385px;
+    margin-top: 85px;
+  }
+}
+.home-slider {
+  img + h3 {
+    margin-top: 30px;
+  }
+  h3 + p {
+    margin-top: 10px;
+  }
+}
+.slide-img {
+  max-width: 315px;
+}
+.api .anim-wrap {
+  height: 885px;
+}
+.resources header {
+  padding-bottom: 50px;
+}
+.community {
+  .anim-wrap {
+    height: 385px;
+    margin-top: 85px;
+  }
 }
 </style>

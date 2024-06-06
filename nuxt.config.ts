@@ -14,7 +14,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap',
           crossorigin: '',
         },
       ],
@@ -26,9 +26,6 @@ export default defineNuxtConfig({
     '~/assets/css/setup.css',
     '~/assets/css/main.css',
   ],
-  alias: {
-    assets: '/<rootDir>/assets',
-  },
   devtools: { enabled: false },
   /*   gtag: {
     id: 'G-751YVZCCDP',

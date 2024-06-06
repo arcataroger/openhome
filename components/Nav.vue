@@ -5,9 +5,8 @@ const props = defineProps(['type']);
 <template>
   <nav :class="type">
     <ul class="main-nav">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#">Discord</a></li>
+      <li><a href="#">Resources</a></li>
     </ul>
   </nav>
 </template>
