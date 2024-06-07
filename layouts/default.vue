@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="wrapper dk">
+  <div class="wrapper">
     <Header />
     <slot />
     <Footer />

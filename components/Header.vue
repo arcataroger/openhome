@@ -1,7 +1,8 @@
 <script setup></script>
 
 <template>
-  <header class="main hpad">
+  <Guidelines />
+  <header class="main dk hpad">
     <div class="content-wrapper">
       <div class="logo-main pos-ct">
         <IconLogo />

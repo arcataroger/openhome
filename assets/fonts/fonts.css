@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'FT Activica';
+  src:
+    url('ft_activica_pixel-webfont.woff2') format('woff2'),
+    url('ft_activica_pixel-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Right Slab';
+  src:
+    url('pp_right_slab_-_light-webfont.woff2') format('woff2'),
+    url('pp_right_slab_-_light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

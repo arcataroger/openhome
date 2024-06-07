@@ -52,7 +52,7 @@ body {
 .h-lg,
 header h1,
 .section-wrapper h2 {
-  font-family: 'PP Right Slab';
+  font-family: 'PP Right Slab', serif;
   font-size: 118px;
   font-weight: 300;
   line-height: 0.92;
@@ -66,6 +66,7 @@ header h1,
 }
 .h-md,
 h3 {
+  font-family: 'FT Activica', sans-serif;
   font-size: 50px;
   font-weight: 300;
   line-height: 1.1;
@@ -85,8 +86,13 @@ h4 {
   font-weight: 400;
 }
 .callout-txt-lg {
+  font-family: 'FT Activica';
   font-size: 690px;
   line-height: 0.75;
+}
+.pix {
+  font-family: 'FT Activica', sans-serif;
+  font-size: 0.73em;
 }
 
 /* body */
@@ -129,7 +135,7 @@ p + .cta-btn {
   }
 }
 
-.ct {
+.cn {
   text-align: center;
 }
 
@@ -184,11 +190,17 @@ p + .cta-btn {
 .pt {
   padding-top: var(--top-margin);
 }
-.pt-55 {
-  padding-top: 55px;
-}
 .pb {
   padding-bottom: var(--bot-margin);
+}
+.pt-20 {
+  padding-top: 20px;
+}
+.pt-65 {
+  padding-top: 65px;
+}
+.pb-65 {
+  padding-bottom: 65px;
 }
 .pl {
   padding-left: var(--side-margin);

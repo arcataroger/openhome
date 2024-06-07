@@ -22,14 +22,12 @@ export default defineNuxtConfig({
   },
   modules: ['@vueuse/nuxt'],
   css: [
+    '~/assets/fonts/fonts.css',
     '~/assets/css/reset.css',
     '~/assets/css/setup.css',
     '~/assets/css/main.css',
   ],
   devtools: { enabled: false },
-  /*   gtag: {
-    id: 'G-751YVZCCDP',
-  }, */
   /*   runtimeConfig: {
     public: {
       datoCmsToken: process.env.DATO_CMS_TOKEN,

@@ -26,7 +26,7 @@ const page_data = toRaw(data.value)[page_id]; */
 <template>
   <div>
     <!-- hero -->
-    <div class="hero section-wrapper bgtexture">
+    <div class="hero section-wrapper dk bgtexture">
       <div class="content-wrapper p-max">
         <header>
           <h1>Your Own AI Smart Speaker</h1>
@@ -50,7 +50,7 @@ const page_data = toRaw(data.value)[page_id]; */
     <!-- intro -->
     <div class="section-wrapper lt gridlines">
       <Gridlines />
-      <div class="content-wrapper p-max pt-55 ct">
+      <div class="content-wrapper p-max pt-65 cn">
         <header>
           <h2>Welcome to a New Era of Interaction.</h2>
         </header>
@@ -114,7 +114,7 @@ const page_data = toRaw(data.value)[page_id]; */
     <div class="api section-wrapper bgtexture dk vpad">
       <div class="content-wrapper p-max">
         <header>
-          <h2>Powerful APIs for Developers & Enterprises</h2>
+          <h2>Powerful APIs for <br />Developers & Enterprises</h2>
           <p class="mx-1100 auto">
             Easy to use, powerful tools for complex tasks. Our platform includes
             comprehensive APIs for speech-to-text, text-to-speech, and language
@@ -140,7 +140,7 @@ const page_data = toRaw(data.value)[page_id]; */
 
           <!-- content row 2 col -->
           <div class="grid two-col pt">
-            <div class="col pr pt-55">
+            <div class="col pr pt-65">
               <div class="txt-goup mx-600">
                 <h2>Powerful Capabilities</h2>
                 <p>
@@ -164,21 +164,31 @@ const page_data = toRaw(data.value)[page_id]; */
     <div class="resources section-wrapper lt">
       <div class="row gridlines np-bot">
         <Gridlines />
-        <div class="content-wrapper p-max">
+        <div class="side-ornament lt"><div class="circ"></div></div>
+        <div class="side-ornament rt">
+          <img src="/public/icons/logo-halfcircs.svg" alt="" />
+        </div>
+
+        <div class="content-wrapper p-max pt-65">
           <header>
-            <h2 class="alt">Resources</h2>
+            <h2 class="alt">
+              Res<span class="pix">o</span>u<span class="pix">r</span>ces
+            </h2>
           </header>
         </div>
       </div>
-      <div class="row gridlines">
-        <Gridlines bot="true" />
-        <div class="content-wrapper p-max">
-          <time>April 02, 2024</time>
-          <h3>Introducing MetaCap: Live Emotional Insights Come to OpenHome</h3>
-          <p>
-            We’re thrilled to showcase a community project built by members of
-            the OpenHome developer community! At the heart of OpenHome’s
-          </p>
+      <div class="row gridlines np-bot">
+        <Gridlines bot="true" pad="nopad" />
+        <div class="content-wrapper">
+          <div class="grid two-col">
+            <BlogThumb />
+            <BlogThumb />
+          </div>
+          <div class="cta-row cn">
+            <div class="inner">
+              <CtaBtn href="#" arrow="true">View All</CtaBtn>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -235,8 +245,51 @@ const page_data = toRaw(data.value)[page_id]; */
 .api .anim-wrap {
   height: 885px;
 }
-.resources header {
-  padding-bottom: 50px;
+.resources {
+  header {
+    padding-bottom: 50px;
+  }
+  .grid .col {
+    padding-bottom: 160px;
+  }
+  .cta-row {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    left: 0;
+    bottom: 0px;
+    .inner {
+      background-color: var(--cream);
+      display: inline-block;
+      padding: 20px 20px 15px;
+    }
+  }
+  .side-ornament {
+    position: absolute;
+    top: 175px;
+    width: 100px;
+    height: 105px;
+    display: grid;
+    place-items: center;
+    background-color: var(--cream);
+    &.lt {
+      left: var(--grid-margin);
+      margin-left: -50px;
+    }
+    &.rt {
+      right: var(--grid-margin);
+      margin-right: -50px;
+    }
+    img {
+      width: 40px;
+    }
+    .circ {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--black);
+    }
+  }
 }
 .community {
   .anim-wrap {
