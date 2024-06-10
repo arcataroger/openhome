@@ -24,7 +24,7 @@ const items = [
 <style scoped>
 .icon-list {
   border-radius: 20px;
-  background-color: var(--black);
+  background-color: #0a0100;
   /*   border: 1px solid rgba(255, 255, 255, 0.2);
  */
   padding: 0 10px;

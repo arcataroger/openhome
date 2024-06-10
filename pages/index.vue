@@ -21,6 +21,34 @@ const QUERY = /* GraphQL */ `
 `;
 /* const { data, error } = await useGraphqlQuery({ query: QUERY });
 const page_data = toRaw(data.value)[page_id]; */
+
+/* placeholder data */
+const posts = [
+  {
+    id: '1',
+    data: {
+      image: 'news-thumb1@2x.jpg',
+      icon: 'news-icon1@2x.png',
+      data: 'April 02, 2024',
+      title: 'Introducing MetaCap: Live Emotional Insights Come to OpenHome',
+      excerpt:
+        "We're thrilled to showcase a community project built by members of the OpenHome developer community! At the heart of OpenHome's",
+      url: '#',
+    },
+  },
+  {
+    id: '2',
+    data: {
+      image: 'news-thumb2@2x.jpg',
+      icon: 'news-icon2@2x.png',
+      data: 'March 01, 2024',
+      title: 'MAtrix Phone Booth: Immersive Experiences in Openhome',
+      excerpt:
+        'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
+      url: '#',
+    },
+  },
+];
 </script>
 
 <template>
@@ -48,13 +76,13 @@ const page_data = toRaw(data.value)[page_id]; */
     </div>
 
     <!-- intro -->
-    <div class="section-wrapper lt gridlines">
+    <div class="intro section-wrapper lt gridlines np-bot">
       <Gridlines />
-      <div class="content-wrapper p-max pt-65 cn">
+      <div class="content-wrapper p-max pt-65 pb-65 cn">
         <header>
           <h2>Welcome to a New Era of Interaction.</h2>
         </header>
-        <div class="img-ph mt-65">
+        <div class="img-ph mt-65 auto">
           <img src="~/assets/img/welcome-wave.png" />
         </div>
         <div class="txt-grp mt-65 mx-1100 auto">
@@ -80,10 +108,10 @@ const page_data = toRaw(data.value)[page_id]; */
     </div>
 
     <!-- slider -->
-    <div class="section-wrapper home-slider lt gridlines col-vpad">
+    <div class="home-slider section-wrapper lt gridlines col-vpad">
       <Gridlines />
       <div class="content-wrapper no-max">
-        <div class="grid two-col">
+        <div class="grid two-col mx-1600 auto">
           <div class="col pad flex-cn">
             <div class="txt-grp mx-600">
               <h2>Build your ideal smart speaker experience.</h2>
@@ -96,7 +124,7 @@ const page_data = toRaw(data.value)[page_id]; */
                 alt=""
                 class="slide-img"
               />
-              <h3>Unlock Human-Like Interaction</h3>
+              <h3>Unlock Human-<br />Like Interaction</h3>
               <p>
                 With OpenHome, create organic voice AI experiences with instant
                 response times, emotional recognition, conversation paths, and
@@ -107,11 +135,12 @@ const page_data = toRaw(data.value)[page_id]; */
             </div>
           </div>
         </div>
+        <div class="slide-nav"></div>
       </div>
     </div>
 
     <!-- api -->
-    <div class="api section-wrapper bgtexture dk vpad">
+    <div class="api section-wrapper bgtexture dk pt pb-160">
       <div class="content-wrapper p-max">
         <header>
           <h2>Powerful APIs for <br />Developers & Enterprises</h2>
@@ -122,7 +151,7 @@ const page_data = toRaw(data.value)[page_id]; */
             autonomous agents, OpenHome is the trusted choice for developers
             looking to push the boundaries of what voice AI can do.
           </p>
-          <div class="cta-group mt-65">
+          <div class="cta-group mt-20">
             <CtaBtn href="#" arrow="true">Try a Demo</CtaBtn>
             <CtaBtn href="#" arrow="true">Explore Ecosystem</CtaBtn>
           </div>
@@ -172,17 +201,21 @@ const page_data = toRaw(data.value)[page_id]; */
         <div class="content-wrapper p-max pt-65">
           <header>
             <h2 class="alt">
-              Res<span class="pix">o</span>u<span class="pix">r</span>ces
+              Res<span class="pix">o</span>u<span class="pix">r</span>c<span
+                class="pix"
+                >e</span
+              >s
             </h2>
           </header>
         </div>
       </div>
       <div class="row gridlines np-bot">
         <Gridlines bot="true" pad="nopad" />
-        <div class="content-wrapper">
+        <div class="content-wrapper no-max">
           <div class="grid two-col">
-            <BlogThumb />
-            <BlogThumb />
+            <div class="col pad" v-for="post in posts">
+              <BlogThumb :data="post.data" />
+            </div>
           </div>
           <div class="cta-row cn">
             <div class="inner">
@@ -228,7 +261,7 @@ const page_data = toRaw(data.value)[page_id]; */
 .hero {
   .anim-wrap {
     height: 385px;
-    margin-top: 85px;
+    margin-top: 75px;
   }
 }
 .home-slider {
@@ -237,6 +270,14 @@ const page_data = toRaw(data.value)[page_id]; */
   }
   h3 + p {
     margin-top: 10px;
+  }
+  .col.pad {
+    padding-bottom: 125px;
+  }
+}
+.intro {
+  .img-ph {
+    max-width: 1407px;
   }
 }
 .slide-img {
@@ -247,17 +288,22 @@ const page_data = toRaw(data.value)[page_id]; */
 }
 .resources {
   header {
-    padding-bottom: 50px;
+    padding-bottom: 60px;
   }
   .grid .col {
-    padding-bottom: 160px;
+    padding-top: 60px;
+    padding-bottom: 130px;
+  }
+  .blog-thumb {
+    max-width: 630px;
+    margin: 0 auto;
   }
   .cta-row {
     position: absolute;
     width: 100%;
     height: 100px;
     left: 0;
-    bottom: 0px;
+    bottom: 3px;
     .inner {
       background-color: var(--cream);
       display: inline-block;
@@ -293,8 +339,12 @@ const page_data = toRaw(data.value)[page_id]; */
 }
 .community {
   .anim-wrap {
-    height: 385px;
-    margin-top: 85px;
+    height: 370px;
+    margin-top: 55px;
+    img {
+      width: 1800px;
+      height: 370px;
+    }
   }
 }
 </style>

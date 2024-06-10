@@ -13,7 +13,7 @@
               </div>
             </div>
             <h2>Your Own AI <br />Smart Speaker</h2>
-            <div class="cta-group mt-65">
+            <div class="cta-group">
               <CtaBtn href="#" arrow="true">developers</CtaBtn>
               <CtaBtn href="#" arrow="true">investors</CtaBtn>
             </div>
@@ -38,6 +38,7 @@
 .footer-contents {
   grid-template-columns: 76.5% 23.5%;
   .cta-group {
+    margin-top: 40px;
     gap: 50px;
     justify-content: start;
     .cta-btn {
@@ -70,8 +71,10 @@
 }
 .legal {
   height: var(--grid-margin);
-  font-size: 13px;
   opacity: 0.4;
+  p {
+    font-size: 13px;
+  }
   .credit {
     width: 23.5%;
   }

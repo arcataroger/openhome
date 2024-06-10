@@ -23,7 +23,7 @@ header.main {
 }
 .main-nav {
   position: absolute;
-  top: 45px;
+  top: 40px;
   width: 100%;
   text-align: left;
   font-size: 18px;
@@ -47,6 +47,6 @@ header.main {
 }
 .logo-main {
   position: relative;
-  top: 20px;
+  top: 24px;
 }
 </style>

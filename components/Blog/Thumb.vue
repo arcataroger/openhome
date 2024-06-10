@@ -1,19 +1,21 @@
-<script setup></script>
+<script setup>
+const props = defineProps(['data']);
+</script>
 
 <template>
-  <div class="blog-thumb col pad">
+  <div class="blog-thumb">
     <div class="thumb-img">
-      <img src="~assets/img/news-thumb1@2x.jpg" alt="" />
+      <img :src="props.data.image" alt="" />
       <div class="thumb-icon">
-        <img src="~assets/img/news-icon1@2x.png" alt="" />
+        <img :src="props.data.icon" alt="" />
       </div>
     </div>
-    <time>April 02, 2024</time>
-    <h3>Introducing MetaCap: Live Emotional Insights Come to OpenHome</h3>
+    <time>{{ props.data.date }}</time>
+    <h3>{{ props.data.title }}</h3>
     <p>
-      We’re thrilled to showcase a community project built by members of the
-      OpenHome developer community! At the heart of OpenHome’s
+      {{ props.data.excerpt }}
     </p>
+    <a :href="props.data.url" class="full"></a>
   </div>
 </template>
 
@@ -43,5 +45,8 @@
     overflow: hidden;
     object-fit: cover;
   }
+}
+time + h3 {
+  margin-top: var(--margintop);
 }
 </style>

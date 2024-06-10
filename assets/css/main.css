@@ -151,12 +151,19 @@
 a {
   color: var(--pink);
   transition: all 0.3s linear;
+  &.full {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 .cta-btn {
   display: inline-block;
   border-width: 1px;
   border-style: solid;
-  padding: 18px;
+  padding: 20px;
   text-transform: uppercase;
   font-size: 15px;
   font-weight: 700;
@@ -165,7 +172,7 @@ a {
   text-align: center;
   &.sm {
     font-size: 14px;
-    padding: 12px 18px;
+    padding: 15px 18px;
   }
   &.dk {
     border-color: #fff;
@@ -176,10 +183,10 @@ a {
     color: var(--black);
   }
   .arrow {
-    width: 20px;
+    width: 21px;
     display: inline-block;
     vertical-align: text-top;
-    margin-left: 10px;
+    margin-left: 12px;
     margin-top: 1px;
   }
 }

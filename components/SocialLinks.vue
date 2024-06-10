@@ -19,6 +19,6 @@ ul {
   list-style: none;
 }
 li + li {
-  margin-top: 25px;
+  margin-top: 16px;
 }
 </style>
