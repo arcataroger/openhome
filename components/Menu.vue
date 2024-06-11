@@ -1,6 +1,8 @@
 <script setup>
 import gsap from 'gsap';
-import { vOnClickOutside } from '@vueuse/components';
+import { useWindowSize } from '@vueuse/core';
+
+const { width, height } = useWindowSize();
 
 let menuOpen = false;
 const nav = ref(null);
@@ -15,10 +17,12 @@ const toggleMenu = (e) => {
   if (!menuOpen) {
     gsap.fromTo(
       '.menu-contents',
-      { yPercent: -100 },
+      { scaleX: 0.9, scaleY: 0.9, opacity: 0 },
       {
-        duration: 0.5,
-        yPercent: 0,
+        duration: 0.35,
+        opacity: 1,
+        scaleX: 1,
+        scaleY: 1,
         ease: 'power3.out',
       }
     );
@@ -59,7 +63,9 @@ const closeMenu = () => {
     //console.log('close menu');
     gsap.to('.menu-contents', {
       duration: 0.5,
-      yPercent: -100,
+      opacity: 0,
+      scaleX: 0.9,
+      scaleY: 0.9,
       ease: 'power3.inOut',
       onComplete: function () {
         menu.classList.remove('expanded');
@@ -73,27 +79,15 @@ const closeMenu = () => {
 </script>
 
 <template>
-  <div
-    class="mobile-menu"
-    v-on-click-outside="closeMenu"
-    :style="`max-height:${menuH}px`"
-  >
+  <div class="mobile-menu" v-if="width <= 1024">
     <MenuButton @click="toggleMenu" />
     <div class="menu-wrap">
-      <div class="menu-contents">
-        <Nav type="mobile" ref="nav" />
-      </div>
+      <div class="menu-contents bgtexture"></div>
     </div>
   </div>
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .mobile-menu {
-    display: none;
-  }
-}
-
 .mobile-menu {
   position: fixed;
   left: 0;
@@ -103,23 +97,8 @@ const closeMenu = () => {
   &.expanded {
     height: 100%;
   }
-  &.open {
-    .menu-btn {
-      background-color: #fff;
-      .menu-line {
-        background-color: #000;
-      }
-      .menu-line:nth-child(1) {
-        transform: rotate(45deg);
-      }
-      .menu-line:nth-child(2) {
-        transform: scaleX(0);
-      }
-      .menu-line:nth-child(3) {
-        transform: rotate(-45deg);
-      }
-    }
-  }
+  /*   &.open {
+  } */
   .menu-wrap {
     position: absolute;
     left: 0;
@@ -131,46 +110,13 @@ const closeMenu = () => {
   }
   .menu-contents {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    /*     border-bottom: 1px solid var(--ltgray);
- */
+    height: 100vh;
     padding: 20px 0;
   }
 
   nav,
   ul {
     width: 100%;
-  }
-
-  /* move to nav component */
-  nav {
-    ul {
-      display: block;
-      padding: 0 25px;
-    }
-    .icon-wrap {
-      width: 50px !important;
-      height: 50px !important;
-      padding: 10px !important;
-      margin: 0 !important;
-      border: 1px solid #fff !important;
-    }
-    li a {
-      display: grid;
-      grid-template-columns: 60px 1fr;
-      justify-items: start;
-      align-items: center;
-      padding: 12px 0;
-      p {
-        font-size: 32px;
-        font-weight: 300;
-        color: #fff !important;
-        margin-left: 15px;
-      }
-    }
-    li + li {
-      border-top: 1px solid var(--ltgray);
-    }
   }
 }
 </style>

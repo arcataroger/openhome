@@ -9,7 +9,7 @@
           <div class="txt-grp">
             <div class="size-box">
               <div class="logo-main wide">
-                <img src="~/assets/img/logo-wide.svg" alt="open home" />
+                <IconLogoWide />
               </div>
             </div>
             <h2>Your Own AI <br />Smart Speaker</h2>
@@ -38,25 +38,30 @@
 .footer-contents {
   grid-template-columns: 76.5% 23.5%;
   .cta-group {
-    margin-top: 40px;
-    gap: 50px;
-    justify-content: start;
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 3.125rem;
+    grid-template-columns: 1fr 1fr;
+    justify-items: start;
+    max-width: 684px;
     .cta-btn {
-      width: 100%;
-      max-width: 312px;
+      justify-self: stretch;
       + .cta-btn {
-        margin-left: 50px;
+        margin-left: 0;
       }
     }
   }
-  .col.lt .txt-grp {
-    max-width: 730px;
+  .col.lt {
+    padding-right: 40px;
+    .txt-grp {
+      max-width: 730px;
+    }
   }
   .size-box {
-    height: 150px;
+    height: 9.375rem;
   }
   .logo-main {
-    padding-top: 45px;
+    padding-top: 2.8125rem;
   }
 }
 .col.social,

@@ -11,6 +11,10 @@ const props = defineProps(['bot', 'pad']);
 
 <style>
 .gridlines {
+  --grid-margin: 95px;
+  --grid-marginM: 40px;
+  --grid-marginM2: 18px;
+
   position: relative;
   padding: var(--grid-margin);
   + .gridlines {
@@ -29,6 +33,17 @@ const props = defineProps(['bot', 'pad']);
   }
   &.np-bot {
     padding-bottom: 0;
+  }
+  &.stack {
+    padding-left: 0;
+    padding-right: 0;
+    .col.pad {
+      padding-left: 65px;
+      padding-right: 65px;
+      + .col {
+        margin-top: 0;
+      }
+    }
   }
 }
 .gridline {
@@ -59,6 +74,60 @@ const props = defineProps(['bot', 'pad']);
     }
     &.nopad {
       bottom: 0px;
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .gridlines {
+    padding: var(--grid-marginM);
+    &.col-vpad {
+      .col {
+        padding-top: var(--grid-marginM);
+        padding-bottom: var(--grid-marginM);
+      }
+    }
+  }
+  .gridline {
+    &.h:not(.bot) {
+      top: var(--grid-marginM);
+    }
+    &.lt {
+      left: var(--grid-marginM);
+    }
+    &.rt {
+      right: var(--grid-marginM);
+    }
+    &.bot {
+      &.pad {
+        bottom: var(--grid-marginM);
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .gridlines {
+    padding: var(--grid-marginM2);
+    &.col-vpad {
+      .col {
+        padding-top: var(--grid-marginM2);
+        padding-bottom: var(--grid-marginM2);
+      }
+    }
+  }
+  .gridline {
+    &.h:not(.bot) {
+      top: var(--grid-marginM2);
+    }
+    &.lt {
+      left: var(--grid-marginM2);
+    }
+    &.rt {
+      right: var(--grid-marginM2);
+    }
+    &.bot {
+      &.pad {
+        bottom: var(--grid-marginM2);
+      }
     }
   }
 }

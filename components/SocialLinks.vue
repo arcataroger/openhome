@@ -11,6 +11,7 @@ const links = [
     <li v-for="link in links" class="h-md">
       <a :href="link.url">{{ link.name }}</a>
     </li>
+    <li class="cta"><CtaBtn href="#" arrow="true">Contact</CtaBtn></li>
   </ul>
 </template>
 
@@ -20,5 +21,8 @@ ul {
 }
 li + li {
   margin-top: 16px;
+  &.cta {
+    margin-top: 60px;
+  }
 }
 </style>

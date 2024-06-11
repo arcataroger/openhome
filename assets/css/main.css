@@ -11,9 +11,6 @@
   &.vis {
     overflow: visible;
   }
-  header {
-    text-align: center;
-  }
 }
 .content-wrapper {
   width: 100%;
@@ -58,6 +55,11 @@
     padding-right: 50px;
   }
 }
+.gridlines {
+  .col + .col {
+    border-style: solid;
+  }
+}
 .txt-grp {
   width: 100%;
 }
@@ -65,12 +67,26 @@
 @media (max-width: 1200px) {
   .grid {
     &.two-col {
+      &.gap {
+        gap: 25px;
+      }
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .col {
+    &.pad {
+      padding: var(--side-marginM);
+    }
+  }
+}
+@media (max-width: 900px) {
+  .grid {
+    &.two-col:not(.nobr) {
       grid-template-columns: auto;
       .col + .col {
         margin-top: var(--top-marginM);
-      }
-      &.gap {
-        gap: 25px;
+        border-top-width: 1px;
       }
     }
     &.three-col {
@@ -81,9 +97,21 @@
       }
     }
   }
+  .col.pl {
+    padding-left: 0;
+  }
 }
-
+@media (min-width: 901px) {
+  .gridlines {
+    .col + .col {
+      border-left-width: 1px;
+    }
+  }
+}
 @media (max-width: 768px) {
+  .hero {
+    padding-top: var(--hero-margintopM);
+  }
   .grid {
     &.three-col {
       display: block;
@@ -142,8 +170,8 @@
   }
 }
 .bgtexture {
-  background: url('/assets/img/bgtexture.jpg') center top repeat-y;
-  background-size: 100% auto;
+  background: url('/assets/img/bgtexture.jpg') left top;
+  background-size: 1800px 1000px;
   /* background: #555 !important; */
 }
 
@@ -196,6 +224,12 @@ a {
   }
 }
 
+@media (max-width: 1024px) {
+  .cta-btn {
+    font-size: 14px;
+  }
+}
+
 /* --------------------------- theme --------------------------- */
 .section-wrapper {
   &.dk {
@@ -206,7 +240,8 @@ a {
   }
 }
 .section-wrapper,
-header {
+header,
+.set-theme {
   &.dk {
     color: var(--cream);
     .cta-btn {
@@ -225,7 +260,7 @@ header {
     .gridlines,
     &.gridlines {
       .col + .col {
-        border-left: 1px solid var(--dkgray);
+        border-color: var(--dkgray);
       }
     }
   }
@@ -248,7 +283,7 @@ header {
     .gridlines,
     &.gridlines {
       .col + .col {
-        border-left: 1px solid var(--gray);
+        border-color: var(--gray);
       }
     }
   }

@@ -31,7 +31,6 @@ const items = [
 }
 .icon-list-item {
   width: 100%;
-  max-width: 525px;
   padding: 12px 0;
   display: grid;
   grid-template-columns: 90px 1fr;
@@ -58,6 +57,11 @@ const items = [
     .list-icon {
       background-color: var(--aqua);
     }
+  }
+}
+@media (min-width: 900px) {
+  .icon-list-item {
+    max-width: 525px;
   }
 }
 </style>

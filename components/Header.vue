@@ -1,16 +1,21 @@
-<script setup></script>
+<script setup>
+import { useWindowSize } from '@vueuse/core';
+const { width, height } = useWindowSize();
+</script>
 
 <template>
   <Guidelines />
   <header class="main dk hpad">
     <div class="content-wrapper">
-      <div class="logo-main pos-ct">
-        <IconLogo />
+      <div class="logo-main" :class="width > 1024 && 'pos-ct'">
+        <IconLogo v-if="width > 1024" />
+        <IconLogoWide v-if="width <= 1024" />
       </div>
       <Nav></Nav>
       <CtaNav></CtaNav>
     </div>
   </header>
+  <Menu />
 </template>
 
 <style>
@@ -26,8 +31,8 @@ header.main {
   top: 40px;
   width: 100%;
   text-align: left;
-  font-size: 18px;
   li {
+    font-size: 1.125rem;
     display: inline-block;
     + li {
       margin-left: 30px;
@@ -48,5 +53,16 @@ header.main {
 .logo-main {
   position: relative;
   top: 24px;
+}
+@media (max-width: 1024px) {
+  header.main {
+    nav {
+      display: none;
+    }
+  }
+  .logo-main {
+    width: 150px;
+    top: 27px;
+  }
 }
 </style>

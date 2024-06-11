@@ -1,4 +1,7 @@
 <script setup>
+import { useWindowSize } from '@vueuse/core';
+const { width, height } = useWindowSize();
+
 // reset to global page meta data
 //initSiteMeta();
 const page_id = 'homePage';
@@ -55,8 +58,8 @@ const posts = [
   <div>
     <!-- hero -->
     <div class="hero section-wrapper dk bgtexture">
-      <div class="content-wrapper p-max">
-        <header>
+      <div class="content-wrapper p-max has-br">
+        <header :class="width <= 650 && 'txt-lt'">
           <h1>Your Own AI Smart Speaker</h1>
           <p>
             OpenHome’s open-source Voice SDK empowers you to launch your
@@ -67,8 +70,8 @@ const posts = [
       </div>
 
       <!-- wave animation -->
-      <div class="anim-wrap img-ph">
-        <img src="~/assets/img/home-hero-ph.png" class="pos-ct" />
+      <div class="anim-wrap img-ph grid-cn">
+        <img src="~/assets/img/home-hero-ph.png" />
       </div>
 
       <!-- logos -->
@@ -78,11 +81,11 @@ const posts = [
     <!-- intro -->
     <div class="intro section-wrapper lt gridlines np-bot">
       <Gridlines />
-      <div class="content-wrapper p-max pt-65 pb-65 cn">
+      <div class="content-wrapper p-max pt-65 pb-65 txt-cn">
         <header>
-          <h2>Welcome to a New Era of Interaction.</h2>
+          <h2>Welcome to a New Era <br />of Interaction.</h2>
         </header>
-        <div class="img-ph mt-65 auto">
+        <div class="img-ph intro-wave mt-65 auto">
           <img src="~/assets/img/welcome-wave.png" />
         </div>
         <div class="txt-grp mt-65 mx-1100 auto">
@@ -100,7 +103,7 @@ const posts = [
             yours.
           </p>
         </div>
-        <div class="cta-group grid two-col gap mt-65">
+        <div class="cta-group grid two-col nobr gap mt-65">
           <CtaBtn href="#" arrow="true">developers</CtaBtn>
           <CtaBtn href="#" arrow="true">investors</CtaBtn>
         </div>
@@ -108,7 +111,10 @@ const posts = [
     </div>
 
     <!-- slider -->
-    <div class="home-slider section-wrapper lt gridlines col-vpad">
+    <div
+      class="home-slider section-wrapper lt gridlines col-vpad"
+      :class="width <= 900 && 'stack'"
+    >
       <Gridlines />
       <div class="content-wrapper no-max">
         <div class="grid two-col mx-1600 auto">
@@ -124,7 +130,7 @@ const posts = [
                 alt=""
                 class="slide-img"
               />
-              <h3>Unlock Human-<br />Like Interaction</h3>
+              <h3>Unlock Human-Like Interaction</h3>
               <p>
                 With OpenHome, create organic voice AI experiences with instant
                 response times, emotional recognition, conversation paths, and
@@ -156,20 +162,21 @@ const posts = [
             <CtaBtn href="#" arrow="true">Explore Ecosystem</CtaBtn>
           </div>
         </header>
+      </div>
+      <!-- wave animation -->
+      <div class="anim-wrap grid-cn img-ph mt-65">
+        <img src="~/assets/img/home-api-ph.png" />
+      </div>
 
-        <!-- wave animation -->
-        <div class="anim-wrap img-ph mt-65">
-          <img src="~/assets/img/home-api-ph.png" class="pos-ct" />
-        </div>
-
-        <!-- capabilities -->
+      <!-- capabilities -->
+      <div class="content-wrapper p-max">
         <div class="capabilities pt">
           <!-- giant text -->
           <div class="callout-txt-lg">500+</div>
 
           <!-- content row 2 col -->
           <div class="grid two-col pt">
-            <div class="col pr pt-65">
+            <div class="col pr" :class="width > 900 && 'pt-65'">
               <div class="txt-goup mx-600">
                 <h2>Powerful Capabilities</h2>
                 <p>
@@ -217,7 +224,7 @@ const posts = [
               <BlogThumb :data="post.data" />
             </div>
           </div>
-          <div class="cta-row cn">
+          <div class="cta-row txt-cn">
             <div class="inner">
               <CtaBtn href="#" arrow="true">View All</CtaBtn>
             </div>
@@ -239,11 +246,11 @@ const posts = [
           </p>
           <CtaBtn href="#" arrow="true">Join the Community</CtaBtn>
         </header>
+      </div>
 
-        <!-- shapes animation -->
-        <div class="anim-wrap img-ph mt-65">
-          <img src="~/assets/img/home-community-ph@2x.png" class="pos-ct" />
-        </div>
+      <!-- shapes animation -->
+      <div class="anim-wrap img-ph mt-65 grid-cn">
+        <img src="~/assets/img/home-community-ph@2x.png" />
       </div>
     </div>
   </div>
@@ -252,18 +259,20 @@ const posts = [
 <style scoped>
 .anim-wrap {
   width: 100%;
-  img {
-    height: 100%;
-    min-width: 1800px;
-    position: relative;
-  }
 }
 .hero {
   .anim-wrap {
-    height: 385px;
-    margin-top: 75px;
+    margin-top: 125px;
   }
 }
+@media (max-width: 1400px) {
+  .hero {
+    .anim-wrap {
+      margin-top: 50px;
+    }
+  }
+}
+
 .home-slider {
   img + h3 {
     margin-top: 30px;
@@ -272,27 +281,37 @@ const posts = [
     margin-top: 10px;
   }
   .col.pad {
-    padding-bottom: 125px;
+    padding-top: 5.9375rem;
+    padding-bottom: 5.9375rem;
   }
 }
+@media (max-width: 1024px) {
+  .home-slider {
+    .col.pad {
+      padding-top: var(--side-marginM);
+      padding-bottom: var(--side-marginM);
+    }
+  }
+}
+
 .intro {
-  .img-ph {
-    max-width: 1407px;
+  .intro-wave {
+    max-width: 1400px;
+    border-radius: 365px;
+    overflow: hidden;
   }
 }
 .slide-img {
   max-width: 315px;
 }
-.api .anim-wrap {
-  height: 885px;
-}
+
 .resources {
   header {
-    padding-bottom: 60px;
+    padding-bottom: 3.75rem;
   }
   .grid .col {
-    padding-top: 60px;
-    padding-bottom: 130px;
+    padding-top: 3.75rem;
+    padding-bottom: 8.125rem;
   }
   .blog-thumb {
     max-width: 630px;
@@ -304,15 +323,18 @@ const posts = [
     height: 100px;
     left: 0;
     bottom: 3px;
+    pointer-events: none;
+    .cta-btn {
+      pointer-events: all;
+    }
     .inner {
-      background-color: var(--cream);
       display: inline-block;
       padding: 20px 20px 15px;
     }
   }
   .side-ornament {
     position: absolute;
-    top: 175px;
+    top: 10.9375rem;
     width: 100px;
     height: 105px;
     display: grid;
@@ -339,12 +361,7 @@ const posts = [
 }
 .community {
   .anim-wrap {
-    height: 370px;
     margin-top: 55px;
-    img {
-      width: 1800px;
-      height: 370px;
-    }
   }
 }
 </style>

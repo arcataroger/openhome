@@ -1,28 +1,35 @@
 <script setup></script>
 
 <template>
-  <div class="menu-btn">
-    <div class="menu-line top"></div>
-    <div class="menu-line mid"></div>
-    <div class="menu-line bot"></div>
+  <div class="menu-btn set-theme dk grid-cn">
+    <svg width="22" height="19" viewBox="0 0 22 19" class="use-theme">
+      <rect x="0.138672" y="7.349" width="4.3389" height="3.61118" />
+      <rect x="8.81836" y="7.349" width="4.3389" height="3.61118" />
+      <rect x="17.498" y="7.349" width="4.3389" height="3.61118" />
+      <rect x="0.138672" y="0.126625" width="4.3389" height="3.61118" />
+      <rect x="8.81836" y="0.126625" width="4.3389" height="3.61118" />
+      <rect x="17.498" y="0.126625" width="4.3389" height="3.61118" />
+      <rect x="0.138672" y="14.5714" width="4.3389" height="3.61118" />
+      <rect x="8.81836" y="14.5714" width="4.3389" height="3.61118" />
+      <rect x="17.498" y="14.5714" width="4.3389" height="3.61118" />
+    </svg>
   </div>
 </template>
 
 <style scoped>
 .menu-btn {
   position: absolute;
-  left: 50%;
-  top: -40px;
-  width: 85px;
-  height: 85px;
-  transform: translateX(-50%);
-  border-radius: 50%;
+  right: 15px;
+  top: 15px;
+  width: 45px;
+  height: 45px;
   cursor: pointer;
   z-index: 10;
   transition: var(--linear);
-  background-color: rgba(0, 0, 0, 0.7);
+  border-width: 1px;
+  border-style: solid;
 }
-.menu-line {
+/* .menu-line {
   width: 30px;
   height: 2px;
   background-color: #fff;
@@ -37,16 +44,5 @@
   &:nth-child(3) {
     transform: translateY(8px);
   }
-}
-@media (max-width: 768px) {
-  .menu-btn {
-    width: 55px;
-    height: 55px;
-    top: -23px;
-    .menu-line {
-      width: 20px;
-      margin-left: -10px;
-    }
-  }
-}
+} */
 </style>
