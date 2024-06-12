@@ -35,23 +35,15 @@ const toggleMenu = (e) => {
   }
 };
 
-// add watcher for menu height change
-const updateMenuH = () => {
-  if (menuOpen) {
-    menuH.value = menu.querySelector('.menu-contents').offsetHeight;
-  }
-};
-useEventListener(window, 'resize', updateMenuH);
-
 onMounted(() => {
   // add DOM refs
   menu = document.querySelector('.mobile-menu');
 
   // add click events
-  const nav = menu.querySelectorAll('a');
+  /*   const nav = menu.querySelectorAll('a');
   nav.forEach((link) => {
     link.addEventListener('click', closeMenu);
-  });
+  }); */
 
   // set toggle for scroll up
   scrollUpToggle('.menu-btn', 'on');
@@ -79,7 +71,7 @@ const closeMenu = () => {
 </script>
 
 <template>
-  <div class="mobile-menu" v-if="width <= 1024">
+  <div class="mobile-menu" v-show="width <= 1024">
     <MenuButton @click="toggleMenu" />
     <div class="menu-wrap">
       <div class="menu-contents bgtexture"></div>

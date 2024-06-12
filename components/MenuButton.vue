@@ -28,21 +28,8 @@
   transition: var(--linear);
   border-width: 1px;
   border-style: solid;
+  &.on {
+    background-color: var(--black);
+  }
 }
-/* .menu-line {
-  width: 30px;
-  height: 2px;
-  background-color: #fff;
-  position: absolute;
-  left: 50%;
-  top: 65%;
-  margin-left: -15px;
-  transition: var(--ease-out);
-  &:nth-child(1) {
-    transform: translateY(-8px);
-  }
-  &:nth-child(3) {
-    transform: translateY(8px);
-  }
-} */
 </style>

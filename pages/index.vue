@@ -32,7 +32,7 @@ const posts = [
     data: {
       image: 'news-thumb1@2x.jpg',
       icon: 'news-icon1@2x.png',
-      data: 'April 02, 2024',
+      date: 'April 02, 2024',
       title: 'Introducing MetaCap: Live Emotional Insights Come to OpenHome',
       excerpt:
         "We're thrilled to showcase a community project built by members of the OpenHome developer community! At the heart of OpenHome's",
@@ -44,7 +44,7 @@ const posts = [
     data: {
       image: 'news-thumb2@2x.jpg',
       icon: 'news-icon2@2x.png',
-      data: 'March 01, 2024',
+      date: 'March 01, 2024',
       title: 'MAtrix Phone Booth: Immersive Experiences in Openhome',
       excerpt:
         'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
@@ -103,7 +103,10 @@ const posts = [
             yours.
           </p>
         </div>
-        <div class="cta-group grid two-col nobr gap mt-65">
+        <div
+          class="cta-group grid two-col gap mt-65"
+          :class="width > 550 && 'nobr'"
+        >
           <CtaBtn href="#" arrow="true">developers</CtaBtn>
           <CtaBtn href="#" arrow="true">investors</CtaBtn>
         </div>
@@ -157,7 +160,10 @@ const posts = [
             autonomous agents, OpenHome is the trusted choice for developers
             looking to push the boundaries of what voice AI can do.
           </p>
-          <div class="cta-group mt-20">
+          <div
+            class="cta-group mt-20"
+            :class="width <= 550 && 'grid two-col gap'"
+          >
             <CtaBtn href="#" arrow="true">Try a Demo</CtaBtn>
             <CtaBtn href="#" arrow="true">Explore Ecosystem</CtaBtn>
           </div>
@@ -205,7 +211,7 @@ const posts = [
           <img src="/public/icons/logo-halfcircs.svg" alt="" />
         </div>
 
-        <div class="content-wrapper p-max pt-65">
+        <div class="content-wrapper header p-max pt-65">
           <header>
             <h2 class="alt">
               Res<span class="pix">o</span>u<span class="pix">r</span>c<span
@@ -216,7 +222,7 @@ const posts = [
           </header>
         </div>
       </div>
-      <div class="row gridlines np-bot">
+      <div class="row gridlines np-bot" :class="width <= 900 && 'stack'">
         <Gridlines bot="true" pad="nopad" />
         <div class="content-wrapper no-max">
           <div class="grid two-col">
@@ -224,7 +230,7 @@ const posts = [
               <BlogThumb :data="post.data" />
             </div>
           </div>
-          <div class="cta-row txt-cn">
+          <div class="cta-row txt-cn has-bdr">
             <div class="inner">
               <CtaBtn href="#" arrow="true">View All</CtaBtn>
             </div>
@@ -235,7 +241,7 @@ const posts = [
 
     <!-- community -->
     <div class="community section-wrapper lt pt">
-      <div class="content-wrapper p-max">
+      <div class="content-wrapper p-max has-br">
         <header>
           <h2>Join the OpenHome Community</h2>
           <p>
@@ -260,6 +266,8 @@ const posts = [
 .anim-wrap {
   width: 100%;
 }
+
+/* hero */
 .hero {
   .anim-wrap {
     margin-top: 125px;
@@ -273,27 +281,7 @@ const posts = [
   }
 }
 
-.home-slider {
-  img + h3 {
-    margin-top: 30px;
-  }
-  h3 + p {
-    margin-top: 10px;
-  }
-  .col.pad {
-    padding-top: 5.9375rem;
-    padding-bottom: 5.9375rem;
-  }
-}
-@media (max-width: 1024px) {
-  .home-slider {
-    .col.pad {
-      padding-top: var(--side-marginM);
-      padding-bottom: var(--side-marginM);
-    }
-  }
-}
-
+/* intro */
 .intro {
   .intro-wave {
     max-width: 1400px;
@@ -301,17 +289,58 @@ const posts = [
     overflow: hidden;
   }
 }
+
+/* slider */
+.home-slider {
+  img {
+    border-radius: 10px;
+  }
+  img + h3 {
+    margin-top: 30px;
+  }
+  h3 + p {
+    margin-top: 10px;
+  }
+}
 .slide-img {
   max-width: 315px;
 }
+@media (min-width: 1025px) {
+  .home-slider {
+    .col.pad {
+      padding-top: 5.9375rem;
+      padding-bottom: 5.9375rem;
+    }
+  }
+}
+@media (min-width: 551px) and (max-width: 1024px) {
+  .home-slider {
+    .col.pad {
+      padding-top: var(--side-marginM);
+      padding-bottom: var(--side-marginM);
+    }
+  }
+}
+@media (max-width: 768px) {
+  .home-slider {
+    img {
+      width: 70%;
+    }
+    img + h3 {
+      margin-top: 20px;
+    }
+  }
+}
+@media (max-width: 550px) {
+  .home-slider h2 {
+    padding-top: 10px;
+  }
+}
 
+/* resources */
 .resources {
   header {
     padding-bottom: 3.75rem;
-  }
-  .grid .col {
-    padding-top: 3.75rem;
-    padding-bottom: 8.125rem;
   }
   .blog-thumb {
     max-width: 630px;
@@ -359,9 +388,95 @@ const posts = [
     }
   }
 }
+@media (min-width: 1025px) {
+  .resources .grid .col {
+    padding-top: 3.75rem;
+  }
+}
+@media (min-width: 901px) {
+  .resources .grid .col {
+    padding-bottom: 130px;
+  }
+}
+@media (max-width: 1200px) {
+  .resources {
+    .side-ornament {
+      top: 50%;
+      margin-top: -30px;
+      &.lt {
+        left: var(--grid-marginM);
+      }
+      &.rt {
+        right: var(--grid-marginM);
+      }
+    }
+  }
+}
+@media (max-width: 900px) {
+  .resources {
+    .cta-row {
+      position: relative;
+      border-top-width: 1px;
+      border-style: solid;
+      height: auto;
+      bottom: 0;
+      .inner {
+        padding: 15px 55px;
+      }
+      .inner,
+      a {
+        width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .resources {
+    .content-wrapper.header {
+      padding-top: 25px;
+      header {
+        padding-bottom: 30px;
+      }
+    }
+    .side-ornament {
+      transform: scale(0.35);
+      margin-top: -8px;
+      &.lt {
+        transform-origin: left top;
+        left: var(--grid-marginM2);
+        margin-left: -16px;
+      }
+      &.rt {
+        transform-origin: right top;
+        right: var(--grid-marginM2);
+        margin-right: -16px;
+      }
+    }
+    .cta-row {
+      .inner {
+        padding: 15px 33px;
+      }
+    }
+  }
+}
+
+/* community */
 .community {
   .anim-wrap {
     margin-top: 55px;
+  }
+}
+@media (max-width: 550px) {
+  .community {
+    .anim-wrap {
+      display: block;
+      margin-top: 45px;
+      height: 175px;
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
   }
 }
 </style>

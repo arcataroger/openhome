@@ -1,32 +1,66 @@
-<script setup></script>
+<script setup>
+import { useWindowSize } from '@vueuse/core';
+const { width, height } = useWindowSize();
+</script>
 
 <template>
-  <footer class="main section-wrapper bgtexture gridlines np-bot dk">
+  <footer
+    class="main section-wrapper bgtexture gridlines np-bot dk"
+    :class="width <= 900 && 'stack'"
+  >
     <Gridlines bot="true" pad="pad" />
-    <div class="content-wrapper p-max">
-      <div class="footer-contents grid two-col">
-        <div class="col lt pb-65">
-          <div class="txt-grp">
-            <div class="size-box">
-              <div class="logo-main wide">
-                <IconLogoWide />
-              </div>
-            </div>
-            <h2>Your Own AI <br />Smart Speaker</h2>
-            <div class="cta-group">
-              <CtaBtn href="#" arrow="true">developers</CtaBtn>
-              <CtaBtn href="#" arrow="true">investors</CtaBtn>
-            </div>
+    <div class="content-wrapper" :class="width > 900 && 'p-max'">
+      <div class="footer-row grid two-col logo">
+        <div class="col lt" :class="width > 900 && 'pt-65'">
+          <div class="logo-main wide">
+            <IconLogoWide />
           </div>
         </div>
-        <div class="col social a-rt rt">
-          <div class="size-box"></div>
+        <div class="col rt" v-if="width > 900"></div>
+      </div>
+
+      <div class="footer-row grid two-col">
+        <div class="col lt">
+          <h2>Your Own AI <br />Smart Speaker</h2>
+        </div>
+
+        <div class="col social rt" v-if="width > 900">
           <SocialLinks />
         </div>
+        <div class="col social rt" v-else>
+          <div class="cta-group">
+            <CtaBtn href="#" arrow="true">developers</CtaBtn>
+            <CtaBtn href="#" arrow="true">investors</CtaBtn>
+          </div>
+        </div>
       </div>
-      <div class="legal flex-jst">
-        <p>All rights reserved to OpenHome. Copyright © 2024.</p>
-        <div class="col credit a-rt">
+
+      <div class="cta footer-row grid two-col">
+        <div class="col lt pb-65" v-if="width > 900">
+          <div class="cta-group">
+            <CtaBtn href="#" arrow="true">developers</CtaBtn>
+            <CtaBtn href="#" arrow="true">investors</CtaBtn>
+          </div>
+        </div>
+        <div class="col social lt" v-else>
+          <SocialLinks />
+        </div>
+
+        <div class="col social rt">
+          <ul>
+            <li><CtaBtn href="#" arrow="true">Contact</CtaBtn></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="legal footer-row grid two-col">
+        <div class="col lt">
+          <p>
+            All rights reserved to OpenHome.
+            <span class="cr">Copyright © 2024.</span>
+          </p>
+        </div>
+        <div class="col credit rt">
           <p>Design: <a href="#" target="_blank">Griflan</a></p>
         </div>
       </div>
@@ -35,10 +69,14 @@
 </template>
 
 <style scoped>
-.footer-contents {
+.footer-row {
   grid-template-columns: 76.5% 23.5%;
+  .logo-main {
+    top: 0;
+    margin-bottom: 45px;
+  }
   .cta-group {
-    margin-top: 2.5rem;
+    /* margin-top: 2.5rem; */
     display: grid;
     gap: 3.125rem;
     grid-template-columns: 1fr 1fr;
@@ -52,36 +90,139 @@
     }
   }
   .col.lt {
-    padding-right: 40px;
+    padding-right: var(--side-marginM);
     .txt-grp {
       max-width: 730px;
     }
   }
-  .size-box {
-    height: 9.375rem;
+  ul {
+    list-style: none;
   }
-  .logo-main {
-    padding-top: 2.8125rem;
+  &.cta {
+    .col {
+      padding-top: 40px;
+    }
+    .col.social a {
+      width: 100%;
+      max-width: 225px;
+    }
   }
 }
 .col.social,
 .col.credit {
-  padding: 0 40px;
+  padding-left: 50px;
   align-content: start;
   ul,
   p {
     width: 100%;
-    max-width: 230px;
+    max-width: 260px;
+    margin: auto;
   }
 }
 .legal {
   height: var(--grid-margin);
-  opacity: 0.4;
+  align-items: center;
+  .col {
+    opacity: 0.4;
+  }
+  .col + .col {
+    border: none;
+  }
   p {
     font-size: 13px;
   }
-  .credit {
-    width: 23.5%;
+}
+@media (max-width: 1400px) {
+  .footer-row {
+    grid-template-columns: 1fr 250px;
+  }
+}
+@media (max-width: 1200px) {
+  .legal {
+    height: var(--grid-marginM);
+  }
+  .col.social,
+  .col.credit {
+    padding-left: var(--side-marginM);
+  }
+  .footer-row {
+    .cta-group {
+      gap: 20px;
+    }
+  }
+}
+@media (max-width: 900px) {
+  .footer-row {
+    padding: 25px 65px;
+    .col + .col {
+      border: none;
+      margin-top: 25px;
+    }
+    .col.lt {
+      padding-right: 0;
+    }
+    .col.social,
+    .col.credit {
+      padding-left: 0;
+    }
+    &.logo {
+      padding-top: 35px;
+      padding-bottom: 0;
+    }
+    .logo-main {
+      width: 172px;
+      margin-bottom: 5px;
+    }
+    ul {
+      max-width: none !important;
+    }
+    &.cta {
+      border-top: 1px solid var(--dkgray);
+      .col {
+        padding-top: 0px;
+      }
+    }
+  }
+  .legal {
+    height: auto;
+    padding: 20px 65px;
+    border-top: 1px solid var(--dkgray);
+    p {
+      max-width: none !important;
+    }
+    .cr {
+      display: block;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .footer-row {
+    padding: 15px 33px;
+  }
+}
+@media (max-width: 550px) {
+  .footer-row {
+    .cta-group {
+      grid-template-columns: auto;
+      gap: 15px;
+    }
+    &.cta {
+      .col.social a {
+        max-width: none;
+      }
+    }
+  }
+  .legal {
+    .col + .col {
+      margin-top: 20px;
+    }
+  }
+}
+</style>
+<style>
+@media (max-width: 900px) {
+  footer.main .gridline.bot {
+    display: none;
   }
 }
 </style>

@@ -113,6 +113,11 @@ const props = defineProps(['bot', 'pad']);
         padding-bottom: var(--grid-marginM2);
       }
     }
+    &.stack {
+      .col.pad {
+        padding: 20px 43px 43px;
+      }
+    }
   }
   .gridline {
     &.h:not(.bot) {
@@ -127,6 +132,15 @@ const props = defineProps(['bot', 'pad']);
     &.bot {
       &.pad {
         bottom: var(--grid-marginM2);
+      }
+    }
+  }
+}
+@media (max-width: 550px) {
+  .gridlines {
+    &.stack {
+      .col.pad {
+        padding: 15px 33px 33px;
       }
     }
   }

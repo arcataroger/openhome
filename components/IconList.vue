@@ -25,8 +25,6 @@ const items = [
 .icon-list {
   border-radius: 20px;
   background-color: #0a0100;
-  /*   border: 1px solid rgba(255, 255, 255, 0.2);
- */
   padding: 0 10px;
 }
 .icon-list-item {
@@ -62,6 +60,15 @@ const items = [
 @media (min-width: 900px) {
   .icon-list-item {
     max-width: 525px;
+  }
+}
+@media (max-width: 550px) {
+  .icon-list {
+    padding: 0 15px;
+    border-radius: 10px;
+  }
+  .icon-list-item {
+    padding: 16px 0;
   }
 }
 </style>

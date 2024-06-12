@@ -46,7 +46,15 @@ const props = defineProps(['data']);
     object-fit: cover;
   }
 }
-time + h3 {
-  margin-top: var(--margintop);
+@media (max-width: 550px) {
+  .thumb-img {
+    margin-bottom: 18px;
+  }
+  .thumb-icon {
+    transform: scale(0.5);
+    transform-origin: left bottom;
+    left: 8px;
+    bottom: 8px;
+  }
 }
 </style>

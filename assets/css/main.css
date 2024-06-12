@@ -88,6 +88,9 @@
         margin-top: var(--top-marginM);
         border-top-width: 1px;
       }
+      &.gap {
+        gap: 15px;
+      }
     }
     &.three-col {
       grid-template-columns: repeat(2, 1fr);
@@ -99,6 +102,9 @@
   }
   .col.pl {
     padding-left: 0;
+  }
+  .col.pr {
+    padding-right: 0;
   }
 }
 @media (min-width: 901px) {
@@ -121,6 +127,15 @@
     }
   }
 }
+@media (max-width: 550px) {
+  .grid {
+    &.two-col:not(.nobr) {
+      .col + .col {
+        margin-top: var(--top-marginM2);
+      }
+    }
+  }
+}
 
 /* --------------------------- ui --------------------------- */
 .logo-main {
@@ -129,6 +144,12 @@
   &.wide {
     width: 220px;
     height: 38px;
+  }
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
   }
 }
 .bucket {
@@ -172,13 +193,13 @@
 .bgtexture {
   background: url('/assets/img/bgtexture.jpg') left top;
   background-size: 1800px 1000px;
-  /* background: #555 !important; */
+  /*   background: #555 !important; */
 }
 
 /* --------------------------- buttons --------------------------- */
 a {
   color: var(--pink);
-  transition: all 0.3s linear;
+  transition: all 0.5s ease-out;
   &.full {
     position: absolute;
     left: 0;
@@ -217,6 +238,9 @@ a {
     margin-left: 12px;
     margin-top: 1px;
   }
+  &:hover {
+    border-radius: 50px;
+  }
 }
 .cta-group:not(.grid) {
   a + a {
@@ -227,6 +251,11 @@ a {
 @media (max-width: 1024px) {
   .cta-btn {
     font-size: 14px;
+  }
+}
+@media (max-width: 550px) {
+  .cta-btn {
+    width: 100%;
   }
 }
 
@@ -263,6 +292,9 @@ header,
         border-color: var(--dkgray);
       }
     }
+    .has-bdr {
+      border-color: var(--dkgray);
+    }
   }
   &.lt {
     color: var(--black);
@@ -285,6 +317,9 @@ header,
       .col + .col {
         border-color: var(--gray);
       }
+    }
+    .has-bdr {
+      border-color: var(--gray);
     }
   }
 }

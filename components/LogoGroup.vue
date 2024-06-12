@@ -39,8 +39,15 @@ const logos = [
 }
 @media (max-width: 650px) {
   .logo-ticker {
-    width: 1000px;
+    width: 850px;
     overflow: hidden;
+  }
+  .logo-group {
+    margin-top: 35px;
+    padding-bottom: 30px;
+  }
+  .logo-item {
+    padding: 0 40px 0 0;
   }
 }
 </style>
