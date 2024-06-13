@@ -19,7 +19,7 @@
 <style scoped>
 .menu-btn {
   position: absolute;
-  right: 15px;
+  right: 17px;
   top: 15px;
   width: 45px;
   height: 45px;

@@ -1,12 +1,12 @@
 <script setup>
 const items = [
-  { icon: 'icons/capability-icon.svg', text: 'Instant Translation' },
-  { icon: 'icons/capability-icon.svg', text: 'Emotion Detection' },
-  { icon: 'icons/capability-icon.svg', text: 'Calendar and Scheduling' },
-  { icon: 'icons/capability-icon.svg', text: 'Music and Media Control' },
-  { icon: 'icons/capability-icon.svg', text: 'Natural Conversation Handling' },
-  { icon: 'icons/capability-icon.svg', text: 'Educational Modules' },
-  { icon: 'icons/capability-icon.svg', text: 'Personality Builder' },
+  { icon: 'icons/cap-instant.svg', text: 'Instant Translation' },
+  { icon: 'icons/cap-emotion.svg', text: 'Emotion Detection' },
+  { icon: 'icons/cap-calendar.svg', text: 'Calendar and Scheduling' },
+  { icon: 'icons/cap-music.svg', text: 'Music and Media Control' },
+  { icon: 'icons/cap-natural.svg', text: 'Natural Conversation Handling' },
+  { icon: 'icons/cap-educational.svg', text: 'Educational Modules' },
+  { icon: 'icons/cap-personality.svg', text: 'Personality Builder' },
 ];
 </script>
 

@@ -61,7 +61,8 @@ const { width, height } = useWindowSize();
           </p>
         </div>
         <div class="col credit rt">
-          <p>Design: <a href="#" target="_blank">Griflan</a></p>
+          <span class="txt">Design: </span
+          ><a href="https://griflan.com" target="_blank">Griflan</a>
         </div>
       </div>
     </div>
@@ -122,14 +123,17 @@ const { width, height } = useWindowSize();
 .legal {
   height: var(--grid-margin);
   align-items: center;
-  .col {
-    opacity: 0.4;
-  }
   .col + .col {
     border: none;
   }
-  p {
+  p,
+  .txt,
+  a {
     font-size: 13px;
+    opacity: 0.4;
+  }
+  a:hover {
+    opacity: 1;
   }
 }
 @media (max-width: 1400px) {

@@ -8,6 +8,7 @@
   --orange: #ff4f15;
   --purple: #c215ff;
   --aqua: #58fff5;
+  --brown: #f5efe6;
 
   /* bounds */
   --baseW: 1440px;
@@ -30,7 +31,7 @@
   --ease-in-out: transform 0.5s cubic-bezier(1, 0, 0.5, 1);
   --ease-in: transform 0.5s cubic-bezier(0.57, 0, 1, 0.48);
   --ease-out: all 0.5s cubic-bezier(0, 0.89, 0.32, 1);
-  --linear: all 0.3s linear;
+  --linear: all 0.5s linear;
 }
 
 /* color classes */

@@ -123,3 +123,26 @@ export const scrollReveal = () => {
     });
   });
 };
+
+// play/pause timeline when in view
+export const playInView = (el, tl) => {
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top bottom',
+    end: 'bottom top',
+    onEnter: () => {
+      console.log('enter');
+      tl.play();
+    },
+    onEnterBack: () => {
+      tl.play();
+    },
+    onLeave: () => {
+      console.log('leave');
+      tl.pause();
+    },
+    onLeaveBack: () => {
+      tl.pause();
+    },
+  });
+};

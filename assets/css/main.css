@@ -195,6 +195,10 @@
   background-size: 1800px 1000px;
   /*   background: #555 !important; */
 }
+.anim-wrap {
+  width: 100%;
+  position: relative;
+}
 
 /* --------------------------- buttons --------------------------- */
 a {
