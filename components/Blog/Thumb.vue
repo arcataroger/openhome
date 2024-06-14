@@ -1,9 +1,14 @@
 <script setup>
+import { useWindowSize } from '@vueuse/core';
 const props = defineProps(['data', 'id']);
+const { width, height } = useWindowSize();
 </script>
 
 <template>
-  <div class="thumb-wrap col pad" :class="props.id == 0 && 'a-rt'">
+  <div
+    class="thumb-wrap col pad"
+    :class="props.id == 0 && width > 900 ? 'a-rt' : ''"
+  >
     <div class="blog-thumb">
       <div class="thumb-img">
         <img :src="props.data.image" alt="" />
@@ -35,11 +40,6 @@ const props = defineProps(['data', 'id']);
     opacity: 0;
     transition: var(--linear);
   }
-  &:hover {
-    &:after {
-      opacity: 1;
-    }
-  }
 }
 .blog-thumb {
   max-width: 630px;
@@ -68,6 +68,18 @@ const props = defineProps(['data', 'id']);
     border-radius: 8px;
     overflow: hidden;
     object-fit: cover;
+  }
+}
+@media (min-width: 1025px) {
+  .thumb-wrap:hover {
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+@media (max-width: 900px) {
+  .blog-thumb {
+    max-width: none;
   }
 }
 @media (max-width: 550px) {

@@ -4,33 +4,48 @@ import { useWindowSize } from '@vueuse/core';
 
 const { width, height } = useWindowSize();
 
-let menuOpen = false;
+const menuOpen = ref(false);
 const nav = ref(null);
+const menu_btn = ref();
 let menu;
-const menuH = ref(0);
+let menuBtn;
 
 // menu button click handler
 const toggleMenu = (e) => {
-  // set menu height for click outside
-  menuH.value = menu.querySelector('.menu-contents').offsetHeight;
-
-  if (!menuOpen) {
+  if (!menuOpen.value) {
+    document.body.classList.add('freeze');
     gsap.fromTo(
-      '.menu-contents',
-      { scaleX: 0.9, scaleY: 0.9, opacity: 0 },
+      '.menu-wrap',
+      { opacity: 0, x: 20, display: 'block' },
       {
-        duration: 0.35,
+        duration: 0.5,
+        x: 0,
+        y: 0,
         opacity: 1,
-        scaleX: 1,
-        scaleY: 1,
         ease: 'power3.out',
       }
     );
-
+    gsap.fromTo(
+      '.part',
+      { x: 10, y: 10, opacity: 0 },
+      {
+        duration: 0.5,
+        stagger: 0.1,
+        x: 0,
+        y: 0,
+        opacity: 1,
+        ease: 'bounce.out',
+      }
+    );
     menu.classList.add('open');
     menu.classList.add('expanded');
-    menuOpen = true;
+    menuBtn.classList.add('open');
+    menuOpen.value = true;
+
+    // change menu button
+    menu_btn.value.changeMenuBtn(menuOpen.value);
   } else {
+    document.body.classList.remove('freeze');
     closeMenu();
   }
 };
@@ -38,6 +53,7 @@ const toggleMenu = (e) => {
 onMounted(() => {
   // add DOM refs
   menu = document.querySelector('.mobile-menu');
+  menuBtn = document.querySelector('.menu-btn');
 
   // add click events
   /*   const nav = menu.querySelectorAll('a');
@@ -51,30 +67,56 @@ onMounted(() => {
 
 // close menu
 const closeMenu = () => {
-  if (menuOpen) {
-    //console.log('close menu');
-    gsap.to('.menu-contents', {
-      duration: 0.5,
+  if (menuOpen.value) {
+    gsap.to('.part', {
+      duration: 0.35,
+      stagger: -0.1,
+      x: -10,
+      y: -10,
+      opacity: 1,
+      ease: 'bounce.in',
+    });
+    gsap.to('.menu-wrap', {
+      duration: 0.35,
       opacity: 0,
-      scaleX: 0.9,
-      scaleY: 0.9,
       ease: 'power3.inOut',
       onComplete: function () {
         menu.classList.remove('expanded');
+        gsap.set('.menu-wrap', { display: 'none' });
       },
     });
 
     menu.classList.remove('open');
-    menuOpen = false;
+    menuBtn.classList.remove('open');
+    menuOpen.value = false;
+
+    // change menu button
+    menu_btn.value.changeMenuBtn(false);
   }
 };
 </script>
 
 <template>
   <div class="mobile-menu" v-show="width <= 1024">
-    <MenuButton @click="toggleMenu" />
-    <div class="menu-wrap">
-      <div class="menu-contents bgtexture"></div>
+    <MenuButton @click="toggleMenu" ref="menu_btn" />
+    <div class="menu-wrap set-theme dk div-scroll">
+      <div class="menu-contents bgtexture">
+        <div class="gridline v lt"></div>
+        <div class="gridline v rt"></div>
+
+        <div class="menu-top hpad part">
+          <div class="logo-main"><IconLogoWide /></div>
+        </div>
+
+        <div class="row h-md part"><Nav></Nav></div>
+        <div class="row cta part">
+          <div class="cta-group stack">
+            <CtaBtn href="#" arrow="true">demo</CtaBtn>
+            <CtaBtn href="#" arrow="true">developers</CtaBtn>
+            <CtaBtn href="#" arrow="true">investors</CtaBtn>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -89,26 +131,62 @@ const closeMenu = () => {
   &.expanded {
     height: 100%;
   }
-  /*   &.open {
-  } */
   .menu-wrap {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
     z-index: 1;
+    display: none;
   }
   .menu-contents {
     width: 100%;
-    height: 100vh;
-    padding: 20px 0;
+    min-height: 100vh;
   }
-
+  .menu-top {
+    height: 75px;
+  }
   nav,
   ul {
     width: 100%;
+  }
+  a {
+    display: inline-block;
+  }
+  .gridline {
+    &.v {
+      top: 75px;
+      height: calc(100% - 75px);
+    }
+  }
+  .row {
+    border-top: 1px solid var(--dkgray);
+    padding: 50px 65px;
+    &.cta {
+      padding-top: 25px;
+      padding-bottom: 25px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .mobile-menu {
+    .row {
+      padding-left: 43px;
+      padding-right: 43px;
+    }
+  }
+}
+@media (max-width: 550px) {
+  .mobile-menu {
+    .row {
+      padding-left: 33px;
+      padding-right: 33px;
+      &.cta {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+    }
   }
 }
 </style>

@@ -11,10 +11,6 @@ const props = defineProps(['bot', 'pad']);
 
 <style>
 .gridlines {
-  --grid-margin: 95px;
-  --grid-marginM: 40px;
-  --grid-marginM2: 18px;
-
   position: relative;
   padding: var(--grid-margin);
   + .gridlines {

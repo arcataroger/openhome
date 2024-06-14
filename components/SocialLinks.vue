@@ -15,33 +15,60 @@ const links = [
 
 onMounted(() => {
   // attach hovers
-  ctx = gsap.context((self) => {
-    const items = self.selector('.social-btn');
-    items.forEach((item) => {
-      item.addEventListener('mouseenter', hoverOn);
-      item.addEventListener('mouseleave', hoverOff);
-    });
-  }, main.value);
+  const items = document.querySelectorAll('.social-btn');
+  items.forEach((item) => {
+    item.addEventListener('mouseenter', hoverOn);
+    item.addEventListener('mouseleave', hoverOff);
+  });
 });
 
 onUnmounted(() => {
-  ctx.revert();
+  const items = document.querySelectorAll('.social-btn');
+  items.forEach((item) => {
+    item.removeEventListener('mouseenter', hoverOn);
+    item.removeEventListener('mouseleave', hoverOff);
+  });
 });
 
+const hoverSp = 0.5;
+const hoverEase = 'power3.out';
+
 const hoverOn = (e) => {
-  const el = e.target;
-  gsap.to(el, {
-    duration: 0.5,
-    y: -5,
-    ease: 'power3.out',
+  const trg = e.target;
+  const txt = trg.querySelector('.txt');
+  const icon = trg.querySelector('.hover-icon');
+  gsap.to(txt, {
+    duration: hoverSp,
+    xPercent: -100,
+    opacity: 0,
+    ease: hoverEase,
   });
+  gsap.fromTo(
+    icon,
+    { xPercent: 100 },
+    {
+      duration: hoverSp,
+      xPercent: 0,
+      opacity: 1,
+      ease: hoverEase,
+    }
+  );
 };
 const hoverOff = (e) => {
-  const el = e.target;
-  gsap.to(el, {
-    duration: 0.5,
-    y: 0,
-    ease: 'power3.out',
+  const trg = e.target;
+  const txt = trg.querySelector('.txt');
+  const icon = trg.querySelector('.hover-icon');
+  gsap.to(txt, {
+    duration: hoverSp,
+    xPercent: 0,
+    opacity: 1,
+    ease: hoverEase,
+  });
+  gsap.to(icon, {
+    duration: hoverSp,
+    xPercent: 100,
+    opacity: 0,
+    ease: hoverEase,
   });
 };
 </script>
@@ -50,12 +77,17 @@ const hoverOff = (e) => {
   <ul ref="main">
     <li v-for="link in links" class="social-btn h-md">
       <div class="hover-icon"><img :src="link.icon" alt="" /></div>
-      <a :href="link.url">{{ link.name }}</a>
+      <a :href="link.url"
+        ><span class="txt">{{ link.name }}</span></a
+      >
     </li>
   </ul>
 </template>
 
 <style scoped>
+.social-btn {
+  overflow: hidden;
+}
 .hover-icon {
   position: absolute;
   left: 0;
@@ -65,12 +97,17 @@ const hoverOff = (e) => {
   margin-top: -21px;
   border-radius: 50%;
   border: 1.5px solid var(--cream);
-  padding: 8px;
+  padding: 10px;
   opacity: 0;
   pointer-events: none;
+  display: grid;
+  place-content: center;
   img {
     object-fit: contain;
   }
+}
+.txt {
+  display: block;
 }
 li {
   position: relative;

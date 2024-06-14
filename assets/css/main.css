@@ -2,6 +2,7 @@
 
 .wrapper {
   min-height: 100vh;
+  width: 100vw;
 }
 .section-wrapper {
   position: relative;
@@ -193,7 +194,7 @@
 .bgtexture {
   background: url('/assets/img/bgtexture.jpg') left top;
   background-size: 1800px 1000px;
-  /*   background: #555 !important; */
+  /* background: #555 !important; */
 }
 .anim-wrap {
   width: 100%;
@@ -239,16 +240,28 @@ a {
     width: 21px;
     display: inline-block;
     vertical-align: text-top;
-    margin-left: 12px;
+    margin-left: 11px;
     margin-top: 1px;
-  }
-  &:hover {
-    border-radius: 50px;
+    position: relative;
   }
 }
-.cta-group:not(.grid) {
-  a + a {
-    margin-left: 20px;
+@media (min-width: 1025px) {
+  .cta-btn {
+    &:hover {
+      border-radius: 50px;
+    }
+  }
+}
+.cta-group {
+  &:not(.grid):not(.stack) {
+    a + a {
+      margin-left: 20px;
+    }
+  }
+  &.stack {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 15px;
   }
 }
 
@@ -299,6 +312,9 @@ header,
     .has-bdr {
       border-color: var(--dkgray);
     }
+    .pixel {
+      background-color: var(--cream);
+    }
   }
   &.lt {
     color: var(--black);
@@ -324,6 +340,9 @@ header,
     }
     .has-bdr {
       border-color: var(--gray);
+    }
+    .pixel {
+      background-color: var(--black);
     }
   }
 }

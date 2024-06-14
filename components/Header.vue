@@ -11,7 +11,7 @@ const { width, height } = useWindowSize();
         <IconLogo v-if="width > 1024" />
         <IconLogoWide v-if="width <= 1024" />
       </div>
-      <Nav></Nav>
+      <Nav type="main"></Nav>
       <CtaNav></CtaNav>
     </div>
   </header>
@@ -25,19 +25,6 @@ header.main {
   top: 0;
   width: 100%;
   z-index: 20;
-}
-.main-nav {
-  position: absolute;
-  top: 40px;
-  width: 100%;
-  text-align: left;
-  li {
-    font-size: 1.125rem;
-    display: inline-block;
-    + li {
-      margin-left: 30px;
-    }
-  }
 }
 .cta-nav {
   position: absolute;
