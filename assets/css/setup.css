@@ -48,6 +48,9 @@
 .bg-aqua {
   background-color: var(--aqua);
 }
+.bg-cream {
+  background-color: var(--cream);
+}
 
 /* --------------------------- text --------------------------- */
 html {

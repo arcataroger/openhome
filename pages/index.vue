@@ -31,6 +31,7 @@ const page_data = toRaw(data.value)[page_id]; */
     <HomeHero />
     <HomeIntro />
     <HomeSlider />
+    <HomeCapabilities />
     <HomeResources />
     <HomeCommunity />
   </div>

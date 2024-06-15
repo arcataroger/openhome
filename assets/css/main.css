@@ -43,7 +43,8 @@
     gap: 25px;
   }
 }
-.col {
+.col,
+.card {
   position: relative;
   &.pad {
     padding: var(--side-margin);

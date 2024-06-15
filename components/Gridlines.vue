@@ -13,7 +13,8 @@ const props = defineProps(['bot', 'pad']);
 .gridlines {
   position: relative;
   padding: var(--grid-margin);
-  + .gridlines {
+  + .gridlines,
+  + .pin-spacer {
     padding-top: 0;
     .gridline.top {
       top: 0px;
@@ -22,7 +23,7 @@ const props = defineProps(['bot', 'pad']);
   &.col-vpad {
     padding-top: 0;
     padding-bottom: 0;
-    .col {
+    .col:not(.nopad) {
       padding-top: var(--grid-margin);
       padding-bottom: var(--grid-margin);
     }
@@ -44,6 +45,8 @@ const props = defineProps(['bot', 'pad']);
 }
 .gridline {
   position: absolute;
+  z-index: 20;
+  pointer-events: none;
 
   &.h {
     top: var(--grid-margin);
@@ -77,7 +80,7 @@ const props = defineProps(['bot', 'pad']);
   .gridlines {
     padding: var(--grid-marginM);
     &.col-vpad {
-      .col {
+      .col:not(.nopad) {
         padding-top: var(--grid-marginM);
         padding-bottom: var(--grid-marginM);
       }
@@ -104,7 +107,7 @@ const props = defineProps(['bot', 'pad']);
   .gridlines {
     padding: var(--grid-marginM2);
     &.col-vpad {
-      .col {
+      .col:not(.nopad) {
         padding-top: var(--grid-marginM2);
         padding-bottom: var(--grid-marginM2);
       }
