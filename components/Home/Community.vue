@@ -29,7 +29,7 @@ onMounted(() => {
 
   // trigger timeline when in viewport
   setTimeout(function () {
-    //playInView(el, tl);
+    playInView(el, tl);
   }, 200);
 });
 
@@ -75,21 +75,34 @@ onUnmounted(() => {
   display: flex;
   height: 100%;
 }
-
+.community {
+  --baseH: 370px;
+}
 .anim-wrap {
   margin-top: 55px;
-  height: 370px;
+  height: var(--baseH);
+  transform-origin: left top;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 1400px) {
+  .anim-wrap {
+    transform: scale(0.8);
+    height: calc(var(--baseH) * 0.8);
+  }
+}
+@media (max-width: 1024px) {
+  .anim-wrap {
+    transform: scale(0.6);
+    height: calc(var(--baseH) * 0.6);
+  }
+}
+@media (max-width: 768px) {
   .anim-wrap {
     display: block;
     margin-top: 45px;
-    height: 175px;
-    img {
-      height: 100%;
-      width: auto;
-    }
+    transform: scale(0.48);
+    height: calc(var(--baseH) * 0.48);
+    /*  height: 175px; */
   }
 }
 </style>

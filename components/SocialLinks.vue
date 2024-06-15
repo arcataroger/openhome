@@ -39,16 +39,16 @@ const hoverOn = (e) => {
   const icon = trg.querySelector('.hover-icon');
   gsap.to(txt, {
     duration: hoverSp,
-    xPercent: -100,
+    yPercent: -100,
     opacity: 0,
     ease: hoverEase,
   });
   gsap.fromTo(
     icon,
-    { xPercent: 100 },
+    { yPercent: 100 },
     {
       duration: hoverSp,
-      xPercent: 0,
+      yPercent: 0,
       opacity: 1,
       ease: hoverEase,
     }
@@ -60,13 +60,13 @@ const hoverOff = (e) => {
   const icon = trg.querySelector('.hover-icon');
   gsap.to(txt, {
     duration: hoverSp,
-    xPercent: 0,
+    yPercent: 0,
     opacity: 1,
     ease: hoverEase,
   });
   gsap.to(icon, {
     duration: hoverSp,
-    xPercent: 100,
+    yPercent: 100,
     opacity: 0,
     ease: hoverEase,
   });

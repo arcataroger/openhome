@@ -1,4 +1,7 @@
 <script setup>
+import { useWindowSize } from '@vueuse/core';
+
+const { width, height } = useWindowSize();
 const props = defineProps(['href', 'theme', 'size', 'arrow']);
 const pixels = ref();
 
@@ -16,8 +19,8 @@ const hoverOff = () => {
     class="cta-btn"
     :class="props.size && props.size"
     v-on="{
-      mouseenter: arrow ? hoverOn : null,
-      mouseleave: arrow ? hoverOff : null,
+      mouseenter: arrow && width > 1024 ? hoverOn : null,
+      mouseleave: arrow && width > 1024 ? hoverOff : null,
     }"
     ><slot />
     <div v-if="arrow" class="arrow"><IconArrow ref="pixels" /></div>

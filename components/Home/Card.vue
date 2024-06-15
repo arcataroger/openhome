@@ -1,26 +1,24 @@
-<script setup></script>
+<script setup>
+const props = defineProps(['data', 'id']);
+</script>
 
 <template>
   <div class="card pad flex-cn bg-cream">
     <div class="txt-grp mx-600">
-      <img src="~/assets/img/home-slide1@2x.png" alt="" class="slide-img" />
-      <h3>Unlock Human-Like Interaction</h3>
-      <p>
-        With OpenHome, create organic voice AI experiences with instant response
-        times, emotional recognition, conversation paths, and opinions of their
-        own. With OpenHome, create organic voice AI experiences with instant
-        response times, emotional recognition, conversation paths, and opinions
-        of their own.
-      </p>
+      <img :src="props.data.image" alt="" class="slide-img" />
+      <h3>{{ props.data.title }}</h3>
+      <p>{{ props.data.desc }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
 .card {
-  /* background-color: var(--cream); */
-  padding-top: var(--grid-margin);
-  padding-bottom: var(--grid-margin);
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  left: 0;
+  top: 0;
   img {
     border-radius: 10px;
     max-width: 315px;
@@ -30,6 +28,22 @@
   }
   h3 + p {
     margin-top: 10px;
+  }
+}
+@media (min-width: 1025px) {
+  .card {
+    &.pad {
+      padding-top: 5.9375rem;
+      padding-bottom: 5.9375rem;
+    }
+  }
+}
+@media (min-width: 551px) and (max-width: 1024px) {
+  .card {
+    &.pad {
+      padding-top: var(--side-marginM);
+      padding-bottom: var(--side-marginM);
+    }
   }
 }
 @media (max-width: 768px) {
