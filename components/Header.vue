@@ -1,11 +1,22 @@
 <script setup>
+import gsap from 'gsap';
 import { useWindowSize } from '@vueuse/core';
 const { width, height } = useWindowSize();
+let ctx;
+const main = ref();
+
+onMounted(() => {
+  let el;
+  ctx = gsap.context((self) => {
+    gsap.set('nav.main, .cta-nav', { opacity: 0 });
+    //gsap.set('.logo-main', { y: () => height.value / 2 - 40 });
+  });
+});
 </script>
 
 <template>
   <Guidelines />
-  <header class="main dk hpad">
+  <header class="main dk hpad" ref="main">
     <div class="content-wrapper">
       <div class="logo-main" :class="width > 1024 && 'pos-ct'">
         <IconLogo v-if="width > 1024" />
@@ -38,8 +49,9 @@ header.main {
   }
 }
 .logo-main {
-  position: relative;
+  position: absolute;
   top: 24px;
+  z-index: 21;
 }
 @media (max-width: 1024px) {
   header.main {

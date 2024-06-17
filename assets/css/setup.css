@@ -59,6 +59,7 @@ html {
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.5;
+  background-color: var(--black);
 }
 header {
   text-align: center;

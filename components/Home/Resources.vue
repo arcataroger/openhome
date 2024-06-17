@@ -94,6 +94,7 @@ const posts = [
     height: 105px;
     display: grid;
     place-items: center;
+    z-index: 21;
     background-color: var(--cream);
     &.lt {
       left: var(--grid-margin);

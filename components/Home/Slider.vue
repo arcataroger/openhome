@@ -71,7 +71,6 @@ onMounted(() => {
         scrub: true,
         pin: true,
         pinSpacing: true,
-        markers: true,
       });
     }, 200);
   }, main.value);
@@ -119,70 +118,4 @@ onMounted(() => {
     height: 100%;
   }
 }
-/* @media (min-width: 1025px) {
-  .home-slider {
-    .col.pad {
-      padding-top: 5.9375rem;
-      padding-bottom: 5.9375rem;
-    }
-  }
-} */
-/* @media (min-width: 551px) and (max-width: 1024px) {
-  .home-slider {
-    .col.pad {
-      padding-top: var(--side-marginM);
-      padding-bottom: var(--side-marginM);
-    }
-  }
-} */
-/* @media (max-width: 768px) {
-  .home-slider {
-    img {
-      width: 70%;
-    }
-    img + h3 {
-      margin-top: 20px;
-    }
-  }
-}
-@media (max-width: 550px) {
-  .home-slider h2 {
-    padding-top: 10px;
-  }
-} */
-
-/* .card {
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  place-content: center;
-  position: relative;
-  left: 0;
-  top: 0;
-  font-size: 100px;
-  color: #fff;
-  &:nth-child(1) {
-    background-color: red;
-  }
-  &:nth-child(2) {
-    background-color: blue;
-  }
-  &:nth-child(3) {
-    background-color: green;
-  }
-}
-
-.section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-}
-.over-section {
-  position: relative;
-  z-index: 20;
-  margin-top: -100vh;
-  .card {
-    background-color: purple;
-  }
-} */
 </style>

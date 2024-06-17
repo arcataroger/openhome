@@ -9,5 +9,5 @@ export const freezePage = (el) => {
 export const unfreezePage = (el) => {
   const wrapper = document.querySelector(el);
   wrapper.classList.remove('change');
-  wrapper.style.top = '';
+  //wrapper.style.top = '';
 };
