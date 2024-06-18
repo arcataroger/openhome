@@ -386,6 +386,9 @@ p + .cta-btn {
     opacity: 1;
   }
 }
+.oh {
+  overflow: hidden;
+}
 .div-scroll {
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
@@ -397,6 +400,16 @@ p + .cta-btn {
 }
 .no-pointer {
   pointer-events: none;
+}
+.coverup {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.vis {
+  overflow: visible;
 }
 
 @media (min-width: 769px) and (max-width: 1200px) {

@@ -8,8 +8,8 @@ const main = ref();
 onMounted(() => {
   let el;
   ctx = gsap.context((self) => {
-    gsap.set('nav.main, .cta-nav', { opacity: 0 });
-    //gsap.set('.logo-main', { y: () => height.value / 2 - 40 });
+    gsap.set('.header-part', { opacity: 0, y: 20 });
+    gsap.set('.logo-main', { y: () => height.value / 2 - 40 });
   });
 });
 </script>
@@ -22,8 +22,8 @@ onMounted(() => {
         <IconLogo v-if="width > 1024" />
         <IconLogoWide v-if="width <= 1024" />
       </div>
-      <Nav type="main"></Nav>
-      <CtaNav></CtaNav>
+      <Nav type="main" class="header-part"></Nav>
+      <CtaNav class="header-part"></CtaNav>
     </div>
   </header>
   <Menu />
@@ -36,6 +36,11 @@ header.main {
   top: 0;
   width: 100%;
   z-index: 20;
+  .logo-main {
+    position: absolute;
+    top: 24px;
+    z-index: 21;
+  }
 }
 .cta-nav {
   position: absolute;
@@ -48,20 +53,16 @@ header.main {
     }
   }
 }
-.logo-main {
-  position: absolute;
-  top: 24px;
-  z-index: 21;
-}
+
 @media (max-width: 1024px) {
   header.main {
     nav {
       display: none;
     }
-  }
-  .logo-main {
-    width: 150px;
-    top: 27px;
+    .logo-main {
+      width: 150px;
+      top: 27px;
+    }
   }
 }
 </style>

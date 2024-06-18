@@ -9,9 +9,6 @@
   width: 100%;
   z-index: 1;
   overflow: hidden;
-  &.vis {
-    overflow: visible;
-  }
   &.overtop {
     position: relative;
     z-index: 20;
@@ -321,7 +318,7 @@ header,
       border-color: var(--dkgray);
     }
     .pixel,
-    .part {
+    .bgpart {
       background-color: var(--cream);
     }
   }
@@ -351,7 +348,7 @@ header,
       border-color: var(--gray);
     }
     .pixel,
-    .part {
+    .bgpart {
       background-color: var(--black);
     }
   }

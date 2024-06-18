@@ -5,20 +5,28 @@ export default function (fullpath, name) {
   gsap.fromTo(
     '.cover',
     { opacity: 1 },
-    { delay: 0, duration: 0.5, opacity: 0, ease: 'power3.inOut' }
+    { delay: 0.5, duration: 0.5, opacity: 0, ease: 'power3.inOut' }
   );
 
   // move logo into place
-  /*   gsap.to('.logo-main', { duration: 1, y: 0, ease: 'expo.inOut' });
+  gsap.to('.logo-main', { duration: 0.75, y: 0, ease: 'power3.inOut' });
 
   // slide contents into place
   gsap.fromTo(
     '.hero',
     { y: 50 },
-    { delay: 0.5, duration: 0.5, y: 0, ease: 'power3.out' }
-  ); */
+    { delay: 0.5, duration: 1, y: 0, ease: 'expo.out' }
+  );
 
   // add on header parts
+  gsap.to('.header-part', {
+    delay: 0.5,
+    duration: 0.5,
+    opacity: 1,
+    y: 0,
+    stagger: 0.2,
+    ease: 'power3.out',
+  });
 
   // reset
   unfreezePage('.wrapper');

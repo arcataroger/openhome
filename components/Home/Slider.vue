@@ -41,19 +41,81 @@ const card_data = [
 ];
 
 let ctx;
+let tl;
+let nav;
+let items;
 const main = ref();
 
 onMounted(() => {
+  nav = document.querySelector('.slide-nav');
+  items = nav.querySelectorAll('a');
+
   let el;
-  ctx = gsap.context(() => {
-    const cards = gsap.utils.toArray('.card');
+  ctx = gsap.context((self) => {
+    const cards = gsap.utils.toArray(self.selector('.card'));
     cards.forEach((card, i) => {
-      gsap.set(card, { position: 'absolute', zIndex: cards.length - i });
+      //gsap.set(card, { position: 'absolute', zIndex: cards.length - i });
+      gsap.set(card, { position: 'absolute', zIndex: i });
     });
 
+    // setup controller for slider timeline
     setTimeout(function () {
-      gsap.to('.slide-off', {
+      tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.cards',
+          start: 'top top',
+          end: 'bottom+=1000px',
+          scrub: true,
+        },
+      });
+
+      // add card animations to timeline
+      const sliders = gsap.utils.toArray(self.selector('.slide-on'));
+      const sp = 0.5;
+      const stag = 0.05;
+      const dif = 50;
+      const easer = 'power3.out';
+
+      sliders.forEach((slider, i) => {
+        tl.call(updateNav, [i]);
+        const parts = slider.querySelectorAll('.anim-part');
+        /*         tl.fromTo(
+          slider.querySelector('.coverup'),
+          { yPercent: 100 },
+          {
+            duration: 1,
+            yPercent: 0,
+            ease: 'power3.inOut',
+          },
+          i
+        ); */
+        if (i > 0) {
+          tl.fromTo(
+            parts,
+            { opacity: 0, y: dif },
+            {
+              duration: sp,
+              stagger: stag,
+              opacity: 1,
+              y: 0,
+              ease: easer,
+            }
+          );
+        }
+        if (i < sliders.length - 1) {
+          tl.to(parts, {
+            duration: sp,
+            stagger: 0.1,
+            opacity: 0,
+            y: -dif,
+            ease: 'power3.in',
+          });
+        }
+      });
+
+      /*       gsap.to('.slide-off', {
         yPercent: -100,
+        rotationX: -60,
         stagger: 0.5,
         ease: 'power3.inOut',
         scrollTrigger: {
@@ -62,19 +124,34 @@ onMounted(() => {
           end: 'bottom top',
           scrub: true,
         },
-      });
+      }); */
 
+      // lock in place, set for next section cover up
       ScrollTrigger.create({
         trigger: '.home-slider',
         start: 'top top',
-        end: '+=200%',
+        end: 'bottom+=2000px',
         scrub: true,
         pin: true,
         pinSpacing: true,
+        anticipatePin: true,
       });
     }, 200);
   }, main.value);
 });
+
+const updateNav = (id) => {
+  items.forEach((item, i) => {
+    item.classList.remove('on');
+    //console.log(i + '/' + id);
+    if (i == id) {
+      item.classList.add('on');
+    }
+  });
+};
+const changeSlider = (id) => {
+  console.log('change ' + id);
+};
 </script>
 
 <template>
@@ -93,18 +170,29 @@ onMounted(() => {
               <h2>Build your ideal smart speaker experience.</h2>
             </div>
           </div>
-          <div class="col nopad">
+          <div class="col nopad oh">
             <HomeCard
               v-for="(card, key) in card_data"
               :data="card.data"
-              :class="key < card_data.length - 1 && 'slide-off'"
+              :class="key >= 0 && 'slide-on'"
             />
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="slide-nav"></div>
+      <div class="slide-nav h-md">
+        <ul>
+          <li v-for="(card, key) in card_data">
+            <a
+              href="#"
+              :class="key == 0 && 'on'"
+              @click.prevent="changeSlider(key + 1)"
+              >{{ key + 1 }}</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -116,6 +204,31 @@ onMounted(() => {
   .content-wrapper,
   .grid {
     height: 100%;
+  }
+}
+.slide-nav {
+  position: absolute;
+  right: 40px;
+  top: 95px;
+  z-index: 10;
+  ul {
+    list-style: none;
+  }
+  li + li {
+    margin-top: -5px;
+  }
+  a {
+    font-size: 35px;
+    color: var(--gray);
+    text-align: center;
+    &.on {
+      color: var(--black);
+    }
+  }
+}
+@media (min-width: 1025px) {
+  .slide-nav a:hover {
+    color: var(--black);
   }
 }
 </style>

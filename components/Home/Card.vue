@@ -3,11 +3,13 @@ const props = defineProps(['data', 'id']);
 </script>
 
 <template>
-  <div class="card pad flex-cn bg-cream">
+  <div class="card pad flex-cn">
+    <!--     <div class="coverup bg-cream"></div>
+ -->
     <div class="txt-grp mx-600">
-      <img :src="props.data.image" alt="" class="slide-img" />
-      <h3>{{ props.data.title }}</h3>
-      <p>{{ props.data.desc }}</p>
+      <img :src="props.data.image" alt="" class="slide-img anim-part" />
+      <h3 class="anim-part">{{ props.data.title }}</h3>
+      <p class="anim-part">{{ props.data.desc }}</p>
     </div>
   </div>
 </template>
@@ -29,6 +31,10 @@ const props = defineProps(['data', 'id']);
   h3 + p {
     margin-top: 10px;
   }
+}
+.txt-grp {
+  position: relative;
+  z-index: 2;
 }
 @media (min-width: 1025px) {
   .card {

@@ -13,7 +13,9 @@ if (route.path != '/') {
 
 // open site after initial load
 onMounted(() => {
-  openPage(route.fullPath, route.name);
+  setTimeout(function () {
+    openPage(route.fullPath, route.name);
+  }, 500);
 });
 </script>
 
@@ -40,7 +42,7 @@ onMounted(() => {
           );
         },
         onEnter: () => {
-          openPage(route.fullPath, route.name);
+          //openPage(route.fullPath, route.name);
         },
       }"
     />
