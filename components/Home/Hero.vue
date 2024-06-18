@@ -5,6 +5,8 @@ const { width, height } = useWindowSize();
 
 <template>
   <div class="hero section-wrapper dk bgtexture">
+    <!--     <Fuzz />
+ -->
     <div class="content-wrapper p-max has-br">
       <header :class="width <= 650 && 'txt-lt'">
         <h1>Your Own AI Smart Speaker</h1>

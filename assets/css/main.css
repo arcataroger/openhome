@@ -196,7 +196,7 @@
     }
   }
 }
-.bgtexture {
+.bgtexture1 {
   background: url('/assets/img/bgtexture.jpg') left top;
   background-size: 1800px 1000px;
   /* background: #555 !important; */
@@ -204,6 +204,7 @@
 .anim-wrap {
   width: 100%;
   position: relative;
+  z-index: 2;
 }
 
 /* --------------------------- buttons --------------------------- */
