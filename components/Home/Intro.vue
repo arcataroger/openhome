@@ -8,7 +8,7 @@ const { width, height } = useWindowSize();
     <Gridlines />
     <div class="content-wrapper p-max pt-65 pb-65 txt-cn">
       <header>
-        <h2>Welcome to a New Era <br />of Interaction.</h2>
+        <Headline>Welcome to a New Era <br />of Interaction.</Headline>
       </header>
       <div class="img-ph intro-wave mt-65 auto">
         <img src="~/assets/img/welcome-wave.png" />

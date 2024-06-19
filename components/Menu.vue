@@ -105,7 +105,7 @@ const closeMenu = () => {
         <div class="gridline v rt"></div>
 
         <div class="menu-top hpad part">
-          <div class="logo-main"><IconLogoWide /></div>
+          <!-- <div class="logo-main"><IconLogoWide /></div> -->
         </div>
 
         <div class="row h-md part"><Nav></Nav></div>
@@ -127,7 +127,7 @@ const closeMenu = () => {
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 20;
+  z-index: 19;
   &.expanded {
     height: 100%;
   }

@@ -68,13 +68,6 @@
 .txt-grp {
   width: 100%;
 }
-canvas {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 100%;
-  transform: translate3d(-50%, -50%, 0);
-}
 
 @media (max-width: 1200px) {
   .grid {

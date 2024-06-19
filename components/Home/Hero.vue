@@ -20,8 +20,8 @@ onMounted(() => {
   });
 
   riveHero = new rive.Rive({
-    src: '/riv/mouth_all.riv',
-    canvas: document.getElementById('rive-test'),
+    src: '/riv/mouths.riv',
+    canvas: document.getElementById('rive-hero'),
     artboard: 'voice-all',
     stateMachines: 'voice-all',
     layout: layout,
@@ -47,24 +47,12 @@ const stopRive = () => {
     riveHero.pause();
   }
 };
-
-/* let cols;
-let rows;
-let total;
-let pixelw = 200;
-
-cols = Math.floor(width.value / pixelw);
-rows = Math.floor(width.value / pixelw);
-total = (cols + 1) * (rows + 1);
-console.log(total); */
 </script>
 
 <template>
   <div class="hero section-wrapper dk bgtexture">
     <!-- <Fuzz /> -->
-    <!--     <div class="pixel-grid">
-      <div class="pixel-gif" v-for="n in total"></div>
-    </div> -->
+    <!-- <PixelBg /> -->
 
     <div class="content-wrapper p-max has-br">
       <header :class="width <= 650 && 'txt-lt'">
@@ -79,7 +67,7 @@ console.log(total); */
 
     <!-- wave animation -->
     <div class="anim-wrap img-ph grid-cn" @click="stopRive">
-      <canvas id="rive-test" width="1800" height="1000"></canvas>
+      <canvas id="rive-hero" width="1800" height="1000"></canvas>
     </div>
 
     <!-- logos -->
@@ -88,6 +76,13 @@ console.log(total); */
 </template>
 
 <style scoped>
+canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  transform: translate3d(-50%, -50%, 0);
+}
 .hero {
   .anim-wrap {
     aspect-ratio: 4.5 / 1;
@@ -105,23 +100,5 @@ console.log(total); */
       margin-top: 50px;
     }
   }
-}
-.pixel-grid {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  justify-content: start;
-  align-items: start;
-}
-.pixel-gif {
-  width: 200px;
-  height: 200px;
-  background-image: url('/pixel-gif.gif');
-  background-size: 200px 200px;
 }
 </style>

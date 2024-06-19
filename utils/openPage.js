@@ -9,7 +9,7 @@ export default function (fullpath, name) {
   );
 
   // move logo into place
-  gsap.to('.logo-main', { duration: 0.75, y: 0, ease: 'power3.inOut' });
+  gsap.to('.logo-main', { duration: 0.75, x: 0, y: 0, ease: 'power3.inOut' });
 
   // slide contents into place
   gsap.fromTo(

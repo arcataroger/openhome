@@ -88,24 +88,22 @@ export const scrollUpToggle = (el, cl) => {
 };
 
 // split headline into characters
-export const splitHeadline = () => {
-  const hl = document.querySelectorAll('.hl-anim');
-  hl.forEach((el) => {
-    const spl = new SplitText(el, { type: 'chars', charsClass: 'letter' });
-    const letters = el.querySelectorAll('.letter');
-    gsap.set(letters, { opacity: 0, yPercent: 100 });
-  });
+export const splitHeadline = (el) => {
+  const spl = new SplitText(el, { type: 'words, chars', charsClass: 'letter' });
+  const letters = el.querySelectorAll('.letter');
+  gsap.set(letters, { opacity: 0 });
 };
 
 // animate each character on
 export const animSplitHeadline = (el) => {
-  const letters = el.querySelectorAll('.letter');
+  const letters = gsap.utils.toArray(el.querySelectorAll('.letter'));
+  gsap.utils.shuffle(letters);
   gsap.to(letters, {
     duration: 0.5,
     opacity: 1,
-    yPercent: 0,
-    ease: 'elastic.out(1,1.5)',
-    stagger: 0.1,
+    y: 0,
+    ease: 'quad.out',
+    stagger: 0.02,
   });
 };
 

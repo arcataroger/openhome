@@ -7,10 +7,12 @@ const main = ref();
 
 onMounted(() => {
   let el;
-  ctx = gsap.context((self) => {
-    gsap.set('.header-part', { opacity: 0, y: 20 });
-    gsap.set('.logo-main', { y: () => height.value / 2 - 40 });
-  });
+  let logoX = 0;
+  if (width.value <= 1024) {
+    logoX = width.value / 2 - 50;
+  }
+  gsap.set('.header-part', { opacity: 0, y: 20 });
+  gsap.set('.logo-main', { x: logoX, y: () => height.value / 2 - 40 });
 });
 </script>
 
@@ -18,10 +20,8 @@ onMounted(() => {
   <Guidelines />
   <header class="main dk hpad" ref="main">
     <div class="content-wrapper">
-      <div class="logo-main" :class="width > 1024 && 'pos-ct'">
+      <div class="logo-main">
         <IconLogo />
-        <!--         <IconLogoWide v-if="width <= 1024" />
- -->
       </div>
       <Nav type="main" class="header-part"></Nav>
       <CtaNav class="header-part"></CtaNav>
@@ -39,6 +39,8 @@ header.main {
   z-index: 20;
   .logo-main {
     position: absolute;
+    left: 50%;
+    margin-left: -55px;
     top: 24px;
     z-index: 21;
   }
@@ -61,8 +63,10 @@ header.main {
       display: none;
     }
     .logo-main {
-      width: 150px;
-      top: 27px;
+      /*       width: 150px;
+      height: 30px; */
+      margin: 0;
+      left: -27px;
     }
   }
 }

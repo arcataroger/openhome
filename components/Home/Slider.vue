@@ -14,7 +14,7 @@ const card_data = [
       desc: 'With OpenHome, create organic voice AI experiences with instant response times, emotional recognition, conversation paths, and opinions of their own. With OpenHome, create organic voice AI experiences with instant response times, emotional recognition, conversation paths, and opinions of their own.',
     },
   },
-  {
+  /*{
     id: '2',
     data: {
       image: 'home-slide2@2x.jpg',
@@ -22,7 +22,7 @@ const card_data = [
       desc: 'Revolutionize your company or product with Voice AI powered by our Open Source Voice SDK. For Startups & Developers - Get started Instantly with our Open Source SDK. For Enterprises. Talk with our team about advanced Enterprise Applications.',
     },
   },
-  {
+     {
     id: '3',
     data: {
       image: 'home-slide3@2x.jpg',
@@ -37,7 +37,7 @@ const card_data = [
       title: 'Empathy and Understanding',
       desc: "Our AI doesn't just understand commands; it interprets emotional expressions and generates empathic responses, setting a new standard for natural and engaging AI communication.",
     },
-  },
+  }, */
 ];
 
 let ctx;
@@ -64,7 +64,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.cards',
           start: 'top top',
-          end: 'bottom+=1000px',
+          end: 'bottom+=100px' /* add back 0 */,
           scrub: true,
         },
       });
@@ -79,16 +79,6 @@ onMounted(() => {
       sliders.forEach((slider, i) => {
         tl.call(updateNav, [i]);
         const parts = slider.querySelectorAll('.anim-part');
-        /*         tl.fromTo(
-          slider.querySelector('.coverup'),
-          { yPercent: 100 },
-          {
-            duration: 1,
-            yPercent: 0,
-            ease: 'power3.inOut',
-          },
-          i
-        ); */
         if (i > 0) {
           tl.fromTo(
             parts,
@@ -113,24 +103,11 @@ onMounted(() => {
         }
       });
 
-      /*       gsap.to('.slide-off', {
-        yPercent: -100,
-        rotationX: -60,
-        stagger: 0.5,
-        ease: 'power3.inOut',
-        scrollTrigger: {
-          trigger: '.cards',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      }); */
-
       // lock in place, set for next section cover up
       ScrollTrigger.create({
         trigger: '.home-slider',
         start: 'top top',
-        end: 'bottom+=2000px',
+        end: 'bottom+=200px' /* add back 0 */,
         scrub: true,
         pin: true,
         pinSpacing: true,
@@ -167,7 +144,7 @@ const changeSlider = (id) => {
         <div class="grid two-col mx-1600 auto">
           <div class="col pad flex-cn">
             <div class="txt-grp mx-600">
-              <h2>Build your ideal smart speaker experience.</h2>
+              <Headline>Build your ideal smart speaker experience.</Headline>
             </div>
           </div>
           <div class="col nopad oh">
