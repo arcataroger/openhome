@@ -68,6 +68,13 @@
 .txt-grp {
   width: 100%;
 }
+canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  transform: translate3d(-50%, -50%, 0);
+}
 
 @media (max-width: 1200px) {
   .grid {
@@ -196,15 +203,16 @@
     }
   }
 }
-.bgtexture1 {
-  background: url('/assets/img/bgtexture.jpg') left top;
-  background-size: 1800px 1000px;
+.bgtexture {
+  background-color: var(--black);
+  /*   background: url('/assets/img/bgtexture.jpg') left top;
+  background-size: 1800px 1000px; */
   /* background: #555 !important; */
 }
 .anim-wrap {
   width: 100%;
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 /* --------------------------- buttons --------------------------- */

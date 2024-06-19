@@ -19,8 +19,9 @@ onMounted(() => {
   <header class="main dk hpad" ref="main">
     <div class="content-wrapper">
       <div class="logo-main" :class="width > 1024 && 'pos-ct'">
-        <IconLogo v-if="width > 1024" />
-        <IconLogoWide v-if="width <= 1024" />
+        <IconLogo />
+        <!--         <IconLogoWide v-if="width <= 1024" />
+ -->
       </div>
       <Nav type="main" class="header-part"></Nav>
       <CtaNav class="header-part"></CtaNav>
