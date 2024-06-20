@@ -42,7 +42,7 @@ onUnmounted(() => {
   <div class="community section-wrapper lt pt">
     <div class="content-wrapper p-max has-br">
       <header>
-        <Headline>Join the OpenHome Community</Headline>
+        <Headline><h2>Join the OpenHome Community</h2></Headline>
         <p>
           Ready to redefine the boundaries of voice AI? Join OpenHome today and
           be part of the <br />community that’s setting the tone for tomorrow's

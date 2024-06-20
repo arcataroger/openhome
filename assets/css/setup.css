@@ -144,6 +144,7 @@ time + h3,
 .h-lg + p,
 header h1 + p,
 h2 + p,
+.hl-anim + p,
 h3 + p {
   margin-top: var(--margintop);
 }
@@ -211,6 +212,7 @@ p + .cta-btn {
   .h-lg + p,
   header h1 + p,
   h2 + p,
+  .hl-anim + p,
   h3 + p {
     margin-top: var(--margintopM);
   }
@@ -410,6 +412,10 @@ p + .cta-btn {
 }
 .vis {
   overflow: visible;
+}
+.word {
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (min-width: 769px) and (max-width: 1200px) {

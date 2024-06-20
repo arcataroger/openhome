@@ -144,7 +144,9 @@ const changeSlider = (id) => {
         <div class="grid two-col mx-1600 auto">
           <div class="col pad flex-cn">
             <div class="txt-grp mx-600">
-              <Headline>Build your ideal smart speaker experience.</Headline>
+              <Headline
+                ><h2>Build your ideal smart speaker experience.</h2></Headline
+              >
             </div>
           </div>
           <div class="col nopad oh">

@@ -88,7 +88,7 @@ export const scrollUpToggle = (el, cl) => {
 };
 
 // split headline into characters
-export const splitHeadline = (el) => {
+/* export const splitHeadline = (el) => {
   const spl = new SplitText(el, { type: 'words, chars', charsClass: 'letter' });
   const letters = el.querySelectorAll('.letter');
   gsap.set(letters, { opacity: 0 });
@@ -105,7 +105,7 @@ export const animSplitHeadline = (el) => {
     ease: 'quad.out',
     stagger: 0.02,
   });
-};
+}; */
 
 // scrolltrigger reveal
 export const scrollReveal = () => {

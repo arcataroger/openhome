@@ -5,11 +5,6 @@ const { width, height } = useWindowSize();
 
 // Rive Animation ******************************
 
-/* let layoutCover = new rive.Layout({
-  fit: rive.Fit.Cover,
-  alignment: rive.Alignment.CenterCenter,
-}); */
-
 let riveHero;
 let rivePlaying = false;
 
@@ -38,11 +33,9 @@ onUnmounted(() => {
 const stopRive = () => {
   rivePlaying = !rivePlaying;
   if (rivePlaying) {
-    console.log('play');
     rivePlaying = true;
     riveHero.play();
   } else {
-    console.log('stop');
     rivePlaying = false;
     riveHero.pause();
   }
@@ -56,7 +49,7 @@ const stopRive = () => {
 
     <div class="content-wrapper p-max has-br">
       <header :class="width <= 650 && 'txt-lt'">
-        <h1>Your Own AI Smart Speaker</h1>
+        <Headline type="hero"><h1>Your Own AI Smart Speaker</h1></Headline>
         <p>
           OpenHome’s open-source Voice SDK empowers you to launch your
           personalized <br />AI-powered smart speaker on any platform or custom

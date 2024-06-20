@@ -6,10 +6,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const { width, height } = useWindowSize();
-
 const main = ref();
 let ctx;
-
 let riveEco;
 let scrollY;
 let riveScrollInputs;
@@ -45,32 +43,12 @@ onMounted(() => {
         scrub: true,
         onUpdate: (self) => {
           const pct = self.progress.toFixed(3) * 100;
-          console.log(pct);
+          //console.log(pct);
           scrollY.value = pct;
         },
       });
     }, 200);
   }, main.value);
-
-  /*   const api = document.querySelector('.api');
-  api.addEventListener('mousewheel', function (e) {
-    // Cross-browser wheel delta
-    var delta = (e.wheelDelta || -e.deltaY) / 6;
-
-    totalScroll += delta;
-    if (totalScroll >= 0) {
-      totalScroll = 0;
-    }
-
-    scrolledRiveVar = totalScroll * -0.145;
-
-    if (scrolledRiveVar >= 100) {
-      scrolledRiveVar = 100;
-    }
-    scrollY.value = scrolledRiveVar;
-
-    console.log(scrolledRiveVar);
-  }); */
 });
 onUnmounted(() => {
   riveEco.cleanup();
@@ -82,7 +60,9 @@ onUnmounted(() => {
   <div class="api section-wrapper bgtexture dk pt pb-160">
     <div class="content-wrapper p-max">
       <header>
-        <Headline>Powerful APIs for <br />Developers & Enterprises</Headline>
+        <Headline
+          ><h2>Powerful APIs for <br />Developers & Enterprises</h2></Headline
+        >
         <p class="mx-1100 auto">
           Easy to use, powerful tools for complex tasks. Our platform includes
           comprehensive APIs for speech-to-text, text-to-speech, and language
@@ -103,20 +83,16 @@ onUnmounted(() => {
     <!-- wave animation -->
     <div class="anim-wrap grid-cn img-ph mt-65" ref="main">
       <canvas id="rive-eco" width="1800" height="1460"></canvas>
-      <!-- <img src="~/assets/img/home-api-ph.png" /> -->
     </div>
 
     <!-- capabilities -->
     <div class="content-wrapper p-max">
       <div class="capabilities">
-        <!-- giant text -->
-        <!--         <div class="callout-txt-lg">500+</div>
- -->
         <!-- content row 2 col -->
         <div class="grid two-col pt">
-          <div class="col pr" :class="width > 900 && 'pt-65'">
+          <div class="col pr" :class="width > 900 && 'pt-20'">
             <div class="txt-goup mx-600">
-              <Headline>Powerful Capabilities</Headline>
+              <Headline><h2>Powerful Capabilities</h2></Headline>
               <p>
                 With over 500 +With features that support a wide range of
                 applications—from medical transcription to smart home
