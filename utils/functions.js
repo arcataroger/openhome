@@ -123,24 +123,43 @@ export const scrollReveal = () => {
 };
 
 // play/pause timeline when in view
-export const playInView = (el, tl) => {
+export const playInView = (el, tl, func) => {
   ScrollTrigger.create({
     trigger: el,
     start: 'top bottom',
     end: 'bottom top',
     onEnter: () => {
-      console.log('enter');
-      tl.play();
+      //console.log('enter');
+      if (tl != '') {
+        tl.play();
+      }
+      if (func != undefined) {
+        func('enter');
+      }
     },
     onEnterBack: () => {
-      tl.play();
+      if (tl != '') {
+        tl.play();
+      }
+      if (func != undefined) {
+        func('enter');
+      }
     },
     onLeave: () => {
-      console.log('leave');
-      tl.pause();
+      if (tl != '') {
+        tl.pause();
+      }
+      if (func != undefined) {
+        func('leave');
+      }
     },
     onLeaveBack: () => {
-      tl.pause();
+      if (tl != '') {
+        tl.pause();
+      }
+      if (func != undefined) {
+        func('leave');
+      }
     },
   });
 };

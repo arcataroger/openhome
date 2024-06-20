@@ -1,12 +1,12 @@
 <script setup>
 import { useWindowSize } from '@vueuse/core';
 import * as rive from '@rive-app/canvas';
+import gsap from 'gsap';
+
 const { width, height } = useWindowSize();
-
-// Rive Animation ******************************
-
+const main = ref(null);
+let ctx;
 let riveHero;
-let rivePlaying = false;
 
 onMounted(() => {
   let layout = new rive.Layout({
@@ -20,30 +20,37 @@ onMounted(() => {
     artboard: 'voice-all',
     stateMachines: 'voice-all',
     layout: layout,
-    autoplay: true,
+    autoplay: false,
     onLoad: (_) => {
       riveHero.resizeDrawingSurfaceToCanvas();
-      rivePlaying = true;
     },
   });
+
+  // trigger animation when in viewport
+  ctx = gsap.context((self) => {
+    let el = self.selector('.anim-wrap');
+    setTimeout(() => {
+      playInView(el, '', toggleRive);
+    }, 200);
+  }, main.value);
 });
+
 onUnmounted(() => {
   riveHero.cleanup();
+  ctx.revert();
 });
-const stopRive = () => {
-  rivePlaying = !rivePlaying;
-  if (rivePlaying) {
-    rivePlaying = true;
+
+const toggleRive = (ev) => {
+  if (ev == 'enter') {
     riveHero.play();
   } else {
-    rivePlaying = false;
     riveHero.pause();
   }
 };
 </script>
 
 <template>
-  <div class="hero section-wrapper dk bgtexture">
+  <div class="hero section-wrapper dk bgtexture" ref="main">
     <!-- <Fuzz /> -->
     <!-- <PixelBg /> -->
 
@@ -59,7 +66,7 @@ const stopRive = () => {
     </div>
 
     <!-- wave animation -->
-    <div class="anim-wrap img-ph grid-cn" @click="stopRive">
+    <div class="anim-wrap img-ph grid-cn">
       <canvas id="rive-hero" width="1800" height="1000"></canvas>
     </div>
 

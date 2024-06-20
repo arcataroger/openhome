@@ -7,6 +7,9 @@ let ctx;
 let tl;
 const scrollSp = 15;
 const main = ref();
+const shapes1 = ref(null);
+const shapes2 = ref(null);
+const playing = ref(false);
 
 onMounted(() => {
   let el;
@@ -27,15 +30,20 @@ onMounted(() => {
     });
   }, main.value);
 
-  // trigger timeline when in viewport
+  // trigger animation when in viewport
   setTimeout(function () {
-    playInView(el, tl);
+    playInView(el, tl, toggleRive);
   }, 200);
 });
 
 onUnmounted(() => {
   ctx.revert();
 });
+
+const toggleRive = (ev) => {
+  shapes1.value.togglePlay(ev);
+  shapes2.value.togglePlay(ev);
+};
 </script>
 
 <template>
@@ -56,12 +64,8 @@ onUnmounted(() => {
     <!-- shapes animation -->
     <div class="anim-wrap img-ph mt-65 grid-cn" ref="main">
       <div class="scrolling-wrap" style="width: 4300px">
-        <div class="scrolling-part" style="width: 2150px">
-          <img src="~/assets/img/home-community-ph@2x.png" />
-        </div>
-        <div class="scrolling-part" style="width: 2150px">
-          <img src="~/assets/img/home-community-ph@2x.png" />
-        </div>
+        <HomeShapes ref="shapes1" />
+        <HomeShapes ref="shapes2" />
       </div>
     </div>
   </div>

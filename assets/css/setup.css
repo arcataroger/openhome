@@ -417,6 +417,9 @@ p + .cta-btn {
   white-space: nowrap;
   overflow: hidden;
 }
+.flipX {
+  transform: scaleX(-1);
+}
 
 @media (min-width: 769px) and (max-width: 1200px) {
   .three-col .scroll-reveal {
