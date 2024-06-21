@@ -12,6 +12,7 @@ onMounted(() => {
 
 const hoverOn = () => {
   pixels.forEach((item, i) => {
+    gsap.killTweensOf(item);
     gsap.set(item, { y: 12 });
     gsap.to(item, {
       duration: 0.35,

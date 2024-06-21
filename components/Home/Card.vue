@@ -4,8 +4,6 @@ const props = defineProps(['data', 'id']);
 
 <template>
   <div class="card pad flex-cn">
-    <!--     <div class="coverup bg-cream"></div>
- -->
     <div class="txt-grp mx-600">
       <img :src="props.data.image" alt="" class="slide-img anim-part" />
       <h3 class="anim-part">{{ props.data.title }}</h3>
@@ -35,6 +33,9 @@ const props = defineProps(['data', 'id']);
 .txt-grp {
   position: relative;
   z-index: 2;
+}
+.anim-part {
+  transform-origin: left bottom;
 }
 @media (min-width: 1025px) {
   .card {

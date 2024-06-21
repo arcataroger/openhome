@@ -415,7 +415,6 @@ p + .cta-btn {
 }
 .word {
   white-space: nowrap;
-  overflow: hidden;
 }
 .flipX {
   transform: scaleX(-1);

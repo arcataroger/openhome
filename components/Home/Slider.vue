@@ -14,7 +14,7 @@ const card_data = [
       desc: 'With OpenHome, create organic voice AI experiences with instant response times, emotional recognition, conversation paths, and opinions of their own. With OpenHome, create organic voice AI experiences with instant response times, emotional recognition, conversation paths, and opinions of their own.',
     },
   },
-  /*{
+  {
     id: '2',
     data: {
       image: 'home-slide2@2x.jpg',
@@ -22,7 +22,7 @@ const card_data = [
       desc: 'Revolutionize your company or product with Voice AI powered by our Open Source Voice SDK. For Startups & Developers - Get started Instantly with our Open Source SDK. For Enterprises. Talk with our team about advanced Enterprise Applications.',
     },
   },
-     {
+  {
     id: '3',
     data: {
       image: 'home-slide3@2x.jpg',
@@ -37,7 +37,7 @@ const card_data = [
       title: 'Empathy and Understanding',
       desc: "Our AI doesn't just understand commands; it interprets emotional expressions and generates empathic responses, setting a new standard for natural and engaging AI communication.",
     },
-  }, */
+  },
 ];
 
 let ctx;
@@ -46,58 +46,93 @@ let nav;
 let items;
 const main = ref();
 
+const sp = 0.5;
+const stag = 0.05;
+const dif = 50;
+const easer = 'power3.out';
+
 onMounted(() => {
   nav = document.querySelector('.slide-nav');
   items = nav.querySelectorAll('a');
 
-  let el;
   ctx = gsap.context((self) => {
+    // prep cards
     const cards = gsap.utils.toArray(self.selector('.card'));
     cards.forEach((card, i) => {
-      //gsap.set(card, { position: 'absolute', zIndex: cards.length - i });
       gsap.set(card, { position: 'absolute', zIndex: i });
     });
 
-    // setup controller for slider timeline
     setTimeout(function () {
+      // initiate first card animation separate
+      const parts = cards[0].querySelectorAll('.anim-part');
+      gsap.set(parts, { opacity: 0 });
+
+      const openAnim = ScrollTrigger.create({
+        trigger: '.cards',
+        start: 'top 30%',
+        onEnter: () => {
+          console.log('play card 1');
+          gsap.fromTo(
+            parts,
+            { opacity: 0, y: 100, xPercent: 120, rotation: 30 },
+            {
+              duration: 1,
+              stagger: stag,
+              opacity: 1,
+              y: 0,
+              xPercent: 0,
+              rotation: 0,
+              ease: easer,
+            }
+          );
+          openAnim.kill(); // play once, then remove
+        },
+      });
+
+      // setup controller for slider timeline
       tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.cards',
           start: 'top top',
-          end: 'bottom+=100px' /* add back 0 */,
+          end: 'bottom+=1000px',
           scrub: true,
         },
       });
 
       // add card animations to timeline
       const sliders = gsap.utils.toArray(self.selector('.slide-on'));
-      const sp = 0.5;
-      const stag = 0.05;
-      const dif = 50;
-      const easer = 'power3.out';
-
       sliders.forEach((slider, i) => {
         tl.call(updateNav, [i]);
         const parts = slider.querySelectorAll('.anim-part');
+
+        // animate on
         if (i > 0) {
           tl.fromTo(
             parts,
-            { opacity: 0, y: dif },
+            { opacity: 0, y: 100, xPercent: 120, rotation: 30 },
             {
-              duration: sp,
+              duration: 1,
               stagger: stag,
               opacity: 1,
               y: 0,
+              xPercent: 0,
+              scaleX: 1,
+              scaleY: 1,
+              rotation: 0,
               ease: easer,
             }
           );
         }
+
+        // animate off
         if (i < sliders.length - 1) {
           tl.to(parts, {
             duration: sp,
             stagger: 0.1,
             opacity: 0,
-            y: -dif,
+            xPercent: -100,
+            y: -100,
+            rotation: -30,
             ease: 'power3.in',
           });
         }
@@ -107,7 +142,7 @@ onMounted(() => {
       ScrollTrigger.create({
         trigger: '.home-slider',
         start: 'top top',
-        end: 'bottom+=200px' /* add back 0 */,
+        end: 'bottom+=2000px',
         scrub: true,
         pin: true,
         pinSpacing: true,
@@ -153,6 +188,7 @@ const changeSlider = (id) => {
             <HomeCard
               v-for="(card, key) in card_data"
               :data="card.data"
+              :data-num="key"
               :class="key >= 0 && 'slide-on'"
             />
           </div>

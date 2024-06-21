@@ -50,14 +50,13 @@ onMounted(() => {
       // scroll to headline to play
     } else {
       setTimeout(function () {
-        ScrollTrigger.create({
+        const anim = ScrollTrigger.create({
           trigger: main.value,
           start: 'top 65%',
           onEnter: () => {
-            if (!played) {
-              animSplitHeadline(main.value);
-              played = true;
-            }
+            //console.log('play headline anim');
+            animSplitHeadline(main.value);
+            anim.kill(); // play once, then remove
           },
         });
       }, 200);
