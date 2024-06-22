@@ -11,7 +11,7 @@
   overflow: hidden;
   &.overtop {
     position: relative;
-    z-index: 20;
+    z-index: 8;
     margin-top: -100vh;
   }
 }

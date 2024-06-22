@@ -3,9 +3,11 @@ const props = defineProps(['data', 'id']);
 </script>
 
 <template>
-  <div class="card pad flex-cn">
+  <div class="card flex-cn pad">
     <div class="txt-grp mx-600">
-      <img :src="props.data.image" alt="" class="slide-img anim-part" />
+      <div class="slide-img anim-part">
+        <img :src="props.data.image" alt="" />
+      </div>
       <h3 class="anim-part">{{ props.data.title }}</h3>
       <p class="anim-part">{{ props.data.desc }}</p>
     </div>
@@ -23,7 +25,7 @@ const props = defineProps(['data', 'id']);
     border-radius: 10px;
     max-width: 315px;
   }
-  img + h3 {
+  .slide-img + h3 {
     margin-top: 30px;
   }
   h3 + p {
@@ -37,7 +39,7 @@ const props = defineProps(['data', 'id']);
 .anim-part {
   transform-origin: left bottom;
 }
-@media (min-width: 1025px) {
+@media (min-width: 1201px) {
   .card {
     &.pad {
       padding-top: 5.9375rem;
@@ -45,27 +47,52 @@ const props = defineProps(['data', 'id']);
     }
   }
 }
-@media (min-width: 551px) and (max-width: 1024px) {
+@media (max-width: 1200px) {
   .card {
     &.pad {
-      padding-top: var(--side-marginM);
-      padding-bottom: var(--side-marginM);
+      padding: var(--grid-marginM) 65px;
+    }
+  }
+}
+@media (min-width: 901px) and (max-width: 1024px) {
+  .card {
+    &.pad {
+      padding: var(--grid-marginM) 25px;
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .card {
+    img {
+      width: 70%;
+    }
+  }
+}
+@media (max-width: 900px) {
+  .card {
+    &.pad {
+      padding: 20px 65px;
     }
   }
 }
 @media (max-width: 768px) {
   .card {
-    img {
-      width: 70%;
+    &.pad {
+      padding: 20px 43px;
     }
-    img + h3 {
+    .slide-img + h3 {
       margin-top: 20px;
     }
   }
 }
 @media (max-width: 550px) {
-  .card h2 {
-    padding-top: 10px;
+  .card {
+    &.pad {
+      padding: 15px 33px 33px;
+    }
+    h2 {
+      padding-top: 10px;
+    }
   }
 }
 </style>

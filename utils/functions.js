@@ -171,3 +171,11 @@ export const shuffle = (array) => {
   }
   return array;
 };
+
+export const labelToScroll = (timeline, label) => {
+  let st = timeline.scrollTrigger;
+  return (
+    st.start +
+    (st.end - st.start) * (timeline.labels[label] / timeline.duration())
+  );
+};

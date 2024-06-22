@@ -58,7 +58,7 @@ onUnmounted(() => {
 });
 
 const initScroller = () => {
-  console.log('set scroller width');
+  //console.log('set scroller width');
 };
 </script>
 

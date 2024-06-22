@@ -16,25 +16,26 @@ const toggleMenu = (e) => {
     document.body.classList.add('freeze');
     gsap.fromTo(
       '.menu-wrap',
-      { opacity: 0, x: 20, display: 'block' },
+      { opacity: 0, xPercent: 100, display: 'block' },
       {
         duration: 0.5,
-        x: 0,
+        xPercent: 0,
         y: 0,
         opacity: 1,
-        ease: 'power3.out',
+        ease: 'power3.inOut',
       }
     );
     gsap.fromTo(
       '.part',
-      { x: 10, y: 10, opacity: 0 },
+      { xPercent: 50, y: 0, opacity: 0 },
       {
+        delay: 0.1,
         duration: 0.5,
         stagger: 0.1,
-        x: 0,
+        xPercent: 0,
         y: 0,
         opacity: 1,
-        ease: 'bounce.out',
+        ease: 'elastic.out(1.5,2)',
       }
     );
     menu.classList.add('open');
@@ -68,14 +69,14 @@ onMounted(() => {
 // close menu
 const closeMenu = () => {
   if (menuOpen.value) {
-    gsap.to('.part', {
+    /*     gsap.to('.part', {
       duration: 0.35,
       stagger: -0.1,
       x: -10,
       y: -10,
       opacity: 1,
-      ease: 'bounce.in',
-    });
+      ease: 'power3.in',
+    }); */
     gsap.to('.menu-wrap', {
       duration: 0.35,
       opacity: 0,
@@ -105,6 +106,9 @@ const closeMenu = () => {
         <div class="gridline v rt"></div>
 
         <div class="menu-top hpad part">
+          <div class="logo-main">
+            <IconLogo />
+          </div>
           <!-- <div class="logo-main"><IconLogoWide /></div> -->
         </div>
 
@@ -127,9 +131,10 @@ const closeMenu = () => {
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 19;
+  z-index: 10;
   &.expanded {
     height: 100%;
+    z-index: 20;
   }
   .menu-wrap {
     position: absolute;
@@ -169,6 +174,16 @@ const closeMenu = () => {
     }
   }
 }
+
+.mobile-menu {
+  .logo-main {
+    position: absolute;
+    margin: 0;
+    top: 24px;
+    left: -9px;
+  }
+}
+
 @media (max-width: 768px) {
   .mobile-menu {
     .row {

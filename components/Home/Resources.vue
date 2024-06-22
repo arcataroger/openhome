@@ -42,12 +42,14 @@ const posts = [
 
       <div class="content-wrapper header p-max pt-65">
         <header>
-          <h2 class="alt">
-            Res<span class="pix">o</span>u<span class="pix">r</span>c<span
-              class="pix"
-              >e</span
-            >s
-          </h2>
+          <Headline>
+            <h2 class="alt">
+              Res<span class="pix">o</span>u<span class="pix">r</span>c<span
+                class="pix"
+                >e</span
+              >s
+            </h2>
+          </Headline>
         </header>
       </div>
     </div>

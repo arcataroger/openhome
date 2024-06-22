@@ -114,7 +114,7 @@ const props = defineProps(['bot', 'pad']);
     }
     &.stack {
       .col.pad {
-        padding: 20px 43px 43px;
+        padding: 20px 43px;
       }
     }
   }
@@ -139,7 +139,7 @@ const props = defineProps(['bot', 'pad']);
   .gridlines {
     &.stack {
       .col.pad {
-        padding: 15px 33px 33px;
+        padding: 15px 33px;
       }
     }
   }

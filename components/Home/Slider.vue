@@ -48,7 +48,7 @@ const main = ref();
 
 const sp = 0.5;
 const stag = 0.05;
-const dif = 50;
+/* const dif = 50; */
 const easer = 'power3.out';
 
 onMounted(() => {
@@ -64,36 +64,38 @@ onMounted(() => {
 
     setTimeout(function () {
       // initiate first card animation separate
-      const parts = cards[0].querySelectorAll('.anim-part');
+      /* const parts = cards[0].querySelectorAll('.anim-part');
       gsap.set(parts, { opacity: 0 });
+      if (width.value > 900) {
+        gsap.set(parts, { opacity: 0, y: 100, xPercent: 120, rotation: 30 });
+      }
 
+      let played = false;
       const openAnim = ScrollTrigger.create({
         trigger: '.cards',
         start: 'top 30%',
         onEnter: () => {
-          console.log('play card 1');
-          gsap.fromTo(
-            parts,
-            { opacity: 0, y: 100, xPercent: 120, rotation: 30 },
-            {
-              duration: 1,
-              stagger: stag,
-              opacity: 1,
-              y: 0,
-              xPercent: 0,
-              rotation: 0,
-              ease: easer,
-            }
-          );
+          gsap.to(parts, {
+            duration: 1,
+            stagger: stag,
+            opacity: 1,
+            y: 0,
+            xPercent: 0,
+            rotation: 0,
+            ease: easer,
+            onComplete: () => {
+              played = true;
+            },
+          });
           openAnim.kill(); // play once, then remove
         },
-      });
+      }); */
 
       // setup controller for slider timeline
       tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.cards',
-          start: 'top top',
+          start: 'top 20%',
           end: 'bottom+=1000px',
           scrub: true,
         },
@@ -102,27 +104,29 @@ onMounted(() => {
       // add card animations to timeline
       const sliders = gsap.utils.toArray(self.selector('.slide-on'));
       sliders.forEach((slider, i) => {
+        // update nav
         tl.call(updateNav, [i]);
-        const parts = slider.querySelectorAll('.anim-part');
 
         // animate on
-        if (i > 0) {
-          tl.fromTo(
-            parts,
-            { opacity: 0, y: 100, xPercent: 120, rotation: 30 },
-            {
-              duration: 1,
-              stagger: stag,
-              opacity: 1,
-              y: 0,
-              xPercent: 0,
-              scaleX: 1,
-              scaleY: 1,
-              rotation: 0,
-              ease: easer,
-            }
-          );
-        }
+        const parts = slider.querySelectorAll('.anim-part');
+        tl.fromTo(
+          parts,
+          { opacity: 0, y: 100, xPercent: 120, rotation: 30 },
+          {
+            duration: 1,
+            stagger: stag,
+            opacity: 1,
+            y: 0,
+            xPercent: 0,
+            scaleX: 1,
+            scaleY: 1,
+            rotation: 0,
+            ease: easer,
+          }
+        );
+
+        // place label when card is in place for jump to
+        tl.addLabel('stop' + i, '>');
 
         // animate off
         if (i < sliders.length - 1) {
@@ -136,6 +140,9 @@ onMounted(() => {
             ease: 'power3.in',
           });
         }
+
+        // update nav in reverse
+        tl.call(updateNav, [i]);
       });
 
       // lock in place, set for next section cover up
@@ -151,6 +158,9 @@ onMounted(() => {
     }, 200);
   }, main.value);
 });
+onUnmounted(() => {
+  ctx.revert();
+});
 
 const updateNav = (id) => {
   items.forEach((item, i) => {
@@ -163,6 +173,8 @@ const updateNav = (id) => {
 };
 const changeSlider = (id) => {
   console.log('change ' + id);
+  let scrollPos = labelToScroll(tl, 'stop' + id);
+  gsap.to(window, { duration: 2, scrollTo: scrollPos, ease: 'power3.out' });
 };
 </script>
 
@@ -184,26 +196,30 @@ const changeSlider = (id) => {
               >
             </div>
           </div>
-          <div class="col nopad oh">
+          <div class="col nopad" :class="width > 900 && 'hid'">
             <HomeCard
               v-for="(card, key) in card_data"
               :data="card.data"
               :data-num="key"
               :class="key >= 0 && 'slide-on'"
             />
+            <div v-if="width <= 900" class="slide-nav h-md mobile">
+              <ul>
+                <li v-for="(card, key) in card_data">
+                  <a href="#" @click.prevent="changeSlider(key)">{{
+                    key + 1
+                  }}</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="slide-nav h-md">
+      <div v-if="width > 900" class="slide-nav h-md">
         <ul>
           <li v-for="(card, key) in card_data">
-            <a
-              href="#"
-              :class="key == 0 && 'on'"
-              @click.prevent="changeSlider(key + 1)"
-              >{{ key + 1 }}</a
-            >
+            <a href="#" @click.prevent="changeSlider(key)">{{ key + 1 }}</a>
           </li>
         </ul>
       </div>
@@ -224,7 +240,7 @@ const changeSlider = (id) => {
 .slide-nav {
   position: absolute;
   right: 40px;
-  top: 95px;
+  top: 5.9375rem;
   z-index: 10;
   ul {
     list-style: none;
@@ -244,6 +260,56 @@ const changeSlider = (id) => {
 @media (min-width: 1025px) {
   .slide-nav a:hover {
     color: var(--black);
+  }
+}
+@media (min-width: 1025px) and (max-width: 1500px) {
+  h2 {
+    font-size: 100px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1300px) {
+  h2 {
+    font-size: 90px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1100px) {
+  h2 {
+    font-size: 70px;
+  }
+}
+@media (max-width: 1200px) {
+  .slide-nav {
+    top: var(--grid-marginM);
+    right: 65px;
+    li + li {
+      margin-top: 5px;
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .slide-nav {
+    right: 33px;
+  }
+}
+@media (max-width: 900px) {
+  .cards {
+    .grid {
+      display: block;
+    }
+  }
+  .slide-nav {
+    top: 15px;
+    right: 65px;
+  }
+}
+@media (max-width: 768px) {
+  .slide-nav {
+    right: 43px;
+  }
+}
+@media (max-width: 550px) {
+  .slide-nav {
+    right: 33px;
   }
 }
 </style>
