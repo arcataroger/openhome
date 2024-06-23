@@ -15,7 +15,11 @@ const splitHeadline = (el) => {
     charsClass: 'letter',
   });
   const letters = el.querySelectorAll('.letter');
-  gsap.set(letters, { opacity: 0 });
+  gsap.set(letters, {
+    opacity: 0,
+    color: 'rgba(255,255,255,0)',
+    textShadow: '0 0 30px #fff',
+  });
 };
 
 // animate each character on
@@ -25,8 +29,9 @@ const animSplitHeadline = (el) => {
   gsap.to(letters, {
     duration: 0.5,
     opacity: 1,
-    y: 0,
-    ease: 'quad.out',
+    color: 'rgba(255,255,255,1)',
+    textShadow: '0 0 0px #fff',
+    ease: 'quad.in',
     stagger: 0.02,
   });
 };

@@ -111,7 +111,7 @@ onMounted(() => {
         const parts = slider.querySelectorAll('.anim-part');
         tl.fromTo(
           parts,
-          { opacity: 0, y: 100, xPercent: 120, rotation: 30 },
+          { opacity: 1, y: 100, xPercent: 120, rotation: 30 },
           {
             duration: 1,
             stagger: stag,
