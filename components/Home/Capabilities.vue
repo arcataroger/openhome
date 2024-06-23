@@ -60,7 +60,7 @@ onUnmounted(() => {
   <div class="api section-wrapper bgtexture dk pt pb-160">
     <div class="content-wrapper p-max">
       <header>
-        <Headline
+        <Headline theme="dk"
           ><h2>Powerful APIs for <br />Developers & Enterprises</h2></Headline
         >
         <p class="mx-1100 auto">
@@ -92,7 +92,7 @@ onUnmounted(() => {
         <div class="grid two-col pt">
           <div class="col pr" :class="width > 900 && 'pt-20'">
             <div class="txt-goup mx-600">
-              <Headline><h2>Powerful Capabilities</h2></Headline>
+              <Headline theme="dk"><h2>Powerful Capabilities</h2></Headline>
               <p>
                 With over 500 +With features that support a wide range of
                 applications—from medical transcription to smart home

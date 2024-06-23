@@ -6,7 +6,17 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
-const props = defineProps(['type']);
+const props = defineProps(['type', 'theme']);
+
+let rgb;
+let hex;
+if (props.theme == 'dk') {
+  rgb = '255, 252, 247';
+  hex = '#fffcf7';
+} else {
+  rgb = '14,14,21';
+  hex = '#0e0e15';
+}
 
 const splitHeadline = (el) => {
   const spl = new SplitText(el, {
@@ -17,8 +27,8 @@ const splitHeadline = (el) => {
   const letters = el.querySelectorAll('.letter');
   gsap.set(letters, {
     opacity: 0,
-    color: 'rgba(255,255,255,0)',
-    textShadow: '0 0 30px #fff',
+    color: `rgba(${rgb},0)`,
+    textShadow: `0 0 30px ${hex}`,
   });
 };
 
@@ -29,8 +39,8 @@ const animSplitHeadline = (el) => {
   gsap.to(letters, {
     duration: 0.5,
     opacity: 1,
-    color: 'rgba(255,255,255,1)',
-    textShadow: '0 0 0px #fff',
+    color: `rgba(${rgb},1)`,
+    textShadow: `0 0 0px ${hex}`,
     ease: 'quad.in',
     stagger: 0.02,
   });

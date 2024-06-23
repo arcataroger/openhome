@@ -52,11 +52,13 @@ const toggleRive = (ev) => {
 <template>
   <div class="hero section-wrapper dk bgtexture" ref="main">
     <!-- <Fuzz /> -->
-    <!-- <PixelBg /> -->
+    <PixelBg />
 
     <div class="content-wrapper p-max has-br">
       <header :class="width <= 650 && 'txt-lt'">
-        <Headline type="hero"><h1>Your Own AI Smart Speaker</h1></Headline>
+        <Headline type="hero" theme="dk"
+          ><h1>Your Own AI Smart Speaker</h1></Headline
+        >
         <p>
           OpenHome’s open-source Voice SDK empowers you to launch your
           personalized <br />AI-powered smart speaker on any platform or custom

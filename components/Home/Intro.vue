@@ -8,7 +8,7 @@ const { width, height } = useWindowSize();
     <Gridlines />
     <div class="content-wrapper p-max pt-65 pb-65 txt-cn">
       <header>
-        <Headline
+        <Headline theme="lt"
           ><h2>Welcome to a New Era <br />of Interaction.</h2></Headline
         >
       </header>

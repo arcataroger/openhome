@@ -8,7 +8,7 @@ let WIDTH, COLS, ROWS, TOTAL, CENTERX, CENTERY;
 let theme;
 
 const BATCHES = 10;
-WIDTH = 25;
+WIDTH = 10;
 
 onMounted(() => {
   setTimeout(() => {
@@ -40,9 +40,9 @@ var themes = {
     solid1: 'rgba(43,43,43,.9)',
     solid2: 'rgba(43,43,43,.3)',
     solid3: 'rgba(43,43,43,.6)',
-    time1: 100,
-    time2: 200,
-    time3: 300,
+    time1: 800,
+    time2: 1000,
+    time3: 1200,
     func: ArkStarmap,
   },
 };

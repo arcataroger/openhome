@@ -15,6 +15,9 @@
     margin-top: -100vh;
     transform: translateZ(0px);
   }
+  &.vis {
+    overflow: visible;
+  }
 }
 .content-wrapper {
   width: 100%;
