@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: dir,
     head: {
+      title: 'OpenHome',
       link: [
         {
           rel: 'preconnect',

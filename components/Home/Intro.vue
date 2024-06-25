@@ -8,12 +8,13 @@ const { width, height } = useWindowSize();
     <Gridlines />
     <div class="content-wrapper p-max pt-65 pb-65 txt-cn">
       <header>
-        <Headline theme="lt"
+        <Headline theme="lt" auto="false"
           ><h2>Welcome to a New Era <br />of Interaction.</h2></Headline
         >
       </header>
       <div class="img-ph intro-wave mt-65 auto">
-        <img src="~/assets/img/welcome-wave.png" />
+        <!--         <img src="~/assets/img/welcome-wave.png" />
+ -->
       </div>
       <div class="txt-grp mt-65 mx-1100 auto">
         <h3>Bring AI to Life, Everywhere!</h3>
@@ -46,6 +47,7 @@ const { width, height } = useWindowSize();
     max-width: 1400px;
     border-radius: 365px;
     overflow: hidden;
+    aspect-ratio: 3.45 / 1;
   }
 }
 </style>

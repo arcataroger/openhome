@@ -29,7 +29,6 @@ const page_data = toRaw(data.value)[page_id]; */
 <template>
   <div class="main-contents">
     <HomeHero />
-    <HomeIntro />
     <HomeSlider />
     <HomeCapabilities class="overtop" />
     <HomeResources />

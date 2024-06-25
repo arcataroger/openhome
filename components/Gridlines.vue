@@ -14,7 +14,8 @@ const props = defineProps(['bot', 'pad']);
   position: relative;
   padding: var(--grid-margin);
   + .gridlines,
-  + .pin-spacer {
+  + .pin-spacer,
+  &.np-top {
     padding-top: 0;
     .gridline.top {
       top: 0px;

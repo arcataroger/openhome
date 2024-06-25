@@ -6,7 +6,7 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
-const props = defineProps(['type', 'theme']);
+const props = defineProps(['type', 'theme', 'auto']);
 
 let rgb;
 let hex;
@@ -47,7 +47,7 @@ const animSplitHeadline = (el) => {
 };
 
 let ctx;
-const main = ref();
+const main = ref(null);
 let played = false;
 
 onMounted(() => {
@@ -56,30 +56,41 @@ onMounted(() => {
 
   // add animation context
   ctx = gsap.context((self) => {
-    // hero headline, play after page open
-    if (props.type == 'hero') {
-      setTimeout(function () {
-        animSplitHeadline(main.value);
-      }, 1200);
+    if (!props.auto) {
+      // hero headline, play after page open
+      if (props.type == 'hero') {
+        setTimeout(function () {
+          animSplitHeadline(main.value);
+        }, 1200);
 
-      // scroll to headline to play
-    } else {
-      setTimeout(function () {
-        const anim = ScrollTrigger.create({
-          trigger: main.value,
-          start: 'top 65%',
-          onEnter: () => {
-            //console.log('play headline anim');
-            animSplitHeadline(main.value);
-            anim.kill(); // play once, then remove
-          },
-        });
-      }, 200);
+        // scroll to headline to play
+      } else {
+        setTimeout(function () {
+          const anim = ScrollTrigger.create({
+            trigger: main.value,
+            start: 'top 65%',
+            onEnter: () => {
+              //console.log('play headline anim');
+              animSplitHeadline(main.value);
+              anim.kill(); // play once, then remove
+            },
+          });
+        }, 200);
+      }
     }
   }, main.value);
 });
 onUnmounted(() => {
   ctx.revert();
+});
+
+// manually trigger animation
+const openAnim = () => {
+  animSplitHeadline(main.value);
+};
+
+defineExpose({
+  openAnim,
 });
 </script>
 

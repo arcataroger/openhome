@@ -181,7 +181,7 @@ const changeSlider = (id) => {
 <template>
   <div
     ref="main"
-    class="home-slider section-wrapper lt gridlines col-vpad"
+    class="home-slider section-wrapper lt gridlines col-vpad np-top"
     :class="width <= 900 && 'stack'"
   >
     <Gridlines />

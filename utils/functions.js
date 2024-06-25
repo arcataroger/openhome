@@ -123,11 +123,14 @@ export const scrollReveal = () => {
 };
 
 // play/pause timeline when in view
-export const playInView = (el, tl, func) => {
+export const playInView = (el, tl, func, add) => {
+  if (add == undefined) {
+    add = 0;
+  }
   ScrollTrigger.create({
     trigger: el,
     start: 'top bottom',
-    end: 'bottom top',
+    end: 'bottom top+=' + -add,
     onEnter: () => {
       //console.log('enter');
       if (tl != '') {
