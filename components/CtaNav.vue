@@ -9,4 +9,16 @@
   </nav>
 </template>
 
-<style scoped></style>
+<style scoped>
+.cta-nav {
+  position: absolute;
+  right: 0px;
+  top: 30px;
+  li {
+    display: inline-block;
+    + li {
+      margin-left: 12px;
+    }
+  }
+}
+</style>

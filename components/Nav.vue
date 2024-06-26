@@ -18,7 +18,8 @@ const props = defineProps(['type']);
   width: 100%;
   text-align: left;
   li {
-    font-size: 1.125rem;
+    /* font-size: 1.125rem; */
+    font-size: 18px;
     display: inline-block;
     + li {
       margin-left: 30px;

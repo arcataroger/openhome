@@ -33,6 +33,7 @@ const page_data = toRaw(data.value)[page_id]; */
     <HomeCapabilities class="overtop" />
     <HomeResources />
     <HomeCommunity />
+    <HomeDemoBtn />
   </div>
 </template>
 
