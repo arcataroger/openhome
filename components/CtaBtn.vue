@@ -2,7 +2,7 @@
 import { useWindowSize } from '@vueuse/core';
 
 const { width, height } = useWindowSize();
-const props = defineProps(['href', 'theme', 'size', 'arrow']);
+const props = defineProps(['href', 'target', 'theme', 'size', 'arrow']);
 const pixels = ref();
 
 const hoverOn = () => {
@@ -16,6 +16,7 @@ const hoverOff = () => {
 <template>
   <a
     :href="props.href"
+    :target="props.target"
     class="cta-btn"
     :class="props.size && props.size"
     v-on="{

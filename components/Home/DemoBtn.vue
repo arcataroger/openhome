@@ -17,7 +17,9 @@ onUnmounted(() => {
 
 <template>
   <div class="demo-sticky anim-resize">
-    <a href="#" target="_blank" class="cta-btn rnd">demo</a>
+    <a href="https://app.openhome.xyz/" target="_blank" class="cta-btn rnd"
+      >demo</a
+    >
   </div>
 </template>
 
@@ -25,10 +27,10 @@ onUnmounted(() => {
 @media (min-width: 1025px) {
   .demo-sticky {
     position: fixed;
-    right: 50px;
-    bottom: 50px;
+    right: 35px;
+    bottom: 35px;
     z-index: 10;
-    transform: translateY(-65px);
+    transform: translate(-35px, -80px);
     transition-duration: 1s;
     &.lock {
       transform: translate(0px, 0px);
@@ -37,8 +39,9 @@ onUnmounted(() => {
 }
 @media (min-width: 1025px) and (max-width: 1200px) {
   .demo-sticky {
-    right: 25px;
-    bottom: 25px;
+    transform: translate(0, -75px);
+    /*     right: 35px;
+    bottom: 35px; */
   }
 }
 @media (max-width: 1024px) {

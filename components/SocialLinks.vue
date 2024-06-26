@@ -4,13 +4,21 @@ const main = ref();
 let ctx;
 
 const links = [
-  { name: 'X', url: 'https://twitter.com', icon: '/icons/twitter.svg' },
+  {
+    name: 'X',
+    url: 'https://x.com/OpenHomeAI',
+    icon: '/icons/twitter.svg',
+  },
   {
     name: 'LinkedIn',
-    url: 'https://LinkedIn.com',
+    url: 'https://www.linkedin.com/company/openhome-ai/',
     icon: '/icons/linkedin.svg',
   },
-  { name: 'Discord', url: 'https://Discord.com', icon: '/icons/discord.svg' },
+  {
+    name: 'Discord',
+    url: 'https://discord.com/invite/YFTvffFMzv',
+    icon: '/icons/discord.svg',
+  },
 ];
 
 onMounted(() => {

@@ -5,8 +5,14 @@ const props = defineProps(['type']);
 <template>
   <nav :class="type">
     <ul :class="props.type == 'main' ? 'main-nav' : 'mobile-nav'">
-      <li><a href="#">Discord</a></li>
-      <li><a href="#">Resources</a></li>
+      <li>
+        <a href="https://discord.com/invite/YFTvffFMzv" target="_blank"
+          >Discord</a
+        >
+      </li>
+      <li>
+        <a href="https://openhome.xyz/blog/" target="_blank">Resources</a>
+      </li>
     </ul>
   </nav>
 </template>

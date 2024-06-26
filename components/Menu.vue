@@ -115,7 +115,12 @@ const closeMenu = () => {
         <div class="row h-md part"><Nav></Nav></div>
         <div class="row cta part">
           <div class="cta-group stack">
-            <CtaBtn href="#" arrow="true">demo</CtaBtn>
+            <CtaBtn
+              href="https://app.openhome.xyz/"
+              target="_blank"
+              arrow="true"
+              >demo</CtaBtn
+            >
             <CtaBtn href="#" arrow="true">developers</CtaBtn>
             <CtaBtn href="#" arrow="true">investors</CtaBtn>
           </div>

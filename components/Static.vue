@@ -39,9 +39,7 @@ onUnmounted(() => {
 
 <template>
   <div class="static-wrap" ref="main">
-    <div class="static"></div>
-    <div class="static"></div>
-    <div class="static"></div>
+    <div class="static" v-for="n in total"></div>
   </div>
 </template>
 

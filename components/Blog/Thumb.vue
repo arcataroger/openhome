@@ -22,7 +22,7 @@ const { width, height } = useWindowSize();
         {{ props.data.excerpt }}
       </p>
     </div>
-    <a :href="props.data.url" class="full"></a>
+    <a :href="props.data.url" class="full" target="_blank"></a>
   </div>
 </template>
 

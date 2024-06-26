@@ -26,7 +26,7 @@ onMounted(() => {
   <header class="main dk hpad" ref="main">
     <HeaderParts />
   </header>
-  <StickyNav v-show="width > 1024" />
+  <StickyNav v-if="width > 1024" />
   <Menu />
 </template>
 

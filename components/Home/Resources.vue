@@ -13,7 +13,7 @@ const posts = [
       title: 'Introducing MetaCap: Live Emotional Insights Come to OpenHome',
       excerpt:
         "We're thrilled to showcase a community project built by members of the OpenHome developer community! At the heart of OpenHome's",
-      url: '#',
+      url: 'https://openhome.xyz/introducing-metacap-live-emotional-insights-are-coming-to-openhome/',
     },
   },
   {
@@ -25,7 +25,7 @@ const posts = [
       title: 'Matrix Phone Booth: Immersive Experiences in Openhome',
       excerpt:
         'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
-      url: '#',
+      url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
     },
   },
 ];
@@ -61,7 +61,12 @@ const posts = [
         </div>
         <div class="cta-row txt-cn has-bdr">
           <div class="inner">
-            <CtaBtn href="#" arrow="true">View All</CtaBtn>
+            <CtaBtn
+              href="https://openhome.xyz/blog/"
+              target="_blank"
+              arrow="true"
+              >View All</CtaBtn
+            >
           </div>
         </div>
       </div>

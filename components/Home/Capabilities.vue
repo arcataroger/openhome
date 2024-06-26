@@ -75,8 +75,15 @@ onUnmounted(() => {
           class="cta-group mt-20"
           :class="width <= 550 && 'grid two-col gap'"
         >
-          <CtaBtn href="#" arrow="true">Try a Demo</CtaBtn>
-          <CtaBtn href="#" arrow="true">Explore Ecosystem</CtaBtn>
+          <CtaBtn href="https://app.openhome.xyz/" target="_blank" arrow="true"
+            >Try a Demo</CtaBtn
+          >
+          <CtaBtn
+            href="https://openhome.xyz/ecosystem-2/"
+            target="_blank"
+            arrow="true"
+            >Explore Ecosystem</CtaBtn
+          >
         </div>
       </header>
     </div>
