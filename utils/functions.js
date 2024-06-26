@@ -18,9 +18,8 @@ export const jumpTo = (e) => {
   });
 };
 
-// turn section on/off based on scroll position
-export const registerSection = (el) => {
-  const os = 200;
+// turn section class on/off based on scroll position
+export const registerSection = (el, os = 0) => {
   const elems = document.querySelectorAll(el);
   elems.forEach((elem) => {
     ScrollTrigger.create({
@@ -29,11 +28,9 @@ export const registerSection = (el) => {
       end: 'bottom top',
       onEnter: () => {
         elem.classList.add('on');
-        setActiveSection('.side-menu', elem.dataset.id);
       },
       onEnterBack: () => {
         elem.classList.add('on');
-        setActiveSection('.side-menu', elem.dataset.id);
       },
       onLeaveBack: () => {
         elem.classList.remove('on');
@@ -103,17 +100,14 @@ export const scrollReveal = () => {
 };
 
 // play/pause timeline when in view
-export const playInView = (el, tl, func, add) => {
-  if (add == undefined) {
-    add = 0;
-  }
+export const playInView = (el, tl, func, add = 0) => {
   ScrollTrigger.create({
     trigger: el,
     start: 'top bottom',
     end: 'bottom top+=' + -add,
     onEnter: () => {
       //console.log('enter');
-      if (tl != '') {
+      if (tl != undefined) {
         tl.play();
       }
       if (func != undefined) {
@@ -121,7 +115,7 @@ export const playInView = (el, tl, func, add) => {
       }
     },
     onEnterBack: () => {
-      if (tl != '') {
+      if (tl != undefined) {
         tl.play();
       }
       if (func != undefined) {
@@ -130,7 +124,7 @@ export const playInView = (el, tl, func, add) => {
     },
     onLeave: () => {
       //console.log('leave');
-      if (tl != '') {
+      if (tl != undefined) {
         tl.pause();
       }
       if (func != undefined) {
@@ -138,7 +132,7 @@ export const playInView = (el, tl, func, add) => {
       }
     },
     onLeaveBack: () => {
-      if (tl != '') {
+      if (tl != undefined) {
         tl.pause();
       }
       if (func != undefined) {

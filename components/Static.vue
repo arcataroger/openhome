@@ -24,10 +24,6 @@ onMounted(() => {
       tl.set(frame, { display: 'block' }, i * sp);
       tl.set(frame, { display: 'none' }, i * sp + sp);
     });
-    /*       .set('.static.one', { display: 'none' }, 0)
-      .set('.static.two', { display: 'block' }, 0)
-      .set('.static.one', { display: 'block' }, sp)
-      .set('.static.two', { display: 'none' }, sp) */
 
     // play when in view, or turn off
     setTimeout(function () {
@@ -76,16 +72,6 @@ onUnmounted(() => {
   }
   &:nth-child(4) {
     transform: scale(-1);
-  }
-  &.one {
-  }
-  &.two {
-    background-image: url('/65b21e16a3a7025655fff89e_Noise.png');
-    transform: scale(-1);
-    left: 1px;
-
-    /*     background-image: url('/65b21e16a3a7025655fff8a2_various.png');
- */
   }
 }
 </style>

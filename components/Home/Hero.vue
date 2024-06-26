@@ -36,7 +36,7 @@ onMounted(() => {
   ctx = gsap.context((self) => {
     let el = self.selector('.anim-wrap');
     setTimeout(() => {
-      playInView(el, '', toggleRive, 500);
+      playInView(el, null, toggleRive, 500);
     }, 200);
   }, main.value);
 
