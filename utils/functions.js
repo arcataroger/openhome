@@ -112,7 +112,7 @@ export const playInView = (el, tl, func, add) => {
     start: 'top bottom',
     end: 'bottom top+=' + -add,
     onEnter: () => {
-      console.log('enter');
+      //console.log('enter');
       if (tl != '') {
         tl.play();
       }
@@ -129,7 +129,7 @@ export const playInView = (el, tl, func, add) => {
       }
     },
     onLeave: () => {
-      console.log('leave');
+      //console.log('leave');
       if (tl != '') {
         tl.pause();
       }

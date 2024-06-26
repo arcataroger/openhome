@@ -122,6 +122,9 @@ const initScroller = () => {
   }
 }
 @media (max-width: 650px) {
+  .logo-ticker {
+    bottom: 50px;
+  }
   .logo-item {
     padding: 0 40px 0 0;
   }

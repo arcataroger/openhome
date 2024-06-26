@@ -12,16 +12,22 @@ let offset = null;
 if (props.offset != undefined) {
   offset = props.offset;
 }
+const total = 3;
 
 onMounted(() => {
   ctx = gsap.context((self) => {
-    tl = gsap
-      .timeline({ repeat: -1, repeatDelay: sp })
-      .set('.static.one', { display: 'none' }, 0)
+    const frames = gsap.utils.toArray('.static');
+    tl = gsap.timeline({ repeat: -1 }).pause();
+
+    frames.forEach((frame, i) => {
+      gsap.set(frame, { display: 'none' });
+      tl.set(frame, { display: 'block' }, i * sp);
+      tl.set(frame, { display: 'none' }, i * sp + sp);
+    });
+    /*       .set('.static.one', { display: 'none' }, 0)
       .set('.static.two', { display: 'block' }, 0)
       .set('.static.one', { display: 'block' }, sp)
-      .set('.static.two', { display: 'none' }, sp)
-      .pause();
+      .set('.static.two', { display: 'none' }, sp) */
 
     // play when in view, or turn off
     setTimeout(function () {
@@ -37,8 +43,9 @@ onUnmounted(() => {
 
 <template>
   <div class="static-wrap" ref="main">
-    <div class="static one"></div>
-    <div class="static two"></div>
+    <div class="static"></div>
+    <div class="static"></div>
+    <div class="static"></div>
   </div>
 </template>
 
@@ -60,11 +67,25 @@ onUnmounted(() => {
   background-color: #fff;
   background-position: 50%;
   background-size: 1440px auto;
-  &.two {
-    background-image: url('/65b21e16a3a7025655fff89e_Noise.png');
+  background-image: url('/65b21e16a3a7025655fff89e_Noise.png');
+  &:nth-child(2) {
+    transform: scaleX(-1);
+  }
+  &:nth-child(3) {
+    transform: scaleY(-1);
+  }
+  &:nth-child(4) {
+    transform: scale(-1);
   }
   &.one {
-    background-image: url('/65b21e16a3a7025655fff8a2_various.png');
+  }
+  &.two {
+    background-image: url('/65b21e16a3a7025655fff89e_Noise.png');
+    transform: scale(-1);
+    left: 1px;
+
+    /*     background-image: url('/65b21e16a3a7025655fff8a2_various.png');
+ */
   }
 }
 </style>

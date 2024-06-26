@@ -148,6 +148,7 @@ const closeMenu = () => {
   .menu-contents {
     width: 100%;
     min-height: 100vh;
+    background-color: var(--black);
   }
   .menu-top {
     height: 75px;
