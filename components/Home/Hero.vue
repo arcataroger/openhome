@@ -68,7 +68,8 @@ onMounted(() => {
       wave.value,
       {
         duration: 0.2,
-        yPercent: -40,
+        yPercent: -30,
+        scale: 0.85,
       },
       0
     );
