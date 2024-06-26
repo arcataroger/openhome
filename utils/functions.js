@@ -87,26 +87,6 @@ export const scrollUpToggle = (el, cl) => {
   });
 };
 
-// split headline into characters
-/* export const splitHeadline = (el) => {
-  const spl = new SplitText(el, { type: 'words, chars', charsClass: 'letter' });
-  const letters = el.querySelectorAll('.letter');
-  gsap.set(letters, { opacity: 0 });
-};
-
-// animate each character on
-export const animSplitHeadline = (el) => {
-  const letters = gsap.utils.toArray(el.querySelectorAll('.letter'));
-  gsap.utils.shuffle(letters);
-  gsap.to(letters, {
-    duration: 0.5,
-    opacity: 1,
-    y: 0,
-    ease: 'quad.out',
-    stagger: 0.02,
-  });
-}; */
-
 // scrolltrigger reveal
 export const scrollReveal = () => {
   const elems = document.querySelectorAll('.scroll-reveal');
@@ -132,7 +112,7 @@ export const playInView = (el, tl, func, add) => {
     start: 'top bottom',
     end: 'bottom top+=' + -add,
     onEnter: () => {
-      //console.log('enter');
+      console.log('enter');
       if (tl != '') {
         tl.play();
       }
@@ -149,6 +129,7 @@ export const playInView = (el, tl, func, add) => {
       }
     },
     onLeave: () => {
+      console.log('leave');
       if (tl != '') {
         tl.pause();
       }

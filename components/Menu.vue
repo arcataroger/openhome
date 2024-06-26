@@ -101,7 +101,7 @@ const closeMenu = () => {
   <div class="mobile-menu" v-show="width <= 1024">
     <MenuButton @click="toggleMenu" ref="menu_btn" />
     <div class="menu-wrap set-theme dk div-scroll">
-      <div class="menu-contents bgtexture">
+      <div class="menu-contents">
         <div class="gridline v lt"></div>
         <div class="gridline v rt"></div>
 

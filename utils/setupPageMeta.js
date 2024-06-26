@@ -17,7 +17,7 @@ export default function (title, seo_data) {
 
   // add to head
   return useHead({
-    title: 'Lindsey Lerner PsyD | ' + meta_title,
+    title: 'OpenHome | ' + meta_title,
     meta: [{ name: 'description', content: meta_desc }],
   });
 }

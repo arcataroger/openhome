@@ -5,9 +5,10 @@ const { width, height } = useWindowSize();
 
 <template>
   <footer
-    class="main section-wrapper bgtexture gridlines np-bot dk"
+    class="main section-wrapper gridlines np-bot dk"
     :class="width <= 900 && 'stack'"
   >
+    <Static />
     <Gridlines bot="true" pad="pad" />
     <div class="content-wrapper" :class="width > 900 && 'p-max'">
       <div class="footer-row grid two-col logo">

@@ -82,17 +82,22 @@ const initScroller = () => {
 </template>
 
 <style scoped>
+.logo-ticker {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
 .logo-ticker.scrolling {
-  position: relative;
+  /* position: relative; */
   height: 72px;
-  width: 1700px; /* dynamic */
+  width: 1700px; /* make dynamic */
   margin-top: 40px;
   padding-bottom: 30px;
   .logo-group {
     position: absolute;
     left: 0;
     top: 0;
-    width: 850px; /* dynamic */
+    width: 850px; /* make dynamic */
     padding: 0px;
   }
   .logo-group:nth-child(2) {

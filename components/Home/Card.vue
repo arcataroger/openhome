@@ -95,4 +95,18 @@ const props = defineProps(['data', 'id']);
     }
   }
 }
+@media (max-width: 1200px) and (max-height: 650px), (max-width: 374px) {
+  .card {
+    h3 {
+      font-size: 26px;
+    }
+    .txt-grp {
+      padding-right: 30px;
+    }
+    img {
+      height: 100px;
+      object-fit: cover;
+    }
+  }
+}
 </style>

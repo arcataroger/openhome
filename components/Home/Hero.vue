@@ -74,7 +74,6 @@ onMounted(() => {
     );
 
   // trigger headline just before mask animation complete
-  const dur = tl.duration();
   tl.add(openHL, tl.duration() - 0.25);
 
   // pin intro section separate
@@ -109,9 +108,9 @@ const openHL = () => {
 
 <template>
   <!-- hero -->
-  <div class="hero section-wrapper dk bgtexture hid" ref="main">
-    <!-- <Fuzz /> -->
-    <PixelBg />
+  <div class="hero section-wrapper dk" ref="main">
+    <!-- <PixelBg /> -->
+    <Static offset="500" />
 
     <div class="content-wrapper p-max has-br" ref="hero">
       <header :class="width <= 650 && 'txt-lt'">
@@ -141,8 +140,8 @@ const openHL = () => {
     <div class="content-wrapper p-max pt-65 pb-65 txt-cn">
       <header>
         <Headline theme="lt" auto="false" ref="hl"
-          ><h2>Welcome to a New Era <br />of Interaction.</h2></Headline
-        >
+          ><h2>Welcome to a New Era <br />of Interaction.</h2>
+        </Headline>
       </header>
       <div class="img-ph intro-wave mt-65 auto">
         <!--         <img src="~/assets/img/welcome-wave.png" />
@@ -182,7 +181,7 @@ canvas {
   transform: translate3d(-50%, -50%, 0);
 }
 .hero {
-  /* min-height: 100vh; */
+  min-height: 100vh;
   z-index: 2;
   position: absolute;
   left: 0;

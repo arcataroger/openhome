@@ -46,57 +46,24 @@ let nav;
 let items;
 const main = ref();
 
-const sp = 0.5;
-const stag = 0.05;
-/* const dif = 50; */
-const easer = 'power3.out';
-
 onMounted(() => {
   nav = document.querySelector('.slide-nav');
   items = nav.querySelectorAll('a');
 
   ctx = gsap.context((self) => {
-    // prep cards
+    // prep cards to stack
     const cards = gsap.utils.toArray(self.selector('.card'));
     cards.forEach((card, i) => {
       gsap.set(card, { position: 'absolute', zIndex: i });
     });
 
     setTimeout(function () {
-      // initiate first card animation separate
-      /* const parts = cards[0].querySelectorAll('.anim-part');
-      gsap.set(parts, { opacity: 0 });
-      if (width.value > 900) {
-        gsap.set(parts, { opacity: 0, y: 100, xPercent: 120, rotation: 30 });
-      }
-
-      let played = false;
-      const openAnim = ScrollTrigger.create({
-        trigger: '.cards',
-        start: 'top 30%',
-        onEnter: () => {
-          gsap.to(parts, {
-            duration: 1,
-            stagger: stag,
-            opacity: 1,
-            y: 0,
-            xPercent: 0,
-            rotation: 0,
-            ease: easer,
-            onComplete: () => {
-              played = true;
-            },
-          });
-          openAnim.kill(); // play once, then remove
-        },
-      }); */
-
-      // setup controller for slider timeline
+      // setup controller to play slider timeline
       tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.cards',
           start: 'top 20%',
-          end: 'bottom+=1000px',
+          end: () => 'bottom+=' + height.value,
           scrub: true,
         },
       });
@@ -111,27 +78,34 @@ onMounted(() => {
         const parts = slider.querySelectorAll('.anim-part');
         tl.fromTo(
           parts,
-          { opacity: 1, y: 100, xPercent: 120, rotation: 30 },
+          {
+            opacity: 1,
+            y: 100,
+            xPercent: 120,
+            rotation: 30,
+            visibility: 'hidden',
+          },
           {
             duration: 1,
-            stagger: stag,
+            stagger: 0.05,
             opacity: 1,
+            visibility: 'visible',
             y: 0,
             xPercent: 0,
             scaleX: 1,
             scaleY: 1,
             rotation: 0,
-            ease: easer,
+            ease: 'power3.out',
           }
         );
 
-        // place label when card is in place for jump to
+        // place label when card is in place for jump to button
         tl.addLabel('stop' + i, '>');
 
         // animate off
         if (i < sliders.length - 1) {
           tl.to(parts, {
-            duration: sp,
+            duration: 0.5,
             stagger: 0.1,
             opacity: 0,
             xPercent: -100,
@@ -149,7 +123,7 @@ onMounted(() => {
       ScrollTrigger.create({
         trigger: '.home-slider',
         start: 'top top',
-        end: 'bottom+=2000px',
+        end: () => 'bottom+=' + height.value * 2,
         scrub: true,
         pin: true,
         pinSpacing: true,
@@ -172,7 +146,7 @@ const updateNav = (id) => {
   });
 };
 const changeSlider = (id) => {
-  console.log('change ' + id);
+  //console.log('change ' + id);
   let scrollPos = labelToScroll(tl, 'stop' + id);
   gsap.to(window, { duration: 2, scrollTo: scrollPos, ease: 'power3.out' });
 };
@@ -262,12 +236,12 @@ const changeSlider = (id) => {
     color: var(--black);
   }
 }
-@media (min-width: 1025px) and (max-width: 1500px) {
+@media (min-width: 1301px) and (max-width: 1500px) {
   h2 {
     font-size: 100px;
   }
 }
-@media (min-width: 1025px) and (max-width: 1300px) {
+@media (min-width: 1101px) and (max-width: 1300px) {
   h2 {
     font-size: 90px;
   }
@@ -296,6 +270,9 @@ const changeSlider = (id) => {
     .grid {
       display: block;
     }
+    h2 {
+      padding-right: 35px;
+    }
   }
   .slide-nav {
     top: 15px;
@@ -310,6 +287,13 @@ const changeSlider = (id) => {
 @media (max-width: 550px) {
   .slide-nav {
     right: 33px;
+  }
+}
+@media (max-width: 450px) {
+  .cards {
+    h2 {
+      font-size: 45px;
+    }
   }
 }
 </style>
