@@ -27,7 +27,7 @@ onMounted(() => {
 
     // play when in view, or turn off
     setTimeout(function () {
-      playInView(main.value, tl, null, offset);
+      //playInView(main.value, tl, null, offset);
     }, 200);
   }, main.value);
 });

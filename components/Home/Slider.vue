@@ -53,15 +53,15 @@ onMounted(() => {
   items = nav.querySelectorAll('a');
 
   ctx = gsap.context((self) => {
-    // match media wrapper
-    mm.add('(min-width: ' + minw + 'px)', () => {
-      // prep cards to stack
-      const cards = gsap.utils.toArray(self.selector('.card'));
-      cards.forEach((card, i) => {
-        gsap.set(card, { position: 'absolute', zIndex: i });
-      });
+    setTimeout(function () {
+      // match media wrapper
+      mm.add('(min-width: ' + minw + 'px)', () => {
+        // prep cards to stack
+        const cards = gsap.utils.toArray(self.selector('.card'));
+        cards.forEach((card, i) => {
+          gsap.set(card, { position: 'absolute', zIndex: i });
+        });
 
-      setTimeout(function () {
         // setup controller to play slider timeline
         tl = gsap.timeline({
           scrollTrigger: {
@@ -133,8 +133,8 @@ onMounted(() => {
           pinSpacing: true,
           anticipatePin: true,
         });
-      }, 200);
-    });
+      });
+    }, 200);
   }, main.value);
 });
 onUnmounted(() => {
