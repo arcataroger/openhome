@@ -33,7 +33,7 @@ const props = defineProps(['sticky']);
   }
   .logo-main {
     margin: 0;
-    left: -27px;
+    left: -22px;
   }
 }
 </style>

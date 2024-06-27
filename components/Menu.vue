@@ -186,7 +186,7 @@ const closeMenu = () => {
     position: absolute;
     margin: 0;
     top: 24px;
-    left: -9px;
+    left: -4px;
   }
 }
 

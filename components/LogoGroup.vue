@@ -82,11 +82,14 @@ const initScroller = () => {
 </template>
 
 <style scoped>
-.logo-ticker {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
+@media (min-width: 1025px) {
+  .logo-ticker {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+  }
 }
+
 .logo-ticker.scrolling {
   /* position: relative; */
   height: 72px;

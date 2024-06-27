@@ -44,6 +44,8 @@ let ctx;
 let tl;
 let nav;
 let items;
+let mm = gsap.matchMedia();
+const minw = 769;
 const main = ref();
 
 onMounted(() => {
@@ -51,85 +53,88 @@ onMounted(() => {
   items = nav.querySelectorAll('a');
 
   ctx = gsap.context((self) => {
-    // prep cards to stack
-    const cards = gsap.utils.toArray(self.selector('.card'));
-    cards.forEach((card, i) => {
-      gsap.set(card, { position: 'absolute', zIndex: i });
-    });
-
-    setTimeout(function () {
-      // setup controller to play slider timeline
-      tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.cards',
-          start: 'top 20%',
-          end: () => 'bottom+=' + height.value,
-          scrub: true,
-        },
+    // match media wrapper
+    mm.add('(min-width: ' + minw + 'px)', () => {
+      // prep cards to stack
+      const cards = gsap.utils.toArray(self.selector('.card'));
+      cards.forEach((card, i) => {
+        gsap.set(card, { position: 'absolute', zIndex: i });
       });
 
-      // add card animations to timeline
-      const sliders = gsap.utils.toArray(self.selector('.slide-on'));
-      sliders.forEach((slider, i) => {
-        // update nav
-        tl.call(updateNav, [i]);
-
-        // animate on
-        const parts = slider.querySelectorAll('.anim-part');
-        tl.fromTo(
-          parts,
-          {
-            opacity: 1,
-            y: 100,
-            xPercent: 120,
-            rotation: 30,
-            visibility: 'hidden',
+      setTimeout(function () {
+        // setup controller to play slider timeline
+        tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.cards',
+            start: 'top 20%',
+            end: () => 'bottom+=' + height.value,
+            scrub: true,
           },
-          {
-            duration: 1,
-            stagger: 0.05,
-            opacity: 1,
-            visibility: 'visible',
-            y: 0,
-            xPercent: 0,
-            scaleX: 1,
-            scaleY: 1,
-            rotation: 0,
-            ease: 'power3.out',
+        });
+
+        // add card animations to timeline
+        const sliders = gsap.utils.toArray(self.selector('.slide-on'));
+        sliders.forEach((slider, i) => {
+          // update nav
+          tl.call(updateNav, [i]);
+
+          // animate on
+          const parts = slider.querySelectorAll('.anim-part');
+          tl.fromTo(
+            parts,
+            {
+              opacity: 1,
+              y: 100,
+              xPercent: 120,
+              rotation: 30,
+              visibility: 'hidden',
+            },
+            {
+              duration: 1,
+              stagger: 0.05,
+              opacity: 1,
+              visibility: 'visible',
+              y: 0,
+              xPercent: 0,
+              scaleX: 1,
+              scaleY: 1,
+              rotation: 0,
+              ease: 'power3.out',
+            }
+          );
+
+          // place label when card is in place for jump to button
+          tl.addLabel('stop' + i, '>');
+
+          // animate off
+          if (i < sliders.length - 1) {
+            tl.to(parts, {
+              duration: 0.5,
+              stagger: 0.1,
+              opacity: 0,
+              xPercent: -100,
+              y: -100,
+              rotation: -30,
+              ease: 'power3.in',
+            });
           }
-        );
 
-        // place label when card is in place for jump to button
-        tl.addLabel('stop' + i, '>');
+          // update nav in reverse
+          tl.call(updateNav, [i]);
+        });
 
-        // animate off
-        if (i < sliders.length - 1) {
-          tl.to(parts, {
-            duration: 0.5,
-            stagger: 0.1,
-            opacity: 0,
-            xPercent: -100,
-            y: -100,
-            rotation: -30,
-            ease: 'power3.in',
-          });
-        }
-
-        // update nav in reverse
-        tl.call(updateNav, [i]);
-      });
-
-      // lock in place, set for next section cover up
-      ScrollTrigger.create({
-        trigger: '.home-slider',
-        start: 'top top',
-        end: () => 'bottom+=' + height.value * 2,
-        scrub: true,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: true,
-      });
-    }, 200);
+        // lock in place, set for next section cover up
+        ScrollTrigger.create({
+          trigger: '.home-slider',
+          start: 'top top',
+          end: () => 'bottom+=' + height.value * 2,
+          scrub: true,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: true,
+        });
+      }, 200);
+    });
   }, main.value);
 });
 onUnmounted(() => {
@@ -254,7 +259,7 @@ const changeSlider = (id) => {
 @media (max-width: 1200px) {
   .slide-nav {
     top: var(--grid-marginM);
-    right: 65px;
+    right: 33px;
     li + li {
       margin-top: 5px;
     }
@@ -262,7 +267,8 @@ const changeSlider = (id) => {
 }
 @media (max-width: 1024px) {
   .slide-nav {
-    right: 33px;
+    top: 75px;
+    /* right: 33px; */
   }
 }
 @media (max-width: 900px) {
@@ -270,9 +276,9 @@ const changeSlider = (id) => {
     .grid {
       display: block;
     }
-    h2 {
+    /*     h2 {
       padding-right: 35px;
-    }
+    } */
   }
   .slide-nav {
     top: 15px;
@@ -280,8 +286,15 @@ const changeSlider = (id) => {
   }
 }
 @media (max-width: 768px) {
+  .cards {
+    height: auto;
+    .card + .card {
+      border-top: 1px solid var(--gray);
+    }
+  }
   .slide-nav {
     right: 43px;
+    display: none;
   }
 }
 @media (max-width: 550px) {
@@ -289,11 +302,11 @@ const changeSlider = (id) => {
     right: 33px;
   }
 }
-@media (max-width: 450px) {
+/* @media (max-width: 450px) {
   .cards {
     h2 {
       font-size: 45px;
     }
   }
-}
+} */
 </style>

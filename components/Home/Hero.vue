@@ -10,11 +10,18 @@ const main = ref(null);
 const hl = ref(null);
 const hero = ref(null);
 const wave = ref(null);
+const wave2 = ref(null);
 let ctx;
 let riveHero;
+let riveIntro;
 let tl;
 
+let mm = gsap.matchMedia();
+const minw = 1025;
+const mob_maxw = 1024;
+
 onMounted(() => {
+  // rive animation setup
   let layout = new rive.Layout({
     fit: rive.Fit.Contain,
     alignment: rive.Alignment.TopCenter,
@@ -32,62 +39,87 @@ onMounted(() => {
     },
   });
 
-  // trigger animation when in viewport
-  ctx = gsap.context((self) => {
-    let el = self.selector('.anim-wrap');
-    setTimeout(() => {
-      playInView(el, null, toggleRive, 500);
-    }, 200);
-  }, main.value);
-
-  // mask hero wave on scroll
-  tl = gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: main.value,
-        start: 'top top',
-        end: '+=50%',
-        scrub: true,
-        pin: true,
-      },
-    })
-    .to(main.value, {
-      yPercent: 15, // make dynamic
-      clipPath: 'inset(28% 11% round 366px)',
-      ease: 'power3.out',
-    })
-    .to(
-      hero.value,
-      {
-        duration: 0.2,
-        opacity: 0,
-      },
-      0
-    )
-    .to(
-      wave.value,
-      {
-        duration: 0.2,
-        yPercent: -30,
-        scale: 0.85,
-      },
-      0
-    );
-
-  // trigger headline just before mask animation complete
-  tl.add(openHL, tl.duration() - 0.25);
-
-  // pin intro section separate
-  ScrollTrigger.create({
-    trigger: '.intro',
-    start: 'top top',
-    end: '+=50%',
-    scrub: true,
-    pin: true,
-    onLeave: () => {
-      gsap.to('.fade-on', { duration: 1, opacity: 1 });
+  riveIntro = new rive.Rive({
+    src: '/riv/mouths.riv',
+    canvas: document.getElementById('rive-intro'),
+    artboard: 'voice-all',
+    stateMachines: 'voice-all',
+    layout: layout,
+    autoplay: false,
+    onLoad: (_) => {
+      riveIntro.resizeDrawingSurfaceToCanvas();
     },
   });
+
+  // trigger animation when in viewport
+  ctx = gsap.context((self) => {
+    // play/pause rive animation
+    let hero_el = self.selector('.anim-wrap');
+    setTimeout(() => {
+      playInView(hero_el, null, toggleRive, 500);
+
+      mm.add('(max-width: ' + mob_maxw + 'px)', () => {
+        playInView(wave2.value, null, toggleRive2);
+      });
+    }, 200);
+
+    // match media wrapper
+    setTimeout(() => {
+      mm.add('(min-width: ' + minw + 'px)', () => {
+        //console.log('morph');
+        // morph hero wave on scroll
+        tl = gsap
+          .timeline({
+            scrollTrigger: {
+              id: 'hero-morph',
+              trigger: main.value,
+              start: 'top top',
+              end: '+=50%',
+              scrub: true,
+              pin: true,
+            },
+          })
+          .to(main.value, {
+            yPercent: 15, // make dynamic
+            clipPath: 'inset(28% 11% round 366px)',
+            ease: 'power3.out',
+          })
+          .to(
+            hero.value,
+            {
+              duration: 0.2,
+              opacity: 0,
+            },
+            0
+          )
+          .to(
+            wave.value,
+            {
+              duration: 0.2,
+              yPercent: -30,
+              scale: 0.85,
+            },
+            0
+          );
+
+        // trigger headline just before mask animation complete
+        tl.add(openHL, tl.duration() - 0.25);
+
+        // pin intro section separate
+        ScrollTrigger.create({
+          id: 'intro-morph',
+          trigger: '.intro',
+          start: 'top top',
+          end: '+=50%',
+          scrub: true,
+          pin: true,
+          onLeave: () => {
+            gsap.to('.fade-on', { duration: 1, opacity: 1 });
+          },
+        });
+      });
+    }, 200);
+  }, main.value);
 });
 
 onUnmounted(() => {
@@ -96,11 +128,10 @@ onUnmounted(() => {
 });
 
 const toggleRive = (ev) => {
-  if (ev == 'enter') {
-    riveHero.play();
-  } else {
-    riveHero.pause();
-  }
+  ev == 'enter' ? riveHero.play() : riveHero.pause();
+};
+const toggleRive2 = (ev) => {
+  ev == 'enter' ? riveIntro.play() : riveIntro.pause();
 };
 const openHL = () => {
   hl.value.openAnim();
@@ -127,7 +158,7 @@ const openHL = () => {
     </div>
 
     <!-- wave animation -->
-    <div class="anim-wrap img-ph grid-cn" ref="wave">
+    <div class="anim-wrap grid-cn" ref="wave">
       <canvas id="rive-hero" width="1800" height="1000"></canvas>
     </div>
 
@@ -140,15 +171,24 @@ const openHL = () => {
     <Gridlines />
     <div class="content-wrapper p-max pt-65 pb-65 txt-cn">
       <header>
-        <Headline theme="lt" auto="false" ref="hl"
+        <Headline theme="lt" :auto="width > 1024 && 'false'" ref="hl"
           ><h2>Welcome to a New Era <br />of Interaction.</h2>
         </Headline>
       </header>
-      <div class="img-ph intro-wave mt-65 auto">
-        <!--         <img src="~/assets/img/welcome-wave.png" />
+      <div class="intro-wave mt-65 auto boost" ref="wave2">
+        <canvas
+          v-show="width <= 1024"
+          id="rive-intro"
+          width="1800"
+          height="1000"
+        ></canvas>
+        <!--         <img src="~/assets/img/welcome-wave.png" style="opacity: 0.5" />
  -->
       </div>
-      <div class="txt-grp mt-65 mx-1100 auto fade-on">
+      <div
+        class="txt-grp mt-65 mx-1100 auto"
+        :class="width > 1024 && 'fade-on'"
+      >
         <h3>Bring AI to Life, Everywhere!</h3>
         <p>
           OpenHome is not a piece of smart technology, it's the core of an
@@ -163,8 +203,8 @@ const openHL = () => {
         </p>
       </div>
       <div
-        class="cta-group grid two-col gap mt-65 fade-on"
-        :class="width > 550 && 'nobr'"
+        class="cta-group grid two-col gap mt-65"
+        :class="(width > 550 && 'nobr', width > 1024 && 'fade-on')"
       >
         <CtaBtn href="#" arrow="true">developers</CtaBtn>
         <CtaBtn href="#" arrow="true">investors</CtaBtn>
@@ -181,12 +221,21 @@ canvas {
   width: 100%;
   transform: translate3d(-50%, -50%, 0);
 }
+@media (min-width: 1025px) {
+  .hero {
+    min-height: 100vh;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .intro {
+    .intro-wave {
+      aspect-ratio: 3.45 / 1;
+    }
+  }
+}
 .hero {
-  min-height: 100vh;
-  z-index: 2;
-  position: absolute;
-  left: 0;
-  top: 0;
   .anim-wrap {
     aspect-ratio: 4.5 / 1;
     margin-top: 125px;
@@ -202,13 +251,20 @@ canvas {
     max-width: 1400px;
     border-radius: 365px;
     overflow: hidden;
-    aspect-ratio: 3.45 / 1;
   }
 }
 @media (max-width: 1400px) {
   .hero {
     .anim-wrap {
       margin-top: 50px;
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .intro {
+    .intro-wave {
+      background-color: var(--black);
+      aspect-ratio: 2.88/1;
     }
   }
 }

@@ -77,6 +77,7 @@ const props = defineProps(['data', 'id']);
 }
 @media (max-width: 768px) {
   .card {
+    height: auto;
     &.pad {
       padding: 20px 43px;
     }
@@ -95,7 +96,7 @@ const props = defineProps(['data', 'id']);
     }
   }
 }
-@media (max-width: 1200px) and (max-height: 650px), (max-width: 374px) {
+/* @media (max-width: 1200px) and (max-height: 650px), (max-width: 374px) {
   .card {
     h3 {
       font-size: 26px;
@@ -108,5 +109,5 @@ const props = defineProps(['data', 'id']);
       object-fit: cover;
     }
   }
-}
+} */
 </style>
