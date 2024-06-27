@@ -419,13 +419,15 @@ p + .cta-btn {
 .flipX {
   transform: scaleX(-1);
 }
-canvas {
-  pointer-events: none;
-}
 .fade-on {
   opacity: 0;
 }
 
+@media (pointer: coarse) {
+  canvas {
+    pointer-events: none;
+  }
+}
 @media (min-width: 769px) and (max-width: 1200px) {
   .three-col .scroll-reveal {
     &:nth-child(2n + 2) {
