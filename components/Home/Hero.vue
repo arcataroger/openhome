@@ -80,8 +80,9 @@ onMounted(() => {
             },
           })
           .to(main.value, {
-            yPercent: 15, // make dynamic
-            clipPath: 'inset(28% 11% round 366px)',
+            //yPercent: 15, // make dynamic
+            y: () => getShapeOffsetY(),
+            clipPath: () => getShapeBounds(),
             ease: 'power3.out',
           })
           .to(
@@ -96,7 +97,7 @@ onMounted(() => {
             wave.value,
             {
               duration: 0.2,
-              yPercent: -30,
+              y: () => getWaveY(),
               scale: 0.85,
             },
             0
@@ -136,11 +137,34 @@ const toggleRive2 = (ev) => {
 const openHL = () => {
   hl.value.openAnim();
 };
+
+const endH = 488;
+const getShapeBounds = () => {
+  const osH = (height.value - endH) / 2;
+  let osW = 70;
+  if (width.value > 1200) {
+    osW = 120;
+  }
+  return `inset(${osH}px ${osW}px round 366px)`;
+};
+const getShapeOffsetY = () => {
+  const osH = (height.value - endH) / 2;
+  const top = wave2.value.getBoundingClientRect().top;
+  const osY = top - osH;
+  return osY;
+};
+const getWaveY = () => {
+  const top = wave.value.getBoundingClientRect().top;
+  const h = wave.value.offsetHeight;
+  const center = height.value / 2 - h / 2;
+  const dif = top - center;
+  return -dif;
+};
 </script>
 
 <template>
   <!-- hero -->
-  <div class="hero section-wrapper dk" ref="main">
+  <div class="hero section-wrapper dk" ref="main" @click="toggleRive">
     <!-- <PixelBg /> -->
     <Static offset="500" />
 
@@ -175,7 +199,7 @@ const openHL = () => {
           ><h2>Welcome to a New Era <br />of Interaction.</h2>
         </Headline>
       </header>
-      <div class="intro-wave mt-65 auto boost" ref="wave2">
+      <div class="intro-wave auto boost" ref="wave2">
         <canvas
           v-show="width <= 1024"
           id="rive-intro"
@@ -229,17 +253,15 @@ canvas {
     left: 0;
     top: 0;
   }
-  .intro {
-    .intro-wave {
-      aspect-ratio: 3.45 / 1;
-    }
-  }
 }
 .hero {
+  /* opacity: 0.7; */
+  .content-wrapper {
+    margin-bottom: 50px;
+  }
   .anim-wrap {
     aspect-ratio: 4.5 / 1;
-    margin-top: 125px;
-    margin-top: 4%;
+    /* margin-top: 50px; */
     z-index: 0;
   }
 }
@@ -247,16 +269,29 @@ canvas {
   z-index: 1;
 }
 .intro {
+  header {
+    margin-bottom: 60px;
+  }
   .intro-wave {
     max-width: 1400px;
     border-radius: 365px;
     overflow: hidden;
+    height: 488px;
+    /* aspect-ratio: 2.88/1; */
+    /* background-color: red; */
   }
 }
-@media (max-width: 1400px) {
+/* @media (max-width: 1400px) {
   .hero {
     .anim-wrap {
       margin-top: 50px;
+    }
+  }
+} */
+@media (max-width: 1200px) {
+  .intro {
+    header {
+      margin-bottom: 40px;
     }
   }
 }
@@ -264,7 +299,6 @@ canvas {
   .intro {
     .intro-wave {
       background-color: var(--black);
-      aspect-ratio: 2.88/1;
     }
   }
 }
