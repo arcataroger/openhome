@@ -51,23 +51,23 @@ onMounted(() => {
     },
   });
 
-  // trigger animation when in viewport
   ctx = gsap.context((self) => {
     // play/pause rive animation
     let hero_el = self.selector('.anim-wrap');
+
     setTimeout(() => {
+      // trigger hero animation
       playInView(hero_el, null, toggleRive, 500);
 
+      // trigger intro animation for mobile
       mm.add('(max-width: ' + mob_maxw + 'px)', () => {
         playInView(wave2.value, null, toggleRive2);
       });
     }, 200);
 
-    // match media wrapper
+    // morph hero wave into pill shape with scroll
     setTimeout(() => {
       mm.add('(min-width: ' + minw + 'px)', () => {
-        //console.log('morph');
-        // morph hero wave on scroll
         tl = gsap
           .timeline({
             scrollTrigger: {
@@ -78,20 +78,17 @@ onMounted(() => {
               end: '+=50%',
               scrub: true,
               pin: true,
-              onRefresh: () => {
-                //console.log('refresh ST');
-              },
             },
           })
+
+          // clip from edges, position y to match pill proxy
           .to(main.value, {
-            //yPercent: 15, // make dynamic
             y: () => getShapeOffsetY(),
             clipPath: () => getShapeBounds(),
             ease: 'power3.out',
-            onRefresh: () => {
-              //console.log('refresh TL');
-            },
           })
+
+          // fade out hero contents
           .to(
             hero.value,
             {
@@ -100,6 +97,8 @@ onMounted(() => {
             },
             0
           )
+
+          // move wave to center vertically and scale down
           .to(
             wave.value,
             {
@@ -122,6 +121,7 @@ onMounted(() => {
           scrub: true,
           pin: true,
           onLeave: () => {
+            // show intro body contents after in place
             gsap.to('.fade-on', { duration: 1, opacity: 1 });
           },
         });
@@ -135,6 +135,7 @@ onUnmounted(() => {
   ctx.revert();
 });
 
+// animation controllers
 const toggleRive = (ev) => {
   ev == 'enter' ? riveHero.play() : riveHero.pause();
 };
@@ -145,6 +146,7 @@ const openHL = () => {
   hl.value.openAnim();
 };
 
+// calculations for hero to morph and resize into pill shape
 const endH = 488;
 const getShapeBounds = () => {
   const osH = (height.value - endH) / 2;
@@ -171,7 +173,7 @@ const getWaveY = () => {
 
 <template>
   <!-- hero -->
-  <div class="hero section-wrapper dk" ref="main" @click="toggleRive">
+  <div class="hero section-wrapper dk" ref="main">
     <div class="content-wrapper p-max has-br" ref="hero">
       <header :class="width <= 650 && 'txt-lt'">
         <Headline type="hero" theme="dk"
@@ -210,8 +212,6 @@ const getWaveY = () => {
           width="1800"
           height="1000"
         ></canvas>
-        <!--         <img src="~/assets/img/welcome-wave.png" style="opacity: 0.5" />
- -->
       </div>
       <div
         class="txt-grp mt-65 mx-1100 auto"
@@ -257,15 +257,18 @@ canvas {
     left: 0;
     top: 0;
   }
+  .intro {
+    .intro-wave {
+      height: 488px;
+    }
+  }
 }
 .hero {
-  /* opacity: 0.7; */
   .content-wrapper {
     margin-bottom: 50px;
   }
   .anim-wrap {
     aspect-ratio: 4.5 / 1;
-    /* margin-top: 50px; */
     z-index: 0;
   }
 }
@@ -280,18 +283,8 @@ canvas {
     max-width: 1400px;
     border-radius: 365px;
     overflow: hidden;
-    height: 488px;
-    /* aspect-ratio: 2.88/1; */
-    /* background-color: red; */
   }
 }
-/* @media (max-width: 1400px) {
-  .hero {
-    .anim-wrap {
-      margin-top: 50px;
-    }
-  }
-} */
 @media (max-width: 1200px) {
   .intro {
     header {
@@ -303,6 +296,14 @@ canvas {
   .intro {
     .intro-wave {
       background-color: var(--black);
+      aspect-ratio: 3.45 / 1;
+    }
+  }
+}
+@media (max-width: 550px) {
+  .intro {
+    header {
+      margin-bottom: 25px;
     }
   }
 }
