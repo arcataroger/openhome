@@ -58,7 +58,6 @@ onUnmounted(() => {
 
 <template>
   <div class="api section-wrapper dk pt pb-160">
-    <Static />
     <div class="content-wrapper p-max">
       <header>
         <Headline theme="dk"

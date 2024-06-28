@@ -165,9 +165,6 @@ const getWaveY = () => {
 <template>
   <!-- hero -->
   <div class="hero section-wrapper dk" ref="main" @click="toggleRive">
-    <!-- <PixelBg /> -->
-    <Static offset="500" />
-
     <div class="content-wrapper p-max has-br" ref="hero">
       <header :class="width <= 650 && 'txt-lt'">
         <Headline type="hero" theme="dk"
