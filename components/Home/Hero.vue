@@ -72,11 +72,15 @@ onMounted(() => {
           .timeline({
             scrollTrigger: {
               id: 'hero-morph',
+              invalidateOnRefresh: true,
               trigger: main.value,
               start: 'top top',
               end: '+=50%',
               scrub: true,
               pin: true,
+              onRefresh: () => {
+                //console.log('refresh ST');
+              },
             },
           })
           .to(main.value, {
@@ -84,6 +88,9 @@ onMounted(() => {
             y: () => getShapeOffsetY(),
             clipPath: () => getShapeBounds(),
             ease: 'power3.out',
+            onRefresh: () => {
+              //console.log('refresh TL');
+            },
           })
           .to(
             hero.value,
