@@ -1,4 +1,6 @@
 <script setup>
+import { useWindowSize } from '@vueuse/core';
+const { width, height } = useWindowSize();
 import gsap from 'gsap';
 const main = ref();
 let ctx;
@@ -42,25 +44,27 @@ const hoverSp = 0.5;
 const hoverEase = 'power3.out';
 
 const hoverOn = (e) => {
-  const trg = e.target;
-  const txt = trg.querySelector('.txt');
-  const icon = trg.querySelector('.hover-icon');
-  gsap.to(txt, {
-    duration: hoverSp,
-    yPercent: -100,
-    opacity: 0,
-    ease: hoverEase,
-  });
-  gsap.fromTo(
-    icon,
-    { yPercent: 100 },
-    {
+  if (!isTouchDevice()) {
+    const trg = e.target;
+    const txt = trg.querySelector('.txt');
+    const icon = trg.querySelector('.hover-icon');
+    gsap.to(txt, {
       duration: hoverSp,
-      yPercent: 0,
-      opacity: 1,
+      yPercent: -100,
+      opacity: 0,
       ease: hoverEase,
-    }
-  );
+    });
+    gsap.fromTo(
+      icon,
+      { yPercent: 100 },
+      {
+        duration: hoverSp,
+        yPercent: 0,
+        opacity: 1,
+        ease: hoverEase,
+      }
+    );
+  }
 };
 const hoverOff = (e) => {
   const trg = e.target;

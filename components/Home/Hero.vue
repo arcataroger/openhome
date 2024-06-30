@@ -163,7 +163,6 @@ const getShapeOffsetY = () => {
   return osY;
 };
 const getWaveY = () => {
-  //const wavetop = wave.value.getBoundingClientRect().top;
   const wavetop = wave.value.offsetTop;
   const h = wave.value.offsetHeight;
   const center = height.value / 2 - h / 2;

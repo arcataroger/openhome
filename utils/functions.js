@@ -157,3 +157,8 @@ export const labelToScroll = (timeline, label) => {
     (st.end - st.start) * (timeline.labels[label] / timeline.duration())
   );
 };
+
+export const isTouchDevice = () => {
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  return isTouchDevice;
+};

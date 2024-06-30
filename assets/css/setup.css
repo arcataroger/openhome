@@ -98,13 +98,12 @@ h4 {
   font-size: 1.375rem;
   font-weight: 400;
 }
-.callout-txt-lg {
+/* .callout-txt-lg {
   font-family: 'FT Activica';
   font-size: 690px;
   line-height: 0.75;
-  /* margin-left: -65px; */
   font-size: clamp(0px, 40vw, 690px);
-}
+} */
 .pix {
   font-family: 'FT Activica', sans-serif;
   font-size: 0.73em;

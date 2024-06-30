@@ -9,7 +9,7 @@ const sticky = ref(null);
 
 onMounted(() => {
   // set sticky as hidden
-  gsap.set(sticky.value, { yPercent: -100 });
+  gsap.set(sticky.value, { yPercent: -100, display: 'none' });
 
   // listen for scroll up
   document.addEventListener('scroll', setSticky);
@@ -28,6 +28,7 @@ const setSticky = () => {
       gsap.to(sticky.value, {
         duration: 0.75,
         yPercent: 0,
+        display: 'block',
         ease: 'power3.out',
       });
     }
@@ -49,6 +50,7 @@ const setSticky = () => {
       duration: sp,
       yPercent: -100,
       ease: easer,
+      display: 'none',
     });
   }
 };

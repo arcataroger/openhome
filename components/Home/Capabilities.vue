@@ -110,7 +110,7 @@ onUnmounted(() => {
             </div>
           </div>
           <div class="col pl">
-            <IconList />
+            <HomeIconList />
           </div>
         </div>
       </div>
