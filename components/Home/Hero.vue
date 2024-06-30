@@ -163,10 +163,11 @@ const getShapeOffsetY = () => {
   return osY;
 };
 const getWaveY = () => {
-  const top = wave.value.getBoundingClientRect().top;
+  //const wavetop = wave.value.getBoundingClientRect().top;
+  const wavetop = wave.value.offsetTop;
   const h = wave.value.offsetHeight;
   const center = height.value / 2 - h / 2;
-  const dif = top - center;
+  const dif = wavetop - center;
   return -dif;
 };
 </script>
@@ -251,7 +252,7 @@ canvas {
 }
 @media (min-width: 1025px) {
   .hero {
-    min-height: 100vh;
+    height: 100vh;
     z-index: 2;
     position: absolute;
     left: 0;
