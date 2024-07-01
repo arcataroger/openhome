@@ -290,6 +290,10 @@ a {
 @media (max-width: 1024px) {
   .cta-btn {
     font-size: 14px;
+    padding: 18px 20px 20px;
+    .arrow {
+      margin-top: 0;
+    }
   }
 }
 @media (max-width: 550px) {

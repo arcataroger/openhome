@@ -101,7 +101,7 @@ onUnmounted(() => {
             <div class="txt-goup mx-600">
               <Headline theme="dk"><h2>Powerful Capabilities</h2></Headline>
               <p>
-                With over 500 +With features that support a wide range of
+                With over 500+ features that support a wide range of
                 applications—from medical transcription to smart home
                 integration—OpenHome sets the stage for a future where AI is
                 seamlessly integrated into everyday life.
