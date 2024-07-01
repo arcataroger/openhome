@@ -75,53 +75,6 @@ const posts = [
 </template>
 
 <style scoped>
-.resources {
-  header {
-    padding-bottom: 3.75rem;
-  }
-  .cta-row {
-    position: absolute;
-    width: 100%;
-    height: 100px;
-    left: 0;
-    bottom: 3px;
-    pointer-events: none;
-    .cta-btn {
-      pointer-events: all;
-    }
-    .inner {
-      display: inline-block;
-      padding: 20px 20px 15px;
-    }
-  }
-  .side-ornament {
-    position: absolute;
-    top: 10.9375rem;
-    width: 100px;
-    height: 105px;
-    display: grid;
-    place-items: center;
-    z-index: 21;
-    background-color: var(--cream);
-    &.lt {
-      left: var(--grid-margin);
-      margin-left: -50px;
-    }
-    &.rt {
-      right: var(--grid-margin);
-      margin-right: -50px;
-    }
-    img {
-      width: 40px;
-    }
-    .circ {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: var(--black);
-    }
-  }
-}
 @media (min-width: 1025px) {
   .resources .grid .col {
     padding-top: 3.75rem;
@@ -130,20 +83,6 @@ const posts = [
 @media (min-width: 901px) {
   .resources .grid .col {
     padding-bottom: 130px;
-  }
-}
-@media (max-width: 1200px) {
-  .resources {
-    .side-ornament {
-      top: 50%;
-      margin-top: -30px;
-      &.lt {
-        left: var(--grid-marginM);
-      }
-      &.rt {
-        right: var(--grid-marginM);
-      }
-    }
   }
 }
 @media (max-width: 900px) {
@@ -160,35 +99,6 @@ const posts = [
       .inner,
       a {
         width: 100%;
-      }
-    }
-  }
-}
-@media (max-width: 768px) {
-  .resources {
-    .content-wrapper.header {
-      padding-top: 25px;
-      header {
-        padding-bottom: 30px;
-      }
-    }
-    .side-ornament {
-      transform: scale(0.35);
-      margin-top: -8px;
-      &.lt {
-        transform-origin: left top;
-        left: var(--grid-marginM2);
-        margin-left: -16px;
-      }
-      &.rt {
-        transform-origin: right top;
-        right: var(--grid-marginM2);
-        margin-right: -16px;
-      }
-    }
-    .cta-row {
-      .inner {
-        padding: 15px 33px;
       }
     }
   }

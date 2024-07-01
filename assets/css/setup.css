@@ -228,6 +228,10 @@ p + .cta-btn {
 .p-max {
   padding-left: var(--side-margin);
   padding-right: var(--side-margin);
+  &.wide {
+    padding-left: 145px;
+    padding-right: 145px;
+  }
 }
 .vpad {
   padding-top: var(--top-margin);

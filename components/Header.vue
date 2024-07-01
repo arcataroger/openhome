@@ -2,6 +2,12 @@
 import gsap from 'gsap';
 import { useWindowSize } from '@vueuse/core';
 
+const props = defineProps(['theme']);
+let pad;
+if (props.theme == 'lt') {
+  pad = 'wide';
+}
+
 const { width, height } = useWindowSize();
 let ctx;
 const main = ref(null);
@@ -23,7 +29,7 @@ onMounted(() => {
 
 <template>
   <Guidelines />
-  <header class="main dk hpad" ref="main">
+  <header class="main hpad" :class="[props.theme, pad]" ref="main">
     <HeaderParts />
   </header>
   <StickyNav v-if="width > 1024" />

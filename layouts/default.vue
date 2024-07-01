@@ -1,8 +1,10 @@
-<script setup></script>
+<script setup>
+const props = defineProps(['theme']);
+</script>
 
 <template>
   <div class="wrapper">
-    <Header />
+    <Header :theme="props.theme" />
     <slot />
     <Footer />
     <div class="cover"></div>

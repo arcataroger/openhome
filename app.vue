@@ -8,7 +8,13 @@ const page_title = useState('page_title', () => 'index');
 
 // init global meta data if entry point is a tier page
 if (route.path != '/') {
-  initSiteMeta();
+  //initSiteMeta();
+}
+
+// set theme HC / make dynamic
+let page_theme = 'dk';
+if (route.name == 'blog') {
+  page_theme = 'lt';
 }
 
 // open site after initial load
@@ -20,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <NuxtLayout>
+  <NuxtLayout :theme="page_theme">
     <NuxtPage
       :transition="{
         name: 'custom',

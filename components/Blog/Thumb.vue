@@ -16,7 +16,10 @@ const { width, height } = useWindowSize();
           <img :src="props.data.icon" alt="" />
         </div>
       </div>
-      <time>{{ props.data.date }}</time>
+      <div class="row details flex-jst">
+        <time>{{ props.data.date }}</time>
+        <a href="#" class="tag sm">Community Project</a>
+      </div>
       <h3>{{ props.data.title }}</h3>
       <p>
         {{ props.data.excerpt }}
@@ -44,32 +47,7 @@ const { width, height } = useWindowSize();
 .blog-thumb {
   max-width: 630px;
 }
-.thumb-img {
-  aspect-ratio: 2/1;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 25px;
-  position: relative;
-  img {
-    object-fit: cover;
-  }
-}
-.thumb-icon {
-  width: 90px;
-  height: 90px;
-  border-radius: 10px;
-  padding: 8px;
-  background-color: var(--cream);
-  position: absolute;
-  left: 12px;
-  bottom: 14px;
-  img {
-    border: 1px solid var(--black);
-    border-radius: 8px;
-    overflow: hidden;
-    object-fit: cover;
-  }
-}
+
 @media (min-width: 1025px) {
   .thumb-wrap:hover {
     &:after {
@@ -80,17 +58,6 @@ const { width, height } = useWindowSize();
 @media (max-width: 900px) {
   .blog-thumb {
     max-width: none;
-  }
-}
-@media (max-width: 550px) {
-  .thumb-img {
-    margin-bottom: 18px;
-  }
-  .thumb-icon {
-    transform: scale(0.5);
-    transform-origin: left bottom;
-    left: 8px;
-    bottom: 8px;
   }
 }
 </style>

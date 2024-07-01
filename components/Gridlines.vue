@@ -43,6 +43,12 @@ const props = defineProps(['bot', 'pad']);
       }
     }
   }
+  &.hero {
+    padding-top: 110px;
+    .gridline.top {
+      top: 110px;
+    }
+  }
 }
 .gridline {
   position: absolute;
