@@ -29,8 +29,18 @@ const { width, height } = useWindowSize();
         </div>
         <div class="col social rt" v-else>
           <div class="cta-group">
-            <CtaBtn href="#" arrow="true">developers</CtaBtn>
-            <CtaBtn href="#" arrow="true">investors</CtaBtn>
+            <CtaBtn
+              href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+              arrow="true"
+              target="_blank"
+              >developers</CtaBtn
+            >
+            <CtaBtn
+              href="/downloads/OpenHome_Enterprise_Overview.pdf"
+              target="_blank"
+              arrow="true"
+              >enterprise</CtaBtn
+            >
           </div>
         </div>
       </div>
@@ -38,8 +48,18 @@ const { width, height } = useWindowSize();
       <div class="cta footer-row grid two-col">
         <div class="col lt pb-65" v-if="width > 900">
           <div class="cta-group">
-            <CtaBtn href="#" arrow="true">developers</CtaBtn>
-            <CtaBtn href="#" arrow="true">investors</CtaBtn>
+            <CtaBtn
+              href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+              arrow="true"
+              target="_blank"
+              >developers</CtaBtn
+            >
+            <CtaBtn
+              href="/downloads/OpenHome_Enterprise_Overview.pdf"
+              target="_blank"
+              arrow="true"
+              >enterprise</CtaBtn
+            >
           </div>
         </div>
         <div class="col social lt" v-else>
@@ -48,7 +68,11 @@ const { width, height } = useWindowSize();
 
         <div class="col social rt">
           <ul>
-            <li><CtaBtn href="#" arrow="true">Contact</CtaBtn></li>
+            <li>
+              <CtaBtn href="mailto:founders@openhome.xyz" arrow="true"
+                >Contact</CtaBtn
+              >
+            </li>
           </ul>
         </div>
       </div>

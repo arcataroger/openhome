@@ -57,7 +57,12 @@ const toggleRive = (ev) => {
           AI innovations. Where will your <br />imagination take you? Let
           OpenHome be the launchpad for your voice AI journey.
         </p>
-        <CtaBtn href="#" arrow="true">Join the Community</CtaBtn>
+        <CtaBtn
+          href="https://discord.com/invite/YFTvffFMzv"
+          target="_blank"
+          arrow="true"
+          >Join the Community</CtaBtn
+        >
       </header>
     </div>
 

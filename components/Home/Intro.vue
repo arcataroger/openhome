@@ -34,8 +34,18 @@ const { width, height } = useWindowSize();
         class="cta-group grid two-col gap mt-65"
         :class="width > 550 && 'nobr'"
       >
-        <CtaBtn href="#" arrow="true">developers</CtaBtn>
-        <CtaBtn href="#" arrow="true">investors</CtaBtn>
+        <CtaBtn
+          href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+          arrow="true"
+          target="_blank"
+          >developers</CtaBtn
+        >
+        <CtaBtn
+          href="/downloads/OpenHome_Enterprise_Overview.pdf"
+          target="_blank"
+          arrow="true"
+          >enterprise</CtaBtn
+        >
       </div>
     </div>
   </div>

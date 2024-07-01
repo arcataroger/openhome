@@ -3,8 +3,24 @@
 <template>
   <nav>
     <ul class="cta-nav">
-      <li><CtaBtn href="#" theme="lt" size="sm">developers</CtaBtn></li>
-      <li><CtaBtn href="#" theme="lt" size="sm">investors</CtaBtn></li>
+      <li>
+        <CtaBtn
+          href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+          theme="lt"
+          size="sm"
+          target="_blank"
+          >developers</CtaBtn
+        >
+      </li>
+      <li>
+        <CtaBtn
+          href="/downloads/OpenHome_Enterprise_Overview.pdf"
+          target="_blank"
+          theme="lt"
+          size="sm"
+          >enterprise</CtaBtn
+        >
+      </li>
     </ul>
   </nav>
 </template>

@@ -177,12 +177,11 @@ const getWaveY = () => {
     <div class="content-wrapper p-max has-br" ref="hero">
       <header :class="width <= 650 && 'txt-lt'">
         <Headline type="hero" theme="dk"
-          ><h1>Your Own AI Smart Speaker</h1></Headline
+          ><h1>Your Custom <br />AI Voice Interface</h1></Headline
         >
         <p>
-          OpenHome’s open-source Voice SDK empowers you to launch your
-          personalized <br />AI-powered smart speaker on any platform or custom
-          hardware in minutes.
+          AI Voice Control for Every Device: Effortlessly Integrate OpenHome’s
+          Conversational Voice SDK on Any Platform
         </p>
       </header>
     </div>
@@ -201,8 +200,13 @@ const getWaveY = () => {
     <Gridlines />
     <div class="content-wrapper p-max pt-65 pb-65 txt-cn">
       <header>
-        <Headline theme="lt" :auto="width > 1024 && 'false'" ref="hl"
-          ><h2>Welcome to a New Era <br />of Interaction.</h2>
+        <Headline
+          theme="lt"
+          :auto="width > 1024 && 'false'"
+          ref="hl"
+          :off="width <= 768 && 'true'"
+        >
+          <h2>Empowering Seamless AI Driven Dialogue</h2>
         </Headline>
       </header>
       <div class="intro-wave auto boost" ref="wave2">
@@ -219,23 +223,30 @@ const getWaveY = () => {
       >
         <h3>Bring AI to Life, Everywhere!</h3>
         <p>
-          OpenHome is not a piece of smart technology, it's the core of an
-          intelligent companionship that evolves with you. Our AI personalities
-          engage, learn your voice, sense your feelings, empathize, and
-          anticipate your needs.
-        </p>
-        <p>
-          Craft your ideal companion. Customize the voice, tone, style, and even
-          the sense of humor of your AI. With OpenHome, you create more than a
-          smart speaker; you bring to life an entity that is uniquely yours.
+          OpenHome is a revolutionary LLM-driven smart speaker that transforms
+          how you interact with technology. Our innovative Voice SDK enables any
+          device to become smart, allowing you to have natural, seamless
+          conversations with your devices. Experience a future where technology
+          is more accessible and intuitive, powered by real-time, conversational
+          AI.
         </p>
       </div>
       <div
         class="cta-group grid two-col gap mt-65"
         :class="(width > 550 && 'nobr', width > 1024 && 'fade-on')"
       >
-        <CtaBtn href="#" arrow="true">developers</CtaBtn>
-        <CtaBtn href="#" arrow="true">investors</CtaBtn>
+        <CtaBtn
+          href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+          arrow="true"
+          target="_blank"
+          >developers</CtaBtn
+        >
+        <CtaBtn
+          href="/downloads/OpenHome_Enterprise_Overview.pdf"
+          target="_blank"
+          arrow="true"
+          >enterprise</CtaBtn
+        >
       </div>
     </div>
   </div>

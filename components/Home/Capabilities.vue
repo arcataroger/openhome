@@ -106,7 +106,12 @@ onUnmounted(() => {
                 integration—OpenHome sets the stage for a future where AI is
                 seamlessly integrated into everyday life.
               </p>
-              <CtaBtn href="#" arrow="true">Browse more Capabilities</CtaBtn>
+              <CtaBtn
+                href="https://app.openhome.xyz/"
+                target="_blank"
+                arrow="true"
+                >Explore Capabilities</CtaBtn
+              >
             </div>
           </div>
           <div class="col pl">

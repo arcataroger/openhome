@@ -6,7 +6,7 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
-const props = defineProps(['type', 'theme', 'auto']);
+const props = defineProps(['type', 'theme', 'auto', 'off']);
 
 let rgb;
 let hex;
@@ -64,7 +64,7 @@ onMounted(() => {
         }, 1200);
 
         // scroll to headline to play
-      } else {
+      } else if (!props.off) {
         setTimeout(function () {
           const anim = ScrollTrigger.create({
             trigger: main.value,
@@ -76,6 +76,10 @@ onMounted(() => {
             },
           });
         }, 200);
+
+        // off set to true; play at start
+      } else {
+        animSplitHeadline(main.value);
       }
     }
   }, main.value);

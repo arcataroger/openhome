@@ -69,14 +69,6 @@ onMounted(() => {
 // close menu
 const closeMenu = () => {
   if (menuOpen.value) {
-    /*     gsap.to('.part', {
-      duration: 0.35,
-      stagger: -0.1,
-      x: -10,
-      y: -10,
-      opacity: 1,
-      ease: 'power3.in',
-    }); */
     gsap.to('.menu-wrap', {
       duration: 0.35,
       opacity: 0,
@@ -109,7 +101,6 @@ const closeMenu = () => {
           <div class="logo-main">
             <IconLogo />
           </div>
-          <!-- <div class="logo-main"><IconLogoWide /></div> -->
         </div>
 
         <div class="row h-md part"><Nav></Nav></div>
@@ -121,8 +112,18 @@ const closeMenu = () => {
               arrow="true"
               >demo</CtaBtn
             >
-            <CtaBtn href="#" arrow="true">developers</CtaBtn>
-            <CtaBtn href="#" arrow="true">investors</CtaBtn>
+            <CtaBtn
+              href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+              arrow="true"
+              target="_blank"
+              >developers</CtaBtn
+            >
+            <CtaBtn
+              href="/downloads/OpenHome_Enterprise_Overview.pdf"
+              target="_blank"
+              arrow="true"
+              >enterprise</CtaBtn
+            >
           </div>
         </div>
       </div>
