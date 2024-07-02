@@ -104,6 +104,9 @@ const posts = [
 ];
 
 let show_posts = posts.filter((post, i) => i > 0);
+
+// pagination
+let totPages = 4;
 </script>
 
 <template>
@@ -147,7 +150,7 @@ let show_posts = posts.filter((post, i) => i > 0);
         class="blog-grid row gridlines np-bot"
         :class="width <= 900 && 'stack'"
       >
-        <Gridlines bot="true" pad="nopad" />
+        <Gridlines />
         <div class="content-wrapper no-max">
           <div class="grid three-col">
             <BlogThumb
@@ -164,7 +167,13 @@ let show_posts = posts.filter((post, i) => i > 0);
       <!-- pagination -->
       <div class="pagination row gridlines np-bot">
         <Gridlines />
-        <div class="content-wrapper no-max">1 2 3 4</div>
+        <div class="content-wrapper no-max">
+          <ul>
+            <li v-for="n in totPages">
+              <a href="#" :class="n == 1 && 'on'">{{ n }}</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -179,12 +188,40 @@ let show_posts = posts.filter((post, i) => i > 0);
 }
 .feature {
   padding-top: 25px;
-  padding-bottom: 32px;
+  padding-bottom: 15px;
   .tags {
     margin-top: 30px;
   }
 }
 .pagination {
   text-align: center;
+  .content-wrapper {
+    padding: 25px;
+  }
+  ul {
+    list-style: none;
+  }
+  li {
+    display: inline-block;
+    + li {
+      margin-left: 5px;
+    }
+  }
+  a {
+    font-family: 'FT Activica', sans-serif;
+    font-size: 35px;
+    color: var(--gray);
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    &.on {
+      color: var(--orange);
+    }
+  }
+}
+@media (pointer: fine) {
+  .pagination a:hover {
+    color: var(--orange);
+  }
 }
 </style>

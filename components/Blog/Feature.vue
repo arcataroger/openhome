@@ -30,7 +30,7 @@ const { width, height } = useWindowSize();
 }
 .blog-feature {
   time + .tag {
-    margin-left: 60px;
+    margin-left: 50px;
   }
   .thumb-img {
     margin-top: 30px;

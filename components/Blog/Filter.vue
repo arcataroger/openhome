@@ -1,5 +1,14 @@
 <script setup>
-const tags = ['All', 'Community Project', 'Community Update', 'Social Impact'];
+const tags = [
+  'All',
+  'Community Project',
+  'Community Update',
+  'Social Impact',
+  'Insights',
+  'Collaboration',
+  'Personality Spotlight',
+  'App Spotlight',
+];
 </script>
 
 <template>

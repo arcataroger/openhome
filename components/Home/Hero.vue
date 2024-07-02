@@ -318,4 +318,14 @@ canvas {
     }
   }
 }
+
+/* short desktop */
+@media (min-width: 1201px) and (max-height: 800px) {
+  .hero {
+    padding-top: 120px;
+    h1 {
+      font-size: 90px;
+    }
+  }
+}
 </style>
