@@ -5,7 +5,7 @@
     <ul class="cta-nav">
       <li>
         <CtaBtn
-          href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+          href="https://blog.openhome.xyz/introducing-50000-developer-grant-program"
           theme="lt"
           size="sm"
           target="_blank"

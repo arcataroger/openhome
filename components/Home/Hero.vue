@@ -236,7 +236,7 @@ const getWaveY = () => {
         :class="(width > 550 && 'nobr', width > 1024 && 'fade-on')"
       >
         <CtaBtn
-          href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+          href="https://blog.openhome.xyz/introducing-50000-developer-grant-program"
           arrow="true"
           target="_blank"
           >developers</CtaBtn

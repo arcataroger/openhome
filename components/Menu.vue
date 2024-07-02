@@ -113,7 +113,7 @@ const closeMenu = () => {
               >demo</CtaBtn
             >
             <CtaBtn
-              href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+              href="https://blog.openhome.xyz/introducing-50000-developer-grant-program"
               arrow="true"
               target="_blank"
               >developers</CtaBtn

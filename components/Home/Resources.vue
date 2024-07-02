@@ -13,7 +13,7 @@ const posts = [
       title: 'Introducing MetaCap: Live Emotional Insights Come to OpenHome',
       excerpt:
         "We're thrilled to showcase a community project built by members of the OpenHome developer community! At the heart of OpenHome's",
-      url: 'https://openhome.xyz/introducing-metacap-live-emotional-insights-are-coming-to-openhome/',
+      url: 'https://blog.openhome.xyz/introducing-metacap-live-emotional-insights-are-coming-to-openhome/',
     },
   },
   {
@@ -25,7 +25,7 @@ const posts = [
       title: 'Matrix Phone Booth: Immersive Experiences in Openhome',
       excerpt:
         'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
-      url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
+      url: 'https://blog.openhome.xyz/matrix-phone-booth-what-would-you-choose/',
     },
   },
 ];
@@ -57,12 +57,17 @@ const posts = [
       <Gridlines bot="true" pad="nopad" />
       <div class="content-wrapper no-max">
         <div class="grid two-col">
-          <BlogThumb v-for="(post, key) in posts" :data="post.data" :id="key" />
+          <BlogThumb
+            v-for="(post, key) in posts"
+            :data="post.data"
+            :id="key"
+            loc="home"
+          />
         </div>
         <div class="cta-row txt-cn has-bdr">
           <div class="inner">
             <CtaBtn
-              href="https://openhome.xyz/blog/"
+              href="https://blog.openhome.xyz/blog/"
               target="_blank"
               arrow="true"
               >View All</CtaBtn
@@ -99,6 +104,15 @@ const posts = [
       .inner,
       a {
         width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .resources {
+    .cta-row {
+      .inner {
+        padding: 15px 33px;
       }
     }
   }

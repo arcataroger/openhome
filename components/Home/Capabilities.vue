@@ -78,7 +78,7 @@ onUnmounted(() => {
             >Try a Demo</CtaBtn
           >
           <CtaBtn
-            href="https://openhome.xyz/ecosystem-2/"
+            href="https://blog.openhome.xyz/ecosystem-2/"
             target="_blank"
             arrow="true"
             >Explore Ecosystem</CtaBtn

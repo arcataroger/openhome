@@ -1,6 +1,6 @@
 <script setup>
 import { useWindowSize } from '@vueuse/core';
-const props = defineProps(['data', 'id']);
+const props = defineProps(['data', 'id', 'loc']);
 const { width, height } = useWindowSize();
 </script>
 
@@ -16,7 +16,8 @@ const { width, height } = useWindowSize();
           <img :src="props.data.icon" alt="" />
         </div>
       </div>
-      <div class="row details flex-jst">
+      <time v-if="props.loc == 'home'">{{ props.data.date }}</time>
+      <div v-else class="row details flex-jst">
         <time>{{ props.data.date }}</time>
         <a href="#" class="tag sm">Community Project</a>
       </div>

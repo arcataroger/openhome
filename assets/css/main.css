@@ -542,11 +542,6 @@ header,
         margin-right: -16px;
       }
     }
-    .cta-row {
-      .inner {
-        padding: 15px 33px;
-      }
-    }
   }
 }
 @media (max-width: 550px) {

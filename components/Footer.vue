@@ -30,7 +30,7 @@ const { width, height } = useWindowSize();
         <div class="col social rt" v-else>
           <div class="cta-group">
             <CtaBtn
-              href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+              href="https://blog.openhome.xyz/introducing-50000-developer-grant-program"
               arrow="true"
               target="_blank"
               >developers</CtaBtn
@@ -49,7 +49,7 @@ const { width, height } = useWindowSize();
         <div class="col lt pb-65" v-if="width > 900">
           <div class="cta-group">
             <CtaBtn
-              href="https://openhome.xyz/introducing-50000-developer-grant-program/"
+              href="https://blog.openhome.xyz/introducing-50000-developer-grant-program"
               arrow="true"
               target="_blank"
               >developers</CtaBtn

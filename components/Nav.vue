@@ -11,7 +11,7 @@ const props = defineProps(['type']);
         >
       </li>
       <li>
-        <a href="https://openhome.xyz/blog/" target="_blank">Resources</a>
+        <a href="https://blog.openhome.xyz/blog/" target="_blank">Resources</a>
       </li>
     </ul>
   </nav>
