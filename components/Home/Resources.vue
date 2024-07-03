@@ -80,6 +80,26 @@ const posts = [
 </template>
 
 <style scoped>
+.resources {
+  header {
+    padding-bottom: 3.75rem;
+  }
+  .cta-row {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    left: 0;
+    bottom: 3px;
+    pointer-events: none;
+    .cta-btn {
+      pointer-events: all;
+    }
+    .inner {
+      display: inline-block;
+      padding: 20px 20px 15px;
+    }
+  }
+}
 @media (min-width: 1025px) {
   .resources .grid .col {
     padding-top: 3.75rem;
@@ -110,6 +130,12 @@ const posts = [
 }
 @media (max-width: 768px) {
   .resources {
+    .content-wrapper.header {
+      padding-top: 25px;
+      header {
+        padding-bottom: 30px;
+      }
+    }
     .cta-row {
       .inner {
         padding: 15px 33px;

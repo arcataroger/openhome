@@ -21,7 +21,7 @@ const { width, height } = useWindowSize();
 
       <div class="footer-row grid two-col">
         <div class="col lt">
-          <h2>Your Own AI <br />Smart Speaker</h2>
+          <h2>Your Custom <br />AI Voice Interface</h2>
         </div>
 
         <div class="col social rt" v-if="width > 900">

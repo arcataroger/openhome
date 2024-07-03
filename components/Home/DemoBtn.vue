@@ -40,8 +40,6 @@ onUnmounted(() => {
 @media (min-width: 1025px) and (max-width: 1200px) {
   .demo-sticky {
     transform: translate(0, -75px);
-    /*     right: 35px;
-    bottom: 35px; */
   }
 }
 @media (max-width: 1024px) {

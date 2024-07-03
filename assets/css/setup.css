@@ -13,6 +13,7 @@
   /* bounds */
   --baseW: 1440px;
   --baseW2: 1600px;
+  --postW: 850px;
 
   /* margins */
   --top-margin: 7.5rem;
@@ -275,6 +276,12 @@ p + .cta-btn {
   margin-top: 4.0625rem;
 }
 
+@media (max-width: 1440px) {
+  .hpad.wide {
+    padding-left: calc(var(--grid-margin) + var(--side-marginM));
+    padding-right: calc(var(--grid-margin) + var(--side-marginM));
+  }
+}
 @media (max-width: 1200px) {
   .hpad,
   .p-max {

@@ -1,6 +1,6 @@
 <script setup>
 import { useWindowSize } from '@vueuse/core';
-const props = defineProps(['data', 'id']);
+const props = defineProps(['data', 'id', 'loc']);
 const { width, height } = useWindowSize();
 </script>
 
@@ -36,6 +36,11 @@ const { width, height } = useWindowSize();
     margin-top: 30px;
     margin-bottom: 0;
     border-radius: 20px;
+    width: 100%;
+    max-height: 740px;
+    img {
+      object-fit: cover;
+    }
   }
   h3 + p {
     margin-top: 5px;
@@ -78,11 +83,16 @@ const { width, height } = useWindowSize();
     object-fit: cover;
   }
 }
-@media (min-width: 1025px) {
+@media (pointer: fine) {
   .thumb-wrap:hover {
     &:after {
       opacity: 1;
     }
+  }
+}
+@media (max-width: 1200px) {
+  .blog-feature time {
+    font-size: 16px;
   }
 }
 @media (max-width: 900px) {

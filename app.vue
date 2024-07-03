@@ -13,7 +13,7 @@ if (route.path != '/') {
 
 // set theme HC / make dynamic
 let page_theme = 'dk';
-if (route.name == 'blog') {
+if (route.name == 'blog' || route.name == 'post') {
   page_theme = 'lt';
 }
 

@@ -236,7 +236,7 @@ const changeSlider = (id) => {
     }
   }
 }
-@media (min-width: 1025px) {
+@media (pointer: fine) {
   .slide-nav a:hover {
     color: var(--black);
   }

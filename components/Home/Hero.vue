@@ -275,6 +275,7 @@ canvas {
   }
 }
 .hero {
+  padding-top: var(--hero-margintop);
   .content-wrapper {
     margin-bottom: 50px;
   }
@@ -309,6 +310,11 @@ canvas {
       background-color: var(--black);
       aspect-ratio: 3.45 / 1;
     }
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    padding-top: var(--hero-margintopM);
   }
 }
 @media (max-width: 550px) {

@@ -6,12 +6,17 @@ const props = defineProps(['type']);
   <nav :class="type">
     <ul :class="props.type == 'main' ? 'main-nav' : 'mobile-nav'">
       <li>
-        <a href="https://discord.com/invite/YFTvffFMzv" target="_blank"
+        <a
+          href="https://discord.com/invite/YFTvffFMzv"
+          target="_blank"
+          class="ul"
           >Discord</a
         >
       </li>
       <li>
-        <a href="https://blog.openhome.xyz/blog/" target="_blank">Resources</a>
+        <a href="https://blog.openhome.xyz/blog/" target="_blank" class="ul"
+          >Resources</a
+        >
       </li>
     </ul>
   </nav>
@@ -37,28 +42,6 @@ const props = defineProps(['type']);
     font-size: 50px;
     + li {
       margin-top: 12px;
-    }
-  }
-}
-a {
-  position: relative;
-  padding-bottom: 5px;
-  &:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background-color: var(--cream);
-    transform: scaleX(0);
-    transition: var(--ease-out);
-  }
-}
-@media (min-width: 1025px) {
-  a:hover {
-    &:after {
-      transform: scaleX(1);
     }
   }
 }

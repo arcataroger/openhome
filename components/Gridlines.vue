@@ -1,12 +1,12 @@
 <script setup>
-const props = defineProps(['bot', 'pad']);
+const props = defineProps(['bot', 'top', 'pad']);
 </script>
 
 <template>
-  <div class="gridline h top"></div>
+  <div v-if="!props.top" class="gridline h top"></div>
   <div class="gridline v lt"></div>
   <div class="gridline v rt"></div>
-  <div v-if="bot" :class="`gridline h bot ${props.pad}`"></div>
+  <div v-if="props.bot" :class="`gridline h bot ${props.pad}`"></div>
 </template>
 
 <style>
@@ -43,7 +43,7 @@ const props = defineProps(['bot', 'pad']);
       }
     }
   }
-  &.hero {
+  &.page-top {
     padding-top: 110px;
     .gridline.top {
       top: 110px;

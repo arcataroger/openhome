@@ -80,7 +80,7 @@ const hoverOff = () => {
   bottom: 50px;
 }
 
-@media (min-width: 1025px) {
+@media (pointer: fine) {
   .thumb-wrap:hover {
     &:after {
       opacity: 1;

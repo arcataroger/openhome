@@ -33,11 +33,6 @@ const items = [
   display: grid;
   grid-template-columns: 90px 1fr;
   align-items: center;
-  .list-icon {
-    border-radius: 7px;
-    overflow: hidden;
-    width: 60px;
-  }
   + .icon-list-item {
     border-top: 1px solid rgba(255, 255, 255, 0.4);
   }
