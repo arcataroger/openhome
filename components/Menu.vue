@@ -2,6 +2,7 @@
 import gsap from 'gsap';
 import { useWindowSize } from '@vueuse/core';
 
+const props = defineProps(['theme']);
 const { width, height } = useWindowSize();
 
 const menuOpen = ref(false);
@@ -91,7 +92,7 @@ const closeMenu = () => {
 
 <template>
   <div class="mobile-menu" v-show="width <= 1024">
-    <MenuButton @click="toggleMenu" ref="menu_btn" />
+    <MenuButton @click="toggleMenu" ref="menu_btn" :theme="props.theme" />
     <div class="menu-wrap set-theme dk div-scroll">
       <div class="menu-contents">
         <div class="gridline v lt"></div>

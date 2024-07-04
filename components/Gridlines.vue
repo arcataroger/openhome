@@ -1,12 +1,16 @@
 <script setup>
 const props = defineProps(['bot', 'top', 'pad']);
+let pad = props.pad;
+if (pad == undefined) {
+  pad = '';
+}
 </script>
 
 <template>
   <div v-if="!props.top" class="gridline h top"></div>
   <div class="gridline v lt"></div>
   <div class="gridline v rt"></div>
-  <div v-if="props.bot" :class="`gridline h bot ${props.pad}`"></div>
+  <div v-if="props.bot == 'true'" :class="`gridline h bot ${pad}`"></div>
 </template>
 
 <style>

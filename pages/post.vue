@@ -1,4 +1,8 @@
 <script setup>
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
 import { useWindowSize } from '@vueuse/core';
 const { width, height } = useWindowSize();
 
@@ -15,14 +19,21 @@ const post = {
     url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
   },
 };
+
+onMounted(() => {
+  // setup share menu pin
+  setTimeout(() => {
+    pinMenu('.side-menu', 1025);
+  }, 200);
+});
 </script>
 
 <template>
   <div class="main-contents">
     <!-- article hero -->
-    <div class="hero section-wrapper lt">
+    <div class="hero blog section-wrapper lt">
       <div class="row gridlines page-top np-bot">
-        <Gridlines />
+        <Gridlines bot="false" />
         <div class="content-wrapper no-max">
           <div class="feature col pad">
             <BlogFeature :data="post.data" />
@@ -33,8 +44,11 @@ const post = {
 
     <!-- article -->
     <div class="article section-wrapper lt">
+      <BlogShare class="start-pin" />
+      <!-- space -->
+
       <!-- bodycopy block -->
-      <div class="content-block text gridlines np-top">
+      <div class="content-block text gridlines np-top first">
         <Gridlines top="false" bot="false" />
 
         <div class="content-wrapper post">
@@ -68,7 +82,7 @@ const post = {
 
       <!-- quote block -->
       <div class="content-block quote gridlines np-top np-bot">
-        <Gridlines bot="true" />
+        <Gridlines bot="true" pad="nopad" />
         <div class="quotemark lt">
           <img src="/public/icons/quotes.svg" alt="" />
         </div>
@@ -88,6 +102,38 @@ const post = {
         <Gridlines top="false" bot="false" />
 
         <div class="content-wrapper post">
+          <h3>Design</h3>
+          <p>
+            As you engage with Matrix Phone Booth, you’ll find yourself at the
+            crossroads of Morpheus’s call for liberation and Agent Smith’s
+            appreciation for the system’s inherent value. This duality is not a
+            conflict but a conversation between two sides of the same coin,
+            guiding you to a deeper understanding of your work and your place
+            within the office matrix.
+          </p>
+          <ul>
+            <li>
+              Random Mode Activation (Pill Time!): At any moment, the app will
+              switch between Morpheus and Agent Smith, offering you a balanced
+              perspective on your daily endeavors. Whether it’s finding the
+              courage to propose a new idea (Morpheus) or recognizing the
+              importance of a routine task (Agent Smith), you’ll receive the
+              insight needed to navigate your day.
+            </li>
+            <li>
+              Personalized Challenges and Insights: Tailored to your work and
+              aspirations, challenges from Morpheus will push you to break free
+              from convention, while insights from Agent Smith will help you
+              find meaning and satisfaction in the structures around you.
+            </li>
+            <li>
+              Reflection and Action: Beyond guidance, Matrix Phone Booth prompts
+              you to act on the wisdom received, fostering personal growth and a
+              deeper appreciation for your work. Whether it’s tackling a project
+              with newfound passion or optimizing your workflow within the
+              system, you’re empowered to make each day meaningful.
+            </li>
+          </ul>
           <p>
             We are thrilled to spotlight this creative community project from
             OpenHome community member Tracy Tao!
@@ -115,17 +161,19 @@ const post = {
           </p>
         </div>
       </div>
+
+      <div class="end-pin"></div>
     </div>
 
     <!-- call to action -->
     <div class="cta-row section-wrapper lt gridlines np-top np-bot">
       <Gridlines />
       <div class="content-wrapper no-max">
-        <div class="grid two-col">
+        <div class="grid two-col" :class="width <= 900 && 'stack'">
           <div class="col pad">
             <div class="txt-grp mx-600 auto">
               <div class="list-icon bg-orange">
-                <img src="/public/icons/cap-instant.svg" alt="" />
+                <img src="/public/icons/blog-build.svg" alt="" />
               </div>
               <h2>Build</h2>
               <h3>with OpenHome</h3>
@@ -142,7 +190,7 @@ const post = {
                 voice enabled apps.
               </p>
               <div
-                class="cta-group mt-20"
+                class="cta-group"
                 :class="width <= 550 && 'grid two-col gap'"
               >
                 <CtaBtn href="#" target="_blank" arrow="true"
@@ -157,7 +205,7 @@ const post = {
           <div class="col pad">
             <div class="txt-grp mx-600 auto">
               <div class="list-icon bg-purple">
-                <img src="/public/icons/cap-instant.svg" alt="" />
+                <img src="/public/icons/blog-apply.svg" alt="" />
               </div>
               <h2>Apply</h2>
               <h3>for a grant</h3>
@@ -171,7 +219,7 @@ const post = {
                 electronic typesetting.
               </p>
               <div
-                class="cta-group mt-20"
+                class="cta-group"
                 :class="width <= 550 && 'grid two-col gap'"
               >
                 <CtaBtn href="#" target="_blank" arrow="true"
@@ -189,29 +237,136 @@ const post = {
 <style>
 .article {
   * + h3 {
-    margin-top: 5rem;
+    margin-top: 4rem;
+  }
+  * + ul,
+  ul + * {
+    margin-top: 35px;
   }
 }
+.content-block.gridlines,
+.cta-row .col.pad {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
 .content-block {
-  position: relative;
   &.quote {
     blockquote {
       margin: 0;
-      padding: 80px 0;
       color: var(--orange);
     }
+  }
+  &.first {
+    padding-top: 50px;
   }
 }
 .quotemark {
   width: 50px;
   position: absolute;
-  top: 50px;
+  top: 45px;
   &.lt {
     left: 25px;
   }
   &.rt {
     right: 20px;
     transform: scale(-1);
+  }
+}
+.hero {
+  .feature {
+    padding-top: 25px;
+  }
+}
+.cta-row {
+  .list-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    img {
+      object-fit: cover;
+    }
+  }
+  .cta-group {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .content-wrapper.post {
+    padding-left: 200px;
+    padding-right: 200px;
+    max-width: none;
+  }
+  .hero .feature {
+    padding-bottom: 0;
+  }
+  .content-block.gridlines,
+  .cta-row .col.pad {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .content-block.quote {
+    blockquote {
+      font-size: 90px;
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .content-block.quote {
+    padding-top: 100px;
+    padding-bottom: 80px;
+    blockquote {
+      font-size: 70px;
+    }
+    .quotemark {
+      &.lt {
+        top: 35px;
+        left: 65px;
+      }
+      &.rt {
+        top: auto;
+        bottom: 35px;
+        right: 65px;
+      }
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .content-wrapper.post {
+    padding-left: var(--side-marginM);
+    padding-right: var(--side-marginM);
+  }
+  .content-block.text,
+  .cta-row .col.pad {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+}
+@media (max-width: 768px) {
+  .content-block.quote {
+    blockquote {
+      font-size: 50px;
+    }
+    .quotemark {
+      &.lt {
+        left: 35px;
+      }
+      &.rt {
+        top: auto;
+        right: 35px;
+      }
+    }
+  }
+}
+@media (max-width: 550px) {
+  .content-wrapper.post {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .content-block.text,
+  .cta-row .col.pad {
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 }
 </style>

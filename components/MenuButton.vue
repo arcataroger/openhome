@@ -1,6 +1,8 @@
 <script setup>
 import gsap from 'gsap';
 
+const props = defineProps(['theme']);
+
 const xpos = [4, 4, -4, -4];
 const ypos = [3.5, -3.5, 3.5, -3.5];
 const main = ref();
@@ -34,7 +36,12 @@ defineExpose({
 </script>
 
 <template>
-  <div class="menu-btn set-theme dk grid-cn" ref="main" @click="toggleMenuBtn">
+  <div
+    class="menu-btn set-theme grid-cn"
+    :class="props.theme"
+    ref="main"
+    @click="toggleMenuBtn"
+  >
     <svg width="22" height="19" viewBox="0 0 20 17.5" class="start use-theme">
       <rect />
       <rect class="px pix1" x="8" />
@@ -60,7 +67,7 @@ defineExpose({
   height: 45px;
   cursor: pointer;
   z-index: 10;
-  transition: var(--linear);
+  transition: var(--ease-out);
   border-width: 1px;
   border-style: solid;
   svg {
@@ -69,24 +76,22 @@ defineExpose({
   rect {
     width: 4px;
     height: 3.5px;
-    /* transition: all 0.85s cubic-bezier(0.4, 0.89, 0.32, 1); */
+    transition: color 0.25s linear;
   }
-  &.on {
+  &.dk.on {
     background-color: var(--black);
   }
-  /*   &.open {
-    .pix1 {
-      transform: translate(4px, 3.5px);
+  &.lt.on {
+    background-color: var(--cream);
+  }
+  &.open {
+    &.lt.on {
+      background-color: var(--black);
     }
-    .pix2 {
-      transform: translate(-4px, 3.5px);
+    border-color: var(--cream);
+    rect {
+      fill: var(--cream);
     }
-    .pix3 {
-      transform: translate(-4px, -3.5px);
-    }
-    .pix4 {
-      transform: translate(4px, -3.5px);
-    }
-  } */
+  }
 }
 </style>

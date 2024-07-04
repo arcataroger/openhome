@@ -55,15 +55,26 @@ export const setActiveSection = (el, id) => {
 };
 
 // pin side menu while scrolling
-export const pinMenu = (el) => {
-  ScrollTrigger.create({
-    trigger: '.start-pin',
-    endTrigger: '.end-pin',
-    start: 'top top',
-    end: 'bottom bottom',
-    pin: el,
-    pinSpacing: false,
+export const pinMenu = (el, min) => {
+  let mm = gsap.matchMedia();
+  mm.add('(min-width: ' + min + 'px)', () => {
+    ScrollTrigger.create({
+      trigger: '.start-pin',
+      endTrigger: '.end-pin',
+      start: 'top top',
+      end: () => getMenuPos(el),
+      pin: el,
+      pinSpacing: false,
+      anticipatePin: true,
+    });
   });
+};
+const getMenuPos = (cl) => {
+  const el = document.querySelector(cl);
+  const h = el.offsetHeight;
+  const m = 60;
+  let os = h + m * 2;
+  return 'bottom top+=' + os;
 };
 
 // toggle class with scroll
@@ -161,4 +172,48 @@ export const labelToScroll = (timeline, label) => {
 export const isTouchDevice = () => {
   const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
   return isTouchDevice;
+};
+
+const hoverSp = 0.5;
+const hoverEase = 'power3.out';
+
+export const hoverOnSocial = (e) => {
+  if (!isTouchDevice()) {
+    const trg = e.target;
+    const txt = trg.querySelector('.txt');
+    const icon = trg.querySelector('.hover-icon');
+    gsap.to(txt, {
+      duration: hoverSp,
+      yPercent: -100,
+      opacity: 0,
+      ease: hoverEase,
+    });
+    gsap.fromTo(
+      icon,
+      { yPercent: 100 },
+      {
+        duration: hoverSp,
+        yPercent: 0,
+        opacity: 1,
+        ease: hoverEase,
+      }
+    );
+  }
+};
+export const hoverOffSocial = (e) => {
+  const trg = e.target;
+  const txt = trg.querySelector('.txt');
+  const icon = trg.querySelector('.hover-icon');
+  gsap.to(txt, {
+    duration: hoverSp,
+    yPercent: 0,
+    opacity: 1,
+    ease: hoverEase,
+  });
+  gsap.to(icon, {
+    duration: hoverSp,
+    yPercent: 100,
+    opacity: 0,
+    ease: hoverEase,
+  });
 };

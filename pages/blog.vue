@@ -111,7 +111,7 @@ let totPages = 4;
 
 <template>
   <div class="main-contents">
-    <div class="hero section-wrapper lt">
+    <div class="hero blog section-wrapper lt">
       <!-- header -->
       <div class="row gridlines page-top np-bot">
         <Gridlines />

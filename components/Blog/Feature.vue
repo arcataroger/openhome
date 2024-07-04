@@ -6,7 +6,7 @@ const { width, height } = useWindowSize();
 
 <template>
   <div class="blog-feature">
-    <div class="row details">
+    <div class="row details" :class="width <= 550 && 'flex-jst'">
       <time>{{ props.data.date }}</time>
       <a href="#" class="tag">Community Project</a>
     </div>
@@ -76,6 +76,7 @@ const { width, height } = useWindowSize();
   position: absolute;
   left: 12px;
   bottom: 14px;
+  transform-origin: left bottom;
   img {
     border: 1px solid var(--black);
     border-radius: 8px;
@@ -90,9 +91,17 @@ const { width, height } = useWindowSize();
     }
   }
 }
+@media (max-width: 1440px) {
+  .thumb-icon {
+    transform: scale(0.75);
+  }
+}
 @media (max-width: 1200px) {
   .blog-feature time {
     font-size: 16px;
+  }
+  .thumb-icon {
+    transform: scale(0.5);
   }
 }
 @media (max-width: 900px) {
@@ -101,14 +110,16 @@ const { width, height } = useWindowSize();
   }
 }
 @media (max-width: 550px) {
-  .thumb-img {
-    margin-bottom: 18px;
-  }
-  .thumb-icon {
-    transform: scale(0.5);
-    transform-origin: left bottom;
-    left: 8px;
-    bottom: 8px;
+  .blog-feature {
+    .thumb-img {
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+    .thumb-icon {
+      transform: scale(0.4);
+      left: 8px;
+      bottom: 8px;
+    }
   }
 }
 </style>

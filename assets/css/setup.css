@@ -152,8 +152,11 @@ h3 + p {
 p + .cta-btn {
   margin-top: 30px;
 }
+h2 + h3 {
+  margin-top: 10px;
+}
 
-@media (max-width: 1400px) {
+@media (max-width: 1440px) {
   html {
     font-size: 14px;
   }
@@ -276,17 +279,15 @@ p + .cta-btn {
   margin-top: 4.0625rem;
 }
 
-@media (max-width: 1440px) {
-  .hpad.wide {
-    padding-left: calc(var(--grid-margin) + var(--side-marginM));
-    padding-right: calc(var(--grid-margin) + var(--side-marginM));
-  }
-}
 @media (max-width: 1200px) {
   .hpad,
   .p-max {
     padding-left: var(--side-marginM);
     padding-right: var(--side-marginM);
+    &.wide {
+      padding-left: calc(var(--grid-marginM) + var(--side-margin));
+      padding-right: calc(var(--grid-marginM) + var(--side-margin));
+    }
   }
   .mt-100 {
     margin-top: 50px;
@@ -296,6 +297,13 @@ p + .cta-btn {
   }
   .pb-160 {
     padding-bottom: var(--top-marginM);
+  }
+}
+@media (max-width: 1024px) {
+  .hpad,
+  .p-max {
+    padding-left: var(--side-marginM);
+    padding-right: var(--side-marginM);
   }
 }
 @media (max-width: 768px) {

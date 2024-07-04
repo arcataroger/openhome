@@ -103,11 +103,15 @@
       grid-template-columns: auto;
       grid-auto-flow: row;
       .col + .col {
-        margin-top: var(--top-marginM);
         border-top-width: 1px;
       }
       &.gap {
         gap: 15px;
+      }
+      &:not(.stack) {
+        .col + .col {
+          margin-top: var(--top-marginM);
+        }
       }
     }
   }
@@ -171,24 +175,24 @@
   position: relative;
 }
 .bullet-list,
-.has-bullets ul {
+.has-bullets ul,
+.post ul {
   list-style: none;
   li {
-    padding: 10px 10px;
-    padding-left: 50px;
+    padding-left: 25px;
     position: relative;
     + li {
-      margin-top: 5px;
+      margin-top: var(--margintop);
     }
     &:before {
       content: '';
       position: absolute;
-      left: 22px;
-      top: 1.1em;
+      left: 0px;
+      top: 0.3em;
       width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #000;
+      height: 16px;
+      background: url(/public/icons/chevron.svg) left top no-repeat;
+      background-size: 9px auto;
     }
   }
 }
@@ -275,6 +279,30 @@ a {
     background-color: var(--cream);
   }
 }
+.social-btn {
+  overflow: hidden;
+  .hover-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 42px;
+    height: 42px;
+    margin-top: -21px;
+    border-radius: 50%;
+    border: 1.5px solid var(--cream);
+    padding: 10px;
+    opacity: 0;
+    pointer-events: none;
+    display: grid;
+    place-content: center;
+    img {
+      object-fit: contain;
+    }
+  }
+  .txt {
+    display: block;
+  }
+}
 @media (pointer: fine) {
   .cta-btn {
     &:hover {
@@ -300,6 +328,18 @@ a {
     display: grid;
     grid-template-columns: auto;
     gap: 15px;
+  }
+}
+.col {
+  .cta-group {
+    margin-bottom: -20px;
+    a {
+      margin-right: 20px;
+      margin-bottom: 20px;
+      + a {
+        margin-left: 0 !important;
+      }
+    }
   }
 }
 
@@ -545,6 +585,18 @@ header,
     }
   }
 }
+@media (max-width: 1024px) {
+  .hero.blog {
+    padding-top: 75px;
+    .page-top {
+      padding-top: 0;
+      padding-bottom: 25px;
+      .gridline.top {
+        top: 0;
+      }
+    }
+  }
+}
 @media (max-width: 768px) {
   .side-ornament {
     transform: scale(0.35);
@@ -570,5 +622,11 @@ header,
     transform-origin: left bottom;
     left: 8px;
     bottom: 8px;
+  }
+  .hero .feature.col {
+    padding: 15px;
+  }
+  .hero.blog .page-top {
+    padding-bottom: 0;
   }
 }

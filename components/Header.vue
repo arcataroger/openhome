@@ -3,14 +3,15 @@ import gsap from 'gsap';
 import { useWindowSize } from '@vueuse/core';
 
 const props = defineProps(['theme']);
-let pad;
-if (props.theme == 'lt') {
-  pad = 'wide';
-}
 
 const { width, height } = useWindowSize();
 let ctx;
 const main = ref(null);
+
+let pad;
+if (props.theme == 'lt') {
+  pad = 'wide';
+}
 
 onMounted(() => {
   // setup logo and header parts for open animation
@@ -29,11 +30,15 @@ onMounted(() => {
 
 <template>
   <Guidelines />
-  <header class="main hpad" :class="[props.theme, pad]" ref="main">
+  <header
+    class="main hpad"
+    :class="[props.theme, width > 1024 && pad]"
+    ref="main"
+  >
     <HeaderParts />
   </header>
   <StickyNav v-if="width > 1024" />
-  <Menu />
+  <Menu :theme="props.theme" />
 </template>
 
 <style scoped>
