@@ -142,5 +142,11 @@ li {
       padding-bottom: 15px;
     }
   }
+  li {
+    padding: 6px 10px;
+    &.title {
+      font-size: 12px;
+    }
+  }
 }
 </style>

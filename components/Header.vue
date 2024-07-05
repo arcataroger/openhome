@@ -49,4 +49,10 @@ header.main {
   width: 100%;
   z-index: 20;
 }
+@media (max-width: 1024px) {
+  header.main {
+    padding-left: var(--side-marginM2);
+    padding-right: var(--side-marginM2);
+  }
+}
 </style>

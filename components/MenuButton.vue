@@ -61,7 +61,7 @@ defineExpose({
 <style scoped>
 .menu-btn {
   position: absolute;
-  right: 17px;
+  right: 18px;
   top: 15px;
   width: 45px;
   height: 45px;

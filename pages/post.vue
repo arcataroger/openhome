@@ -31,12 +31,12 @@ onMounted(() => {
 <template>
   <div class="main-contents">
     <!-- article hero -->
-    <div class="hero blog section-wrapper lt">
+    <div class="hero blog post section-wrapper lt">
       <div class="row gridlines page-top np-bot">
         <Gridlines bot="false" />
         <div class="content-wrapper no-max">
           <div class="feature col pad">
-            <BlogFeature :data="post.data" />
+            <BlogFeature :data="post.data" loc="post" />
           </div>
         </div>
       </div>
@@ -367,6 +367,16 @@ onMounted(() => {
   .cta-row .col.pad {
     padding-top: 15px;
     padding-bottom: 15px;
+  }
+  .cta-row {
+    padding-bottom: 25px;
+  }
+  .article {
+    * + h3,
+    * + ul,
+    ul + * {
+      margin-top: 20px;
+    }
   }
 }
 </style>

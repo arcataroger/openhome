@@ -7,7 +7,8 @@ const { width, height } = useWindowSize();
 
 const menuOpen = ref(false);
 const nav = ref(null);
-const menu_btn = ref();
+const menu_btn = ref(null);
+const menu_wrap = ref(null);
 let menu;
 let menuBtn;
 
@@ -16,7 +17,7 @@ const toggleMenu = (e) => {
   if (!menuOpen.value) {
     document.body.classList.add('freeze');
     gsap.fromTo(
-      '.menu-wrap',
+      menu_wrap.value,
       { opacity: 0, xPercent: 100, display: 'block' },
       {
         duration: 0.5,
@@ -70,13 +71,13 @@ onMounted(() => {
 // close menu
 const closeMenu = () => {
   if (menuOpen.value) {
-    gsap.to('.menu-wrap', {
+    gsap.to(menu_wrap.value, {
       duration: 0.35,
       opacity: 0,
       ease: 'power3.inOut',
       onComplete: function () {
         menu.classList.remove('expanded');
-        gsap.set('.menu-wrap', { display: 'none' });
+        gsap.set(menu_wrap.value, { display: 'none' });
       },
     });
 
@@ -93,7 +94,7 @@ const closeMenu = () => {
 <template>
   <div class="mobile-menu" v-show="width <= 1024">
     <MenuButton @click="toggleMenu" ref="menu_btn" :theme="props.theme" />
-    <div class="menu-wrap set-theme dk div-scroll">
+    <div class="menu-wrap set-theme dk div-scroll" ref="menu_wrap">
       <div class="menu-contents">
         <div class="gridline v lt"></div>
         <div class="gridline v rt"></div>

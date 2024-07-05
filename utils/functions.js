@@ -2,9 +2,11 @@ import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { useWindowSize } from '@vueuse/core';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(SplitText);
+const { width, height } = useWindowSize();
 
 // auto scroll to section on click
 export const jumpTo = (e) => {
@@ -72,7 +74,9 @@ export const pinMenu = (el, min) => {
 const getMenuPos = (cl) => {
   const el = document.querySelector(cl);
   const h = el.offsetHeight;
-  const m = 60;
+  let m;
+  width.value <= 1440 ? (m = 50) : (m = 75);
+  console.log(m);
   let os = h + m * 2;
   return 'bottom top+=' + os;
 };
@@ -216,4 +220,39 @@ export const hoverOffSocial = (e) => {
     opacity: 0,
     ease: hoverEase,
   });
+};
+
+// menu toggle open/close
+export const toggleDropMenu = (e) => {
+  const parent = e.target.closest('.menu-wrap');
+  const menu = parent.querySelector('.toggle-menu');
+
+  // open menu
+  if (!parent.classList.contains('open')) {
+    //console.log('open');
+    parent.classList.add('open');
+
+    gsap.fromTo(
+      menu,
+      { display: 'block', opacity: 0, y: -10 },
+      {
+        duration: 0.5,
+        opacity: 1,
+        y: 0,
+        ease: 'power3.out',
+      }
+    );
+
+    // close menu
+  } else {
+    //console.log('close');
+    parent.classList.remove('open');
+
+    gsap.to(menu, {
+      duration: 0.5,
+      opacity: 0,
+      y: -10,
+      ease: 'back.in',
+    });
+  }
 };

@@ -136,21 +136,20 @@ let totPages = 4;
       </div>
 
       <!-- featured post -->
-      <div class="row gridlines np-bot">
+      <div class="feature-wrap row gridlines np-bot">
         <Gridlines />
-        <div class="content-wrapper no-max">
+        <div class="content-wrapper no-max thumb-wrap">
           <div class="feature col pad">
-            <BlogFeature :data="posts[0].data" />
-            <BlogFilter />
+            <BlogFeature :data="posts[0].data" loc="blog" />
           </div>
+
+          <!-- category filter -->
+          <BlogFilter />
         </div>
       </div>
 
       <!-- grid -->
-      <div
-        class="blog-grid row gridlines np-bot"
-        :class="width <= 900 && 'stack'"
-      >
+      <div class="blog-grid row gridlines np-bot">
         <Gridlines />
         <div class="content-wrapper no-max">
           <div class="grid three-col">
@@ -159,8 +158,8 @@ let totPages = 4;
               :data="post.data"
               :id="key"
             />
-            <div class="blog-grid-spacer"></div>
-            <div class="blog-grid-spacer"></div>
+            <div v-if="width > 768" class="blog-grid-spacer"></div>
+            <div v-if="width > 1440" class="blog-grid-spacer"></div>
           </div>
         </div>
       </div>
@@ -196,6 +195,10 @@ let totPages = 4;
       right: 0;
     }
   }
+}
+.feature-wrap {
+  position: relative;
+  z-index: 21;
 }
 .feature {
   padding-top: 25px;
@@ -235,13 +238,11 @@ let totPages = 4;
     color: var(--orange);
   }
 }
-@media (max-width: 1440px) {
-  .thumb-wrap,
-  .feature {
-    padding: var(--side-marginM);
-  }
-  .feature {
-    padding-bottom: 15px;
+@media (max-width: 768px) {
+  .hero {
+    .side-ornament {
+      margin-top: -18px;
+    }
   }
 }
 </style>

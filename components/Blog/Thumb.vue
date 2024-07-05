@@ -40,38 +40,20 @@ const hoverOff = () => {
       <div v-if="props.loc != 'home'" class="arrow mt-25">
         <IconArrow ref="pixels" />
       </div>
+      <a
+        :href="props.data.url"
+        class="full"
+        target="_blank"
+        v-on="{
+          mouseenter: props.loc != 'home' ? hoverOn : null,
+          mouseleave: props.loc != 'home' ? hoverOff : null,
+        }"
+      ></a>
     </div>
-    <a
-      :href="props.data.url"
-      class="full"
-      target="_blank"
-      v-on="{
-        mouseenter: props.loc != 'home' ? hoverOn : null,
-        mouseleave: props.loc != 'home' ? hoverOff : null,
-      }"
-    ></a>
   </div>
 </template>
 
 <style scoped>
-.thumb-wrap {
-  position: relative;
-  &.has-arrow {
-    padding-bottom: 75px;
-  }
-  &:after {
-    content: '';
-    z-index: -1;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--brown);
-    opacity: 0;
-    transition: var(--linear);
-  }
-}
 .blog-thumb {
   max-width: 630px;
 }
@@ -80,13 +62,6 @@ const hoverOff = () => {
   bottom: 50px;
 }
 
-@media (pointer: fine) {
-  .thumb-wrap:hover {
-    &:after {
-      opacity: 1;
-    }
-  }
-}
 @media (max-width: 900px) {
   .blog-thumb {
     max-width: none;

@@ -210,7 +210,7 @@ h2 + h3 {
     line-height: 1.2;
   }
   p + p {
-    margin-top: 15px;
+    margin-top: 20px;
   }
   time + h3,
   .h-lg + p,
@@ -224,6 +224,9 @@ h2 + h3 {
 @media (max-width: 550px) {
   p + .cta-btn {
     margin-top: 20px;
+  }
+  h2 + h3 {
+    margin-top: 5px;
   }
 }
 

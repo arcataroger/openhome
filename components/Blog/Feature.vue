@@ -21,6 +21,12 @@ const { width, height } = useWindowSize();
         <img :src="props.data.icon" alt="" />
       </div>
     </div>
+    <a
+      :href="props.data.url"
+      class="full"
+      target="_blank"
+      v-if="props.loc == 'blog'"
+    ></a>
   </div>
 </template>
 
@@ -116,10 +122,16 @@ const { width, height } = useWindowSize();
       margin-top: 15px;
     }
     .thumb-icon {
-      transform: scale(0.4);
+      transform: scale(0.28);
       left: 8px;
       bottom: 8px;
     }
+    time + .tag {
+      margin-left: 0;
+    }
+  }
+  .details {
+    margin-bottom: 10px;
   }
 }
 </style>
