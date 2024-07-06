@@ -5,7 +5,7 @@ const props = defineProps(['theme']);
 <template>
   <div class="wrapper">
     <Header :theme="props.theme" />
-    <slot />
+    <div class="main-contents"><slot /></div>
     <Footer />
     <div class="cover"></div>
   </div>

@@ -2,12 +2,71 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
-
+import { Image as DatocmsImage } from 'vue-datocms';
+import { StructuredText as DatocmsStructuredText } from 'vue-datocms';
 import { useWindowSize } from '@vueuse/core';
 const { width, height } = useWindowSize();
 
+const route = useRoute();
+const slug = route.params.slug;
+
+/* DatoCMS */
+const QUERY = /* GraphQL */ `
+  query {
+    post(filter: { slug: { eq: "${slug}" } }) {
+      title
+      slug
+      publishDate
+      seo: _seoMetaTags {
+        attributes
+      }
+      image {
+        responsiveImage(imgixParams: { auto: format }) {
+          src
+          width
+          height
+          alt
+          bgColor
+        }
+      }
+      icon {
+        responsiveImage {
+          src
+          width
+          height
+          alt
+          bgColor
+        }
+      }
+      category {
+        tag
+        slug
+      }
+      content {
+        value
+        blocks {
+          __typename
+          ... on RecordInterface {
+            __typename
+          }
+          ... on QuoteRecord {
+            quoteText
+          }
+        }
+      }
+    }
+  }
+`;
+
+const { data, error } = await useGraphqlQuery({ query: QUERY });
+const page_data = toRaw(data.value).post;
+//console.log('data ' + page_data._seoMetaTags);
+
+/* import { render } from 'datocms-structured-text-to-html-string';
+console.log(render(page_data.content.value)); */
+
 /* placeholder data */
-const post = {
+/* const post = {
   id: '1',
   data: {
     image: '/blog/feature-matrix@2x.jpg',
@@ -18,7 +77,7 @@ const post = {
       'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
     url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
   },
-};
+}; */
 
 onMounted(() => {
   // setup share menu pin
@@ -26,17 +85,23 @@ onMounted(() => {
     pinMenu('.side-menu', 1025);
   }, 200);
 });
+
+const renderBlock = ({ record }) => {
+  if (record.__typename === 'QuoteRecord') {
+    console.log('place quote here');
+  }
+};
 </script>
 
 <template>
-  <div class="main-contents">
+  <div>
     <!-- article hero -->
     <div class="hero blog post section-wrapper lt">
       <div class="row gridlines page-top np-bot">
         <Gridlines bot="false" />
         <div class="content-wrapper no-max">
           <div class="feature col pad">
-            <BlogFeature :data="post.data" loc="post" />
+            <BlogFeature :data="page_data" loc="post" />
           </div>
         </div>
       </div>
@@ -52,7 +117,11 @@ onMounted(() => {
         <Gridlines top="false" bot="false" />
 
         <div class="content-wrapper post">
-          <p>
+          <DatocmsStructuredText
+            :data="page_data.content.value"
+            :renderBlock="renderBlock"
+          />
+          <!-- <p>
             We are thrilled to spotlight this creative community project from
             OpenHome community member Tracy Tao!
           </p>
@@ -76,12 +145,12 @@ onMounted(() => {
             “It is more of a fun setting for people to examine daily life. Voice
             applications provide immersive, customized, and more natural way of
             patting our own desires and needs,” said Tracy.
-          </p>
+          </p> -->
         </div>
       </div>
 
       <!-- quote block -->
-      <div class="content-block quote gridlines np-top np-bot">
+      <!--       <div class="content-block quote gridlines np-top np-bot">
         <Gridlines bot="true" pad="nopad" />
         <div class="quotemark lt">
           <img src="/public/icons/quotes.svg" alt="" />
@@ -95,10 +164,10 @@ onMounted(() => {
             you’re actually in a simulation.
           </blockquote>
         </div>
-      </div>
+      </div> -->
 
       <!-- bodycopy block -->
-      <div class="content-block text gridlines np-top">
+      <!-- <div class="content-block text gridlines np-top">
         <Gridlines top="false" bot="false" />
 
         <div class="content-wrapper post">
@@ -160,7 +229,7 @@ onMounted(() => {
             patting our own desires and needs,” said Tracy.
           </p>
         </div>
-      </div>
+      </div> -->
 
       <div class="end-pin"></div>
     </div>

@@ -27,14 +27,12 @@ const page_data = toRaw(data.value)[page_id]; */
 </script>
 
 <template>
-  <div class="main-contents">
-    <HomeHero />
-    <HomeSlider />
-    <HomeCapabilities :class="width > 768 && 'overtop'" />
-    <HomeResources />
-    <HomeCommunity />
-    <HomeDemoBtn />
-  </div>
+  <HomeHero />
+  <HomeSlider />
+  <HomeCapabilities :class="width > 768 && 'overtop'" />
+  <HomeResources />
+  <HomeCommunity />
+  <HomeDemoBtn />
 </template>
 
 <style scoped></style>

@@ -76,7 +76,7 @@ const getMenuPos = (cl) => {
   const h = el.offsetHeight;
   let m;
   width.value <= 1440 ? (m = 50) : (m = 75);
-  console.log(m);
+  //console.log(m);
   let os = h + m * 2;
   return 'bottom top+=' + os;
 };
@@ -222,7 +222,7 @@ export const hoverOffSocial = (e) => {
   });
 };
 
-// menu toggle open/close
+// drop menu toggle open/close
 export const toggleDropMenu = (e) => {
   const parent = e.target.closest('.menu-wrap');
   const menu = parent.querySelector('.toggle-menu');
@@ -255,4 +255,17 @@ export const toggleDropMenu = (e) => {
       ease: 'back.in',
     });
   }
+};
+
+export const createExcerpt = (
+  content,
+  maxNumberOfWords,
+  trailingIndicator = '...'
+) => {
+  const listOfWords = content.trim().split(' ');
+  const truncatedContent = listOfWords.slice(0, maxNumberOfWords).join(' ');
+  const excerpt = truncatedContent + trailingIndicator;
+  const output = listOfWords.length > maxNumberOfWords ? excerpt : content;
+
+  return output;
 };

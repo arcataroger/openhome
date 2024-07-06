@@ -11,9 +11,9 @@ if (route.path != '/') {
   //initSiteMeta();
 }
 
-// set theme HC / make dynamic
+// set theme for page / make dynamic
 let page_theme = 'dk';
-if (route.name == 'blog' || route.name == 'post') {
+if (route.name == 'blog' || route.name == 'blog-slug') {
   page_theme = 'lt';
 }
 

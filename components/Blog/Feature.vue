@@ -1,28 +1,40 @@
 <script setup>
 import { useWindowSize } from '@vueuse/core';
+import { useDateFormat } from '@vueuse/core';
+import { Image as DatocmsImage } from 'vue-datocms';
 const props = defineProps(['data', 'id', 'loc']);
 const { width, height } = useWindowSize();
+
+//console.log(props.data.image);
+const excerpt =
+  'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao! Red pill or blue pill? Enter the matrix in the comfort of your own home with the Matrix Phone Booth voice experience.';
+const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
 </script>
 
 <template>
   <div class="blog-feature">
     <div class="row details" :class="width <= 550 && 'flex-jst'">
-      <time>{{ props.data.date }}</time>
-      <a href="#" class="tag">Community Project</a>
+      <time>{{ formattedDate }}</time>
+      <a
+        v-if="props.data.category.tag"
+        :href="props.data.category.slug"
+        class="tag"
+        >{{ props.data.category.tag }}</a
+      >
     </div>
 
     <h3>{{ props.data.title }}</h3>
     <p>
-      {{ props.data.excerpt }}
+      {{ createExcerpt(excerpt, 30) }}
     </p>
     <div class="thumb-img">
-      <img :src="props.data.image" alt="" />
+      <DatocmsImage :data="props.data.image.responsiveImage" />
       <div class="thumb-icon">
-        <img :src="props.data.icon" alt="" />
+        <DatocmsImage :data="props.data.icon.responsiveImage" />
       </div>
     </div>
     <a
-      :href="props.data.url"
+      :href="props.data.slug"
       class="full"
       target="_blank"
       v-if="props.loc == 'blog'"

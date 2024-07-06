@@ -110,70 +110,68 @@ let totPages = 4;
 </script>
 
 <template>
-  <div class="main-contents">
-    <div class="hero blog section-wrapper lt">
-      <!-- header -->
-      <div class="row gridlines page-top np-bot">
-        <Gridlines />
+  <div class="hero blog section-wrapper lt">
+    <!-- header -->
+    <div class="row gridlines page-top np-bot">
+      <Gridlines />
 
-        <div class="content-wrapper header no-max">
-          <div class="side-ornament lt"><div class="circ"></div></div>
-          <div class="side-ornament rt">
-            <img src="/public/icons/logo-halfcircs.svg" alt="" />
-          </div>
+      <div class="content-wrapper header no-max">
+        <div class="side-ornament lt"><div class="circ"></div></div>
+        <div class="side-ornament rt">
+          <img src="/public/icons/logo-halfcircs.svg" alt="" />
+        </div>
 
-          <header>
-            <Headline type="hero">
-              <h2 class="alt">
-                Res<span class="pix">o</span>u<span class="pix">r</span>c<span
-                  class="pix"
-                  >e</span
-                >s
-              </h2>
-            </Headline>
-          </header>
+        <header>
+          <Headline type="hero">
+            <h2 class="alt">
+              Res<span class="pix">o</span>u<span class="pix">r</span>c<span
+                class="pix"
+                >e</span
+              >s
+            </h2>
+          </Headline>
+        </header>
+      </div>
+    </div>
+
+    <!-- featured post -->
+    <div class="feature-wrap row gridlines np-bot">
+      <Gridlines />
+      <div class="content-wrapper no-max thumb-wrap">
+        <div class="feature col pad">
+          <BlogFeature :data="posts[0].data" loc="blog" />
+        </div>
+
+        <!-- category filter -->
+        <BlogFilter />
+      </div>
+    </div>
+
+    <!-- grid -->
+    <div class="blog-grid row gridlines np-bot">
+      <Gridlines />
+      <div class="content-wrapper no-max">
+        <div class="grid three-col">
+          <BlogThumb
+            v-for="(post, key) in show_posts"
+            :data="post.data"
+            :id="key"
+          />
+          <div v-if="width > 768" class="blog-grid-spacer"></div>
+          <div v-if="width > 1440" class="blog-grid-spacer"></div>
         </div>
       </div>
+    </div>
 
-      <!-- featured post -->
-      <div class="feature-wrap row gridlines np-bot">
-        <Gridlines />
-        <div class="content-wrapper no-max thumb-wrap">
-          <div class="feature col pad">
-            <BlogFeature :data="posts[0].data" loc="blog" />
-          </div>
-
-          <!-- category filter -->
-          <BlogFilter />
-        </div>
-      </div>
-
-      <!-- grid -->
-      <div class="blog-grid row gridlines np-bot">
-        <Gridlines />
-        <div class="content-wrapper no-max">
-          <div class="grid three-col">
-            <BlogThumb
-              v-for="(post, key) in show_posts"
-              :data="post.data"
-              :id="key"
-            />
-            <div v-if="width > 768" class="blog-grid-spacer"></div>
-            <div v-if="width > 1440" class="blog-grid-spacer"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- pagination -->
-      <div class="pagination row gridlines np-bot">
-        <Gridlines />
-        <div class="content-wrapper no-max">
-          <ul>
-            <li v-for="n in totPages">
-              <a href="#" :class="n == 1 && 'on'">{{ n }}</a>
-            </li>
-          </ul>
-        </div>
+    <!-- pagination -->
+    <div class="pagination row gridlines np-bot">
+      <Gridlines />
+      <div class="content-wrapper no-max">
+        <ul>
+          <li v-for="n in totPages">
+            <a href="#" :class="n == 1 && 'on'">{{ n }}</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
