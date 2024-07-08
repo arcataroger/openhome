@@ -2,6 +2,7 @@
 import { useWindowSize } from '@vueuse/core';
 const props = defineProps(['data', 'id', 'loc']);
 const { width, height } = useWindowSize();
+const blog_url = useState('blog_url');
 
 const pixels = ref();
 
@@ -11,6 +12,8 @@ const hoverOn = () => {
 const hoverOff = () => {
   pixels.value.hoverOff();
 };
+
+const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
 </script>
 
 <template>
@@ -22,15 +25,14 @@ const hoverOff = () => {
     "
   >
     <div class="blog-thumb">
-      <div class="thumb-img">
-        <img :src="props.data.image" alt="" />
-        <div class="thumb-icon">
-          <img :src="props.data.icon" alt="" />
-        </div>
-      </div>
-      <time v-if="props.loc == 'home'">{{ props.data.date }}</time>
+      <BlogThumbImage
+        :thumb="props.data.image.responsiveImage"
+        :icon="props.data.icon.responsiveImage"
+      />
+
+      <time v-if="props.loc == 'home'">{{ formattedDate }}</time>
       <div v-else class="row details flex-jst">
-        <time>{{ props.data.date }}</time>
+        <time>{{ formattedDate }}</time>
         <a href="#" class="tag sm">Community Project</a>
       </div>
       <h3>{{ props.data.title }}</h3>
@@ -41,9 +43,8 @@ const hoverOff = () => {
         <IconArrow ref="pixels" />
       </div>
       <a
-        :href="props.data.url"
+        :href="blog_url + props.data.slug"
         class="full"
-        target="_blank"
         v-on="{
           mouseenter: props.loc != 'home' ? hoverOn : null,
           mouseleave: props.loc != 'home' ? hoverOff : null,

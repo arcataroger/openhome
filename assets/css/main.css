@@ -184,7 +184,7 @@
 }
 .bullet-list,
 .has-bullets ul,
-.post ul {
+.post ul:not(.tags) {
   list-style: none;
   li {
     padding-left: 25px;
@@ -567,6 +567,7 @@ header,
 }
 .tags {
   list-style: none;
+  display: inline-block;
   li {
     display: inline-block;
     margin: 0 15px 15px 0;
@@ -589,7 +590,11 @@ header,
 .blog-feature {
   .details {
     position: relative;
+    pointer-events: none;
     z-index: 2;
+    .tag {
+      pointer-events: all;
+    }
   }
 }
 

@@ -267,5 +267,7 @@ export const createExcerpt = (
   const excerpt = truncatedContent + trailingIndicator;
   const output = listOfWords.length > maxNumberOfWords ? excerpt : content;
 
-  return output;
+  return stripHTMLTags(output);
 };
+
+const stripHTMLTags = (str) => str.replace(/<[^>]*>/g, '');

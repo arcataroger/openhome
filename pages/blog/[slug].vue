@@ -17,9 +17,6 @@ const QUERY = /* GraphQL */ `
       title
       slug
       publishDate
-      seo: _seoMetaTags {
-        attributes
-      }
       image {
         responsiveImage(imgixParams: { auto: format }) {
           src
@@ -38,29 +35,18 @@ const QUERY = /* GraphQL */ `
           bgColor
         }
       }
-      category {
+      categories {
         tag
         slug
       }
-      content {
-        value
-        blocks {
-          __typename
-          ... on RecordInterface {
-            __typename
-          }
-          ... on QuoteRecord {
-            quoteText
-          }
-        }
-      }
+      contentBasic
     }
   }
 `;
 
 const { data, error } = await useGraphqlQuery({ query: QUERY });
 const page_data = toRaw(data.value).post;
-//console.log('data ' + page_data._seoMetaTags);
+//console.log('data ' + page_data.contentBasic);
 
 /* import { render } from 'datocms-structured-text-to-html-string';
 console.log(render(page_data.content.value)); */
@@ -86,11 +72,11 @@ onMounted(() => {
   }, 200);
 });
 
-const renderBlock = ({ record }) => {
+/* const renderBlock = ({ record }) => {
   if (record.__typename === 'QuoteRecord') {
     console.log('place quote here');
   }
-};
+}; */
 </script>
 
 <template>
@@ -117,10 +103,11 @@ const renderBlock = ({ record }) => {
         <Gridlines top="false" bot="false" />
 
         <div class="content-wrapper post">
-          <DatocmsStructuredText
+          <div v-html="page_data.contentBasic"></div>
+          <!--           <DatocmsStructuredText
             :data="page_data.content.value"
             :renderBlock="renderBlock"
-          />
+          /> -->
           <!-- <p>
             We are thrilled to spotlight this creative community project from
             OpenHome community member Tracy Tao!
@@ -305,12 +292,15 @@ const renderBlock = ({ record }) => {
 
 <style>
 .article {
-  * + h3 {
-    margin-top: 4rem;
-  }
   * + ul,
   ul + * {
     margin-top: 35px;
+  }
+  * + h3 {
+    margin-top: 4rem;
+  }
+  * + h4 {
+    margin-top: 2.5rem;
   }
 }
 .content-block.gridlines,

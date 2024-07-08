@@ -5,6 +5,9 @@ const route = useRoute();
 
 // initial states
 const page_title = useState('page_title', () => 'index');
+const base_url = useState('base_url', () => window.location.origin);
+const blog_url = useState('blog_url', () => base_url.value + '/blog/');
+const cat_url = useState('cat_url', () => base_url.value + '/blog/category/');
 
 // init global meta data if entry point is a tier page
 if (route.path != '/') {
@@ -13,7 +16,11 @@ if (route.path != '/') {
 
 // set theme for page / make dynamic
 let page_theme = 'dk';
-if (route.name == 'blog' || route.name == 'blog-slug') {
+if (
+  route.name == 'blog' ||
+  route.name == 'blog-slug' ||
+  route.name == 'blog-category-id'
+) {
   page_theme = 'lt';
 }
 

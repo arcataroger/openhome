@@ -2,12 +2,10 @@
 import { useWindowSize } from '@vueuse/core';
 import { useDateFormat } from '@vueuse/core';
 import { Image as DatocmsImage } from 'vue-datocms';
+
 const props = defineProps(['data', 'id', 'loc']);
 const { width, height } = useWindowSize();
-
-//console.log(props.data.image);
-const excerpt =
-  'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao! Red pill or blue pill? Enter the matrix in the comfort of your own home with the Matrix Phone Booth voice experience.';
+const blog_url = useState('blog_url');
 const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
 </script>
 
@@ -15,39 +13,32 @@ const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
   <div class="blog-feature">
     <div class="row details" :class="width <= 550 && 'flex-jst'">
       <time>{{ formattedDate }}</time>
-      <a
-        v-if="props.data.category.tag"
-        :href="props.data.category.slug"
-        class="tag"
-        >{{ props.data.category.tag }}</a
-      >
+      <BlogTags :data="props.data.categories" />
     </div>
 
     <h3>{{ props.data.title }}</h3>
     <p>
-      {{ createExcerpt(excerpt, 30) }}
+      {{ createExcerpt(props.data.contentBasic, 30) }}
     </p>
-    <div class="thumb-img">
-      <DatocmsImage :data="props.data.image.responsiveImage" />
-      <div class="thumb-icon">
-        <DatocmsImage :data="props.data.icon.responsiveImage" />
-      </div>
-    </div>
+    <BlogThumbImage
+      :thumb="props.data.image.responsiveImage"
+      :icon="props.data.icon.responsiveImage"
+      loc="feature"
+    />
     <a
-      :href="props.data.slug"
+      :href="blog_url + props.data.slug"
       class="full"
-      target="_blank"
       v-if="props.loc == 'blog'"
     ></a>
   </div>
 </template>
 
-<style scoped>
+<style>
 .details {
   margin-bottom: 20px;
 }
 .blog-feature {
-  time + .tag {
+  time + .tags {
     margin-left: 50px;
   }
   .thumb-img {

@@ -3,7 +3,7 @@ import { useWindowSize } from '@vueuse/core';
 const { width, height } = useWindowSize();
 
 /* placeholder data */
-const posts = [
+/* const posts = [
   {
     id: '1',
     data: {
@@ -101,8 +101,45 @@ const posts = [
       url: 'https://openhome.xyz/introducing-metacap-live-emotional-insights-are-coming-to-openhome/',
     },
   },
-];
+]; */
 
+/* DatoCMS */
+const QUERY = /* GraphQL */ `
+  query {
+    allPosts(orderBy: [publishDate_DESC]) {
+      title
+      slug
+      publishDate
+      image {
+        responsiveImage(imgixParams: { auto: format }) {
+          src
+          width
+          height
+          alt
+          bgColor
+        }
+      }
+      icon {
+        responsiveImage {
+          src
+          width
+          height
+          alt
+          bgColor
+        }
+      }
+      categories {
+        tag
+        slug
+      }
+      contentBasic
+    }
+  }
+`;
+
+const { data, error } = await useGraphqlQuery({ query: QUERY });
+const posts = toRaw(data.value).allPosts;
+console.log(posts);
 let show_posts = posts.filter((post, i) => i > 0);
 
 // pagination
@@ -139,7 +176,7 @@ let totPages = 4;
       <Gridlines />
       <div class="content-wrapper no-max thumb-wrap">
         <div class="feature col pad">
-          <BlogFeature :data="posts[0].data" loc="blog" />
+          <BlogFeature :data="posts[0]" loc="blog" />
         </div>
 
         <!-- category filter -->
@@ -152,11 +189,7 @@ let totPages = 4;
       <Gridlines />
       <div class="content-wrapper no-max">
         <div class="grid three-col">
-          <BlogThumb
-            v-for="(post, key) in show_posts"
-            :data="post.data"
-            :id="key"
-          />
+          <BlogThumb v-for="(post, key) in show_posts" :data="post" :id="key" />
           <div v-if="width > 768" class="blog-grid-spacer"></div>
           <div v-if="width > 1440" class="blog-grid-spacer"></div>
         </div>

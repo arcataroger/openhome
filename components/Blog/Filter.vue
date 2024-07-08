@@ -4,7 +4,19 @@ const { width, height } = useWindowSize();
 const menu = ref(null);
 const menu_wrap = ref(null);
 
-const tags = [
+// Dato CMS Query
+const QUERY = /* GraphQL */ `
+  query {
+    allTags {
+      slug
+      tag
+    }
+  }
+`;
+const { data, error } = await useGraphqlQuery({ query: QUERY });
+const tags = toRaw(data.value).allTags;
+
+/* const tags = [
   'All',
   'Community Project',
   'Community Update',
@@ -13,7 +25,7 @@ const tags = [
   'Collaboration',
   'Personality Spotlight',
   'App Spotlight',
-];
+]; */
 
 // reset drop menu if coming from mobile
 const resetMenu = () => {
@@ -43,17 +55,7 @@ onUnmounted(() => {
       <img src="/public/arrow.svg" alt="" class="icon-arrow" />
     </div>
     <div class="toggle-menu" ref="menu">
-      <ul class="tags">
-        <li v-for="(tag, key) in tags">
-          <a
-            href="#"
-            :data-id="tag"
-            class="tag"
-            :class="key == 0 && 'selected'"
-            >{{ tag }}</a
-          >
-        </li>
-      </ul>
+      <BlogTags :data="tags" loc="filter" />
     </div>
   </div>
 </template>
