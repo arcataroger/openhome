@@ -16,17 +16,6 @@ const QUERY = /* GraphQL */ `
 const { data, error } = await useGraphqlQuery({ query: QUERY });
 const tags = toRaw(data.value).allTags;
 
-/* const tags = [
-  'All',
-  'Community Project',
-  'Community Update',
-  'Social Impact',
-  'Insights',
-  'Collaboration',
-  'Personality Spotlight',
-  'App Spotlight',
-]; */
-
 // reset drop menu if coming from mobile
 const resetMenu = () => {
   if (width.value > 550) {

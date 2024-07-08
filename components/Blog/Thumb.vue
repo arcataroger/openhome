@@ -33,23 +33,23 @@ const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
       <time v-if="props.loc == 'home'">{{ formattedDate }}</time>
       <div v-else class="row details flex-jst">
         <time>{{ formattedDate }}</time>
-        <a href="#" class="tag sm">Community Project</a>
+        <BlogTags :data="props.data.categories" loc="thumb" />
       </div>
       <h3>{{ props.data.title }}</h3>
       <p>
-        {{ props.data.excerpt }}
+        {{ createExcerpt(props.data.contentBasic, 30) }}
       </p>
       <div v-if="props.loc != 'home'" class="arrow mt-25">
         <IconArrow ref="pixels" />
       </div>
-      <a
-        :href="blog_url + props.data.slug"
+      <NuxtLink
+        :to="`/blog/${props.data.slug}`"
         class="full"
         v-on="{
           mouseenter: props.loc != 'home' ? hoverOn : null,
           mouseleave: props.loc != 'home' ? hoverOff : null,
         }"
-      ></a>
+      ></NuxtLink>
     </div>
   </div>
 </template>

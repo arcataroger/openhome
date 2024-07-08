@@ -1,7 +1,11 @@
 <script setup>
 // imports
 import gsap from 'gsap';
+import { useWindowSize } from '@vueuse/core';
+
+const { width, height } = useWindowSize();
 const route = useRoute();
+let logo;
 
 // initial states
 const page_title = useState('page_title', () => 'index');
@@ -15,13 +19,13 @@ if (route.path != '/') {
 }
 
 // set theme for page / make dynamic
-let page_theme = 'dk';
+const page_theme = useState('page_theme', () => 'dk');
 if (
   route.name == 'blog' ||
   route.name == 'blog-slug' ||
   route.name == 'blog-category-id'
 ) {
-  page_theme = 'lt';
+  page_theme.value = 'lt';
 }
 
 // open site after initial load
@@ -29,7 +33,37 @@ onMounted(() => {
   setTimeout(function () {
     openPage(route.fullPath, route.name);
   }, 500);
+
+  logo = document.getElementById('logo-main');
 });
+
+const leavePage = () => {
+  gsap.to('#logo-main', {
+    duration: 0.25,
+    opacity: 0,
+    ease: 'linear',
+    onComplete: function () {
+      const ypos = height.value / 2 - 40;
+      let xpos = 0;
+      if (width <= 1024) {
+        xpos = width.value / 2 - 50;
+      }
+      logo.classList.remove('lt');
+      logo.classList.add('dk', 'fixed');
+      gsap.fromTo(
+        '#logo-main',
+        { x: xpos, y: height.value + 40, opacity: 1 },
+        { duration: 0.5, y: ypos, ease: 'power3.out' }
+      );
+    },
+  });
+};
+
+const refreshPage = () => {
+  setTimeout(() => {
+    openPage(route.fullPath, route.name);
+  }, 200);
+};
 </script>
 
 <template>
@@ -43,19 +77,22 @@ onMounted(() => {
           freezePage('.wrapper');
         },
         onLeave: (el, done) => {
+          //console.log('leave');
+          leavePage();
           gsap.fromTo(
             '.cover',
             { opacity: 0 },
             {
               duration: 0.5,
               opacity: 1,
-              ease: 'power3.inOut',
+              ease: 'linear',
               onComplete: done,
             }
           );
         },
         onEnter: () => {
-          //openPage(route.fullPath, route.name);
+          console.log('open');
+          refreshPage();
         },
       }"
     />

@@ -142,7 +142,7 @@ const closeMenu = () => {
   z-index: 10;
   &.expanded {
     height: 100%;
-    z-index: 20;
+    z-index: 22;
   }
   .menu-wrap {
     position: absolute;

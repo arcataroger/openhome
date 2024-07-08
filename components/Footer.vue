@@ -97,6 +97,7 @@ const { width, height } = useWindowSize();
 .footer-row {
   grid-template-columns: 76.5% 23.5%;
   .logo-main {
+    position: relative;
     top: 0;
     margin-bottom: 45px;
   }

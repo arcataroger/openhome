@@ -25,11 +25,11 @@ const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
       :icon="props.data.icon.responsiveImage"
       loc="feature"
     />
-    <a
-      :href="blog_url + props.data.slug"
+    <NuxtLink
+      :to="`/blog/${props.data.slug}`"
       class="full"
       v-if="props.loc == 'blog'"
-    ></a>
+    ></NuxtLink>
   </div>
 </template>
 

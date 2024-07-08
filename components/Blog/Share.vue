@@ -2,22 +2,37 @@
 import { useWindowSize } from '@vueuse/core';
 const { width, height } = useWindowSize();
 const main = ref(null);
+const route = useRoute();
+const base_url = useState('base_url');
+
+const props = defineProps(['title']);
+
 const links = [
   {
     name: 'X',
-    url: 'https://x.com/OpenHomeAI',
+    url:
+      'https://twitter.com/intent/tweet?text=' +
+      props.title +
+      ' ' +
+      base_url.value +
+      route.path,
     icon: '/icons/twitter.svg',
   },
   {
     name: 'FB',
-    url: 'https://www.facebook.com/',
+    url:
+      'https://www.facebook.com/sharer/sharer.php?u=' +
+      base_url.value +
+      route.path,
     icon: '/icons/facebook.svg',
   },
 ];
 
+let items;
 onMounted(() => {
+  items = main.value.querySelectorAll('.social-btn');
+
   // attach hovers
-  const items = main.value.querySelectorAll('.social-btn');
   items.forEach((item) => {
     item.addEventListener('mouseenter', hoverOnSocial);
     item.addEventListener('mouseleave', hoverOffSocial);
@@ -25,7 +40,6 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  const items = main.value.querySelectorAll('.social-btn');
   items.forEach((item) => {
     item.removeEventListener('mouseenter', hoverOnSocial);
     item.removeEventListener('mouseleave', hoverOffSocial);
@@ -47,7 +61,7 @@ onUnmounted(() => {
             <li class="title">Share</li>
             <li v-for="link in links" class="social-btn h-md">
               <div class="hover-icon"><img :src="link.icon" alt="" /></div>
-              <a :href="link.url"
+              <a :href="link.url" target="_blank"
                 ><span class="txt">{{ link.name }}</span></a
               >
             </li>

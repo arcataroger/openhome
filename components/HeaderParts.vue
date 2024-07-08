@@ -4,9 +4,8 @@ const props = defineProps(['sticky']);
 
 <template>
   <div class="content-wrapper">
-    <div class="logo-main" :class="props.sticky && 'sticky'">
-      <IconLogo v-if="!props.sticky" />
-      <IconLogoShape v-else />
+    <div class="logo-main sticky" v-if="props.sticky">
+      <IconLogoShape />
     </div>
     <Nav type="main" class="header-part"></Nav>
     <CtaNav class="header-part"></CtaNav>
@@ -17,23 +16,13 @@ const props = defineProps(['sticky']);
 .logo-main {
   position: absolute;
   left: 50%;
-  margin-left: -55px;
-  top: 24px;
-  z-index: 21;
-  &.sticky {
-    top: 35px;
-    width: 68px;
-    margin-left: -34px;
-  }
+  top: 35px;
+  width: 68px;
+  margin-left: -34px;
 }
-
 @media (max-width: 1024px) {
   nav {
     display: none;
-  }
-  .logo-main {
-    margin: 0;
-    left: -22px;
   }
 }
 </style>

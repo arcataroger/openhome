@@ -2,107 +2,6 @@
 import { useWindowSize } from '@vueuse/core';
 const { width, height } = useWindowSize();
 
-/* placeholder data */
-/* const posts = [
-  {
-    id: '1',
-    data: {
-      image: '/blog/feature-matrix@2x.jpg',
-      icon: '/blog/icon-matrix@2x.jpg',
-      date: 'March 01, 2024',
-      title: 'Matrix Phone Booth: Immersive Experiences in Openhome',
-      excerpt:
-        'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
-      url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
-    },
-  },
-  {
-    id: '1',
-    data: {
-      image: '/news-thumb1@2x.jpg',
-      icon: '/news-icon1@2x.png',
-      date: 'April 02, 2024',
-      title: 'Introducing MetaCap: Live Emotional Insights Come to OpenHome',
-      excerpt:
-        "We're thrilled to showcase a community project built by members of the OpenHome developer community! At the heart of OpenHome's",
-      url: 'https://openhome.xyz/introducing-metacap-live-emotional-insights-are-coming-to-openhome/',
-    },
-  },
-  {
-    id: '2',
-    data: {
-      image: '/news-thumb2@2x.jpg',
-      icon: '/news-icon2@2x.png',
-      date: 'March 01, 2024',
-      title: 'Matrix Phone Booth: Immersive Experiences in Openhome',
-      excerpt:
-        'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
-      url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
-    },
-  },
-  ,
-  {
-    id: '2',
-    data: {
-      image: '/news-thumb2@2x.jpg',
-      icon: '/news-icon2@2x.png',
-      date: 'March 01, 2024',
-      title: 'Matrix Phone Booth: Immersive Experiences in Openhome',
-      excerpt:
-        'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
-      url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
-    },
-  },
-  {
-    id: '2',
-    data: {
-      image: '/news-thumb2@2x.jpg',
-      icon: '/news-icon2@2x.png',
-      date: 'March 01, 2024',
-      title: 'Matrix Phone Booth: Immersive Experiences in Openhome',
-      excerpt:
-        'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
-      url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
-    },
-  },
-  {
-    id: '2',
-    data: {
-      image: '/news-thumb2@2x.jpg',
-      icon: '/news-icon2@2x.png',
-      date: 'March 01, 2024',
-      title: 'Matrix Phone Booth: Immersive Experiences in Openhome',
-      excerpt:
-        'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
-      url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
-    },
-  },
-  {
-    id: '1',
-    data: {
-      image: '/news-thumb1@2x.jpg',
-      icon: '/news-icon1@2x.png',
-      date: 'April 02, 2024',
-      title: 'Introducing MetaCap: Live Emotional Insights Come to OpenHome',
-      excerpt:
-        "We're thrilled to showcase a community project built by members of the OpenHome developer community! At the heart of OpenHome's",
-      url: 'https://openhome.xyz/introducing-metacap-live-emotional-insights-are-coming-to-openhome/',
-    },
-  },
-  {
-    id: '1',
-    data: {
-      image: '/news-thumb1@2x.jpg',
-      icon: '/news-icon1@2x.png',
-      date: 'April 02, 2024',
-      title: 'Introducing MetaCap: Live Emotional Insights Come to OpenHome',
-      excerpt:
-        "We're thrilled to showcase a community project built by members of the OpenHome developer community! At the heart of OpenHome's",
-      url: 'https://openhome.xyz/introducing-metacap-live-emotional-insights-are-coming-to-openhome/',
-    },
-  },
-]; */
-
 /* DatoCMS */
 const QUERY = /* GraphQL */ `
   query {
@@ -139,7 +38,7 @@ const QUERY = /* GraphQL */ `
 
 const { data, error } = await useGraphqlQuery({ query: QUERY });
 const posts = toRaw(data.value).allPosts;
-console.log(posts);
+//console.log(posts);
 let show_posts = posts.filter((post, i) => i > 0);
 
 // pagination
@@ -149,27 +48,7 @@ let totPages = 4;
 <template>
   <div class="hero blog section-wrapper lt">
     <!-- header -->
-    <div class="row gridlines page-top np-bot">
-      <Gridlines />
-
-      <div class="content-wrapper header no-max">
-        <div class="side-ornament lt"><div class="circ"></div></div>
-        <div class="side-ornament rt">
-          <img src="/public/icons/logo-halfcircs.svg" alt="" />
-        </div>
-
-        <header>
-          <Headline type="hero">
-            <h2 class="alt">
-              Res<span class="pix">o</span>u<span class="pix">r</span>c<span
-                class="pix"
-                >e</span
-              >s
-            </h2>
-          </Headline>
-        </header>
-      </div>
-    </div>
+    <BlogHeader />
 
     <!-- featured post -->
     <div class="feature-wrap row gridlines np-bot">
@@ -211,22 +90,6 @@ let totPages = 4;
 </template>
 
 <style scoped>
-.hero {
-  header {
-    padding-top: 3.2rem;
-    padding-bottom: 3.2rem;
-  }
-  .side-ornament {
-    top: 50%;
-    margin-top: -50px;
-    &.lt {
-      left: 0;
-    }
-    &.rt {
-      right: 0;
-    }
-  }
-}
 .feature-wrap {
   position: relative;
   z-index: 21;

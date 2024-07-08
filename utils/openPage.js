@@ -9,7 +9,18 @@ export default function (fullpath, name) {
   );
 
   // move logo into place
-  gsap.to('.logo-main', { duration: 0.75, x: 0, y: 0, ease: 'power3.inOut' });
+  const logo = document.getElementById('logo-main');
+  const page_theme = useState('page_theme');
+  gsap.to(logo, {
+    duration: 0.75,
+    x: 0,
+    y: 0,
+    ease: 'power3.inOut',
+    onComplete: () => {
+      logo.classList.remove('dk', 'lt', 'fixed');
+      logo.classList.add(page_theme.value);
+    },
+  });
 
   // slide contents into place
   gsap.fromTo(

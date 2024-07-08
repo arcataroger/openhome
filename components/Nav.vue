@@ -1,5 +1,16 @@
 <script setup>
 const props = defineProps(['type']);
+const route = useRoute();
+const activePage = ref('');
+
+const setActive = () => {
+  if (route.name.split('-')[0] == 'blog') {
+    activePage.value = 'blog';
+  }
+};
+onMounted(() => {
+  setActive();
+});
 </script>
 
 <template>
@@ -14,8 +25,8 @@ const props = defineProps(['type']);
         >
       </li>
       <li>
-        <a href="https://blog.openhome.xyz/blog/" target="_blank" class="ul"
-          >Resources</a
+        <NuxtLink to="/blog/" class="ul" :class="activePage == 'blog' && 'on'"
+          >Resources</NuxtLink
         >
       </li>
     </ul>
