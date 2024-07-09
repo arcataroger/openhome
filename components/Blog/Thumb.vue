@@ -27,7 +27,7 @@ const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
     <div class="blog-thumb">
       <BlogThumbImage
         :thumb="props.data.image.responsiveImage"
-        :icon="props.data.icon.responsiveImage"
+        :icon="props.data.icon != null && props.data.icon.responsiveImage"
       />
 
       <time v-if="props.loc == 'home'">{{ formattedDate }}</time>

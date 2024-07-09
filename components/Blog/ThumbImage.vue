@@ -6,7 +6,7 @@ import { Image as DatocmsImage } from 'vue-datocms';
 <template>
   <div class="thumb-img">
     <DatocmsImage :data="props.thumb" />
-    <div class="thumb-icon">
+    <div v-if="props.icon" class="thumb-icon">
       <DatocmsImage :data="props.icon" />
     </div>
   </div>

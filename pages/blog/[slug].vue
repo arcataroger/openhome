@@ -1,14 +1,16 @@
 <script setup>
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
 import { Image as DatocmsImage } from 'vue-datocms';
 import { StructuredText as DatocmsStructuredText } from 'vue-datocms';
 import { useWindowSize } from '@vueuse/core';
-const { width, height } = useWindowSize();
 
+gsap.registerPlugin(ScrollTrigger);
+const { width, height } = useWindowSize();
 const route = useRoute();
 const slug = route.params.slug;
+const main = ref();
+let ctx;
 
 /* DatoCMS */
 const QUERY = /* GraphQL */ `
@@ -18,7 +20,7 @@ const QUERY = /* GraphQL */ `
       slug
       publishDate
       image {
-        responsiveImage(imgixParams: { auto: format }) {
+        responsiveImage(imgixParams: { fit: fillmax, w: 1800, h: 1000 }) {
           src
           width
           height
@@ -60,37 +62,7 @@ const QUERY = /* GraphQL */ `
 
 const { data, error } = await useGraphqlQuery({ query: QUERY });
 const page_data = toRaw(data.value).post;
-//console.log('data ' + page_data.content.value);
-
-import { render } from 'datocms-structured-text-to-html-string';
-const options = {
-  renderBlock({ record, adapter: { renderNode } }) {
-    return renderNode(
-      'div',
-      {},
-      renderNode('blockquote', {}, record.quoteText)
-    );
-  },
-};
-const renderedPost = render(page_data.content, options);
-// split text by block, wrap remainders in bodycopy block
-
-/* placeholder data */
-/* const post = {
-  id: '1',
-  data: {
-    image: '/blog/feature-matrix@2x.jpg',
-    icon: '/blog/icon-matrix@2x.jpg',
-    date: 'March 01, 2024',
-    title: 'Matrix Phone Booth: Immersive Experiences in Openhome',
-    excerpt:
-      'We are thrilled to spotlight this creative community project from OpenHome community member Tracy Tao!',
-    url: 'https://openhome.xyz/matrix-phone-booth-what-would-you-choose/',
-  },
-}; */
-
-let ctx;
-const main = ref();
+//console.log('data: ' + page_data.content.value);
 
 onMounted(() => {
   // setup share menu pin
@@ -105,13 +77,10 @@ onUnmounted(() => {
   ctx.revert();
 });
 
-//import Gridlines from '/components/Gridlines.vue';
+// Structured Text: block renderer
 const renderBlock = ({ record }) => {
   if (record.__typename === 'QuoteRecord') {
-    return h('div', { style: 'background:red' }, [
-      //h(Gridlines),
-      h('blockquote', { class: 'h-md' }, record.quoteText),
-    ]);
+    return h('div', {}, [h('blockquote', { class: 'h-md' }, record.quoteText)]);
   }
 };
 </script>
@@ -140,38 +109,13 @@ const renderBlock = ({ record }) => {
         <Gridlines top="false" bot="false" />
 
         <div class="content-wrapper post">
-          <div v-html="page_data.contentBasic"></div>
-          <!--           <div v-html="renderedPost"></div>
- -->
-          <!--           <DatocmsStructuredText
+          <!-- basic text as placeholder
+          <div v-html="page_data.contentBasic"></div> -->
+
+          <DatocmsStructuredText
             :data="page_data.content"
             :renderBlock="renderBlock"
-          /> -->
-          <!-- <p>
-            We are thrilled to spotlight this creative community project from
-            OpenHome community member Tracy Tao!
-          </p>
-          <p>
-            Red pill or blue pill? Enter the matrix in the comfort of your own
-            home with the Matrix Phone Booth voice experience.
-          </p>
-          <p>
-            Matrix Phone Booth showcases the immersive and delightful experience
-            made possible through just a voice and sound effects. It’s a dynamic
-            agent tailored to you designed to make you feel like you’re actually
-            in a simulation.
-          </p>
-          <h3>About the Developer</h3>
-          <p>
-            Tracy Tao studied Computer Science at the University of Southern
-            California. She has a passion for interaction design and loves to
-            make fun personalities on OpenHome.
-          </p>
-          <p>
-            “It is more of a fun setting for people to examine daily life. Voice
-            applications provide immersive, customized, and more natural way of
-            patting our own desires and needs,” said Tracy.
-          </p> -->
+          />
         </div>
       </div>
 
@@ -276,6 +220,9 @@ const renderBlock = ({ record }) => {
   * + h4 {
     margin-top: 2.5rem;
   }
+  .post a {
+    text-decoration: underline;
+  }
 }
 .content-block.gridlines,
 .cta-row .col.pad {
@@ -324,6 +271,11 @@ const renderBlock = ({ record }) => {
   }
 }
 
+@media (pointer: fine) {
+  .article a:hover {
+    color: var(--orange);
+  }
+}
 @media (max-width: 1440px) {
   .content-wrapper.post {
     padding-left: 200px;

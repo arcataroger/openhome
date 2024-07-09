@@ -24,8 +24,7 @@ const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
     </p>
     <BlogThumbImage
       :thumb="props.data.image.responsiveImage"
-      :icon="props.data.icon.responsiveImage"
-      loc="feature"
+      :icon="props.data.icon != null && props.data.icon.responsiveImage"
     />
     <NuxtLink
       :to="`/blog/${props.data.slug}`"
