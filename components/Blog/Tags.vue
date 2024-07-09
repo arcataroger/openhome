@@ -14,7 +14,7 @@ if (props.loc == 'thumb') {
 
 <template>
   <ul class="tags">
-    <li v-if="loc == 'filter'">
+    <li v-if="props.loc == 'filter'">
       <a
         :href="blog_url.value"
         class="tag"

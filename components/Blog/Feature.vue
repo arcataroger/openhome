@@ -16,7 +16,9 @@ const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
       <BlogTags :data="props.data.categories" />
     </div>
 
-    <h3>{{ props.data.title }}</h3>
+    <h1 class="h-md" v-if="props.loc == 'post'">{{ props.data.title }}</h1>
+    <h3 v-else>{{ props.data.title }}</h3>
+
     <p>
       {{ createExcerpt(props.data.contentBasic, 30) }}
     </p>
@@ -51,6 +53,7 @@ const formattedDate = useDateFormat(props.data.publishDate, 'MMM DD, YYYY');
       object-fit: cover;
     }
   }
+  h1 + p,
   h3 + p {
     margin-top: 5px;
   }

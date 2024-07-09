@@ -25,7 +25,10 @@ onMounted(() => {
         >
       </li>
       <li>
-        <NuxtLink to="/blog/" class="ul" :class="activePage == 'blog' && 'on'"
+        <NuxtLink
+          to="/blog/"
+          class="ul"
+          :class="props.type == 'main' && activePage == 'blog' ? 'on' : null"
           >Resources</NuxtLink
         >
       </li>

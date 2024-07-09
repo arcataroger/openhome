@@ -40,16 +40,40 @@ const QUERY = /* GraphQL */ `
         slug
       }
       contentBasic
+      content {
+        value
+        blocks {
+          __typename
+          ... on RecordInterface {
+            __typename
+          }
+          ... on QuoteRecord {
+            id
+            __typename
+            quoteText
+          }
+        }
+      }
     }
   }
 `;
 
 const { data, error } = await useGraphqlQuery({ query: QUERY });
 const page_data = toRaw(data.value).post;
-//console.log('data ' + page_data.contentBasic);
+//console.log('data ' + page_data.content.value);
 
-/* import { render } from 'datocms-structured-text-to-html-string';
-console.log(render(page_data.content.value)); */
+import { render } from 'datocms-structured-text-to-html-string';
+const options = {
+  renderBlock({ record, adapter: { renderNode } }) {
+    return renderNode(
+      'div',
+      {},
+      renderNode('blockquote', {}, record.quoteText)
+    );
+  },
+};
+const renderedPost = render(page_data.content, options);
+// split text by block, wrap remainders in bodycopy block
 
 /* placeholder data */
 /* const post = {
@@ -81,11 +105,15 @@ onUnmounted(() => {
   ctx.revert();
 });
 
-/* const renderBlock = ({ record }) => {
+//import Gridlines from '/components/Gridlines.vue';
+const renderBlock = ({ record }) => {
   if (record.__typename === 'QuoteRecord') {
-    console.log('place quote here');
+    return h('div', { style: 'background:red' }, [
+      //h(Gridlines),
+      h('blockquote', { class: 'h-md' }, record.quoteText),
+    ]);
   }
-}; */
+};
 </script>
 
 <template>
@@ -113,8 +141,10 @@ onUnmounted(() => {
 
         <div class="content-wrapper post">
           <div v-html="page_data.contentBasic"></div>
+          <!--           <div v-html="renderedPost"></div>
+ -->
           <!--           <DatocmsStructuredText
-            :data="page_data.content.value"
+            :data="page_data.content"
             :renderBlock="renderBlock"
           /> -->
           <!-- <p>

@@ -6,32 +6,15 @@ let letters;
 let main = ref();
 const end_xpos = [0, 18, 35, 50];
 const end_dirs = [-1, 1, 1, -1];
+const w = 18;
 
 onMounted(() => {
   ctx = gsap.context((self) => {
-    let el;
     shapes = gsap.utils.toArray('.logo-half');
     const letter = self.selector('path');
     letters = gsap.utils.toArray(letter);
-    const w = 18;
 
-    // set up for loader animation
-    shapes.forEach((shape, i) => {
-      gsap.set(shape, { x: i * (w + 2) });
-
-      gsap.fromTo(
-        shape,
-        { scaleY: 0.5 },
-        {
-          duration: 0.3,
-          delay: (shapes.length - i) * -0.05,
-          scaleY: 1.5,
-          ease: 'quad.inOut',
-          repeat: -1,
-          yoyo: true,
-        }
-      );
-    });
+    setupLoader();
   }, main.value);
 
   setTimeout(function () {
@@ -42,6 +25,29 @@ onMounted(() => {
 onUnmounted(() => {
   ctx.revert();
 });
+
+const setupLoader = () => {
+  // set up for loader animation
+  shapes.forEach((shape, i) => {
+    gsap.set(shape, { x: i * (w + 2), scaleX: 1 });
+
+    // loading animation
+    gsap.fromTo(
+      shape,
+      { scaleY: 0.5 },
+      {
+        duration: 0.3,
+        delay: (shapes.length - i) * -0.05,
+        scaleY: 1.5,
+        ease: 'quad.inOut',
+        repeat: -1,
+        yoyo: true,
+      }
+    );
+  });
+
+  gsap.set(letters, { opacity: 0 });
+};
 
 const removeLoader = () => {
   // move shapes into logo lockup
@@ -71,6 +77,18 @@ const removeLoader = () => {
     }
   );
 };
+
+// watch for page change to refresh loader
+const loader_status = useState('loader_status');
+watch(loader_status, () => {
+  if (loader_status.value == 'refresh') {
+    setupLoader();
+    setTimeout(function () {
+      removeLoader();
+    }, 1200);
+    loader_status.value = 'off';
+  }
+});
 </script>
 
 <template>

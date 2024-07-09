@@ -3,7 +3,7 @@ import { useWindowSize } from '@vueuse/core';
 const { width, height } = useWindowSize();
 
 // reset to global page meta data
-//initSiteMeta();
+initSiteMeta();
 const page_id = 'homePage';
 
 // pull page from global site data by id
@@ -27,12 +27,14 @@ const page_data = toRaw(data.value)[page_id]; */
 </script>
 
 <template>
-  <HomeHero />
-  <HomeSlider />
-  <HomeCapabilities :class="width > 768 && 'overtop'" />
-  <HomeResources />
-  <HomeCommunity />
-  <HomeDemoBtn />
+  <div>
+    <HomeHero />
+    <HomeSlider />
+    <HomeCapabilities :class="width > 768 && 'overtop'" />
+    <!-- <HomeResources /> -->
+    <HomeCommunity />
+    <HomeDemoBtn />
+  </div>
 </template>
 
 <style scoped></style>

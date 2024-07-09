@@ -21,17 +21,15 @@ export default async function () {
             content
             tag
           },
-          siteTitle{
-            title
-          }
         }
       }`;
   const { data } = await useGraphqlQuery({ query: QUERY });
+  console.log(data.value);
 
   // set global fallbacks
   const site_title = useState(
     'site_title',
-    () => data.value.homePage.siteTitle.title
+    () => data.value.site.globalSeo.fallbackSeo.title
   );
   const site_desc = useState(
     'site_desc',

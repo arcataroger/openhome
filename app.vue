@@ -5,6 +5,7 @@ import { useWindowSize } from '@vueuse/core';
 
 const { width, height } = useWindowSize();
 const route = useRoute();
+const layout = ref(null);
 let logo;
 
 // initial states
@@ -37,12 +38,19 @@ onMounted(() => {
   logo = document.getElementById('logo-main');
 });
 
+const loader_status = useState('loader_status', () => 'off');
 const leavePage = () => {
   gsap.to('#logo-main', {
     duration: 0.25,
     opacity: 0,
     ease: 'linear',
+
+    // start transition to new page
     onComplete: function () {
+      // reset loader animation
+      loader_status.value = 'refresh';
+
+      // prep loader parts
       const ypos = height.value / 2 - 40;
       let xpos = 0;
       if (width <= 1024) {
@@ -50,6 +58,8 @@ const leavePage = () => {
       }
       logo.classList.remove('lt');
       logo.classList.add('dk', 'fixed');
+
+      // move loader into place
       gsap.fromTo(
         '#logo-main',
         { x: xpos, y: height.value + 40, opacity: 1 },
@@ -67,7 +77,7 @@ const refreshPage = () => {
 </script>
 
 <template>
-  <NuxtLayout :theme="page_theme">
+  <NuxtLayout :theme="page_theme" ref="layout">
     <NuxtPage
       :transition="{
         name: 'custom',
