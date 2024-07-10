@@ -80,7 +80,7 @@ onUnmounted(() => {
 // Structured Text: block renderer
 const renderBlock = ({ record }) => {
   if (record.__typename === 'QuoteRecord') {
-    return h('div', {}, [h('blockquote', { class: 'h-md' }, record.quoteText)]);
+    return h('div', {}, [h('blockquote', { class: 'h-md datocms-example' }, record.quoteText)]);
   }
 };
 </script>

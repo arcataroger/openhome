@@ -705,3 +705,18 @@ header,
     font-size: 12px;
   }
 }
+
+.datocms-example {
+  margin: 0; /* Remove the default blockquote margins */
+  margin-top: 10px;
+  padding-left: 10px;
+  border-left: 1px solid #ff593d; /* Dato brand color as an example */
+
+  &:before {
+    content: open-quote
+  }
+
+  &:after {
+    content: close-quote
+  }
+}
